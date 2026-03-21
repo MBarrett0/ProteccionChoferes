@@ -4,6 +4,26 @@ Sitio web institucional del Centro Protección Choferes de Montevideo (CPCH). Si
 
 ---
 
+## Vista previa
+
+### Escritorio
+
+| Hero | Beneficios | Estadísticas e Instalaciones |
+|------|-----------|------------------------------|
+| ![Hero desktop](docs/01-hero-desktop.png) | ![Beneficios](docs/02-beneficios-desktop.png) | ![Stats y carrusel](docs/03-stats-carousel-desktop.png) |
+
+### Página interior
+
+![Página interior — Departamento Jurídico](docs/04-inner-page-desktop.png)
+
+### Móvil
+
+| Inicio | Menú de navegación |
+|--------|--------------------|
+| ![Móvil hero](docs/05-hero-mobile.png) | ![Móvil menú](docs/06-menu-mobile.png) |
+
+---
+
 ## Desarrollo local
 
 Para previsualizar el sitio en tu computadora necesitás tener [Node.js](https://nodejs.org) instalado.

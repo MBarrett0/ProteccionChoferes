@@ -6,7 +6,6 @@ gen_pages2.py
 
 # Playwright / development screenshots
 .playwright-mcp/
-*.png
 
 # Node
 node_modules/
