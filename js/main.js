@@ -34,16 +34,45 @@ function initMobileMenu() {
   });
 
   // Accordion: links with data-toggle attribute
+  const ANIM_MS = 350; // must match CSS max-height transition duration
+  let openSub  = null;
+  let openLink = null;
+
+  function closeSub(sub, link) {
+    sub.classList.remove('is-open');
+    const ind = link && link.querySelector('span');
+    if (ind) ind.textContent = '+';
+  }
+
+  function openSubMenu(sub, link) {
+    sub.classList.add('is-open');
+    const ind = link.querySelector('span');
+    if (ind) ind.textContent = '−';
+    openSub  = sub;
+    openLink = link;
+  }
+
   mobileMenu.querySelectorAll('[data-toggle]').forEach(link => {
     link.addEventListener('click', (e) => {
       const targetId = link.getAttribute('data-toggle');
       const sub = document.getElementById(targetId);
       if (!sub) return;
-
       e.preventDefault();
-      const isSubOpen = sub.classList.toggle('is-open');
-      const indicator = link.querySelector('span');
-      if (indicator) indicator.textContent = isSubOpen ? '−' : '+';
+
+      if (sub.classList.contains('is-open')) {
+        // Toggle close
+        closeSub(sub, link);
+        openSub  = null;
+        openLink = null;
+      } else if (openSub && openSub !== sub) {
+        // Close current, then open new after animation finishes
+        closeSub(openSub, openLink);
+        openSub  = null;
+        openLink = null;
+        setTimeout(() => openSubMenu(sub, link), ANIM_MS);
+      } else {
+        openSubMenu(sub, link);
+      }
     });
   });
 

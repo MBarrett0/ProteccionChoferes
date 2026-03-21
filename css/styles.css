@@ -304,12 +304,18 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
 }
 
 .nav__mobile-sub {
-  display: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
   text-align: center;
   background: transparent;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
 }
 
-.nav__mobile-sub.is-open { display: block; }
+.nav__mobile-sub.is-open {
+  max-height: 400px;
+  opacity: 1;
+}
 
 .nav__mobile-sublink {
   display: block;
