@@ -253,63 +253,78 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   transition: transform var(--tr-base), opacity var(--tr-base), background var(--tr-base);
 }
 
+.nav__hamburger.is-open { position: relative; z-index: 1002; }
+.nav__hamburger.is-open span { background: var(--clr-white); }
 .nav__hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
 .nav__hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Mobile overlay menu */
+/* Mobile fullscreen overlay menu */
 .nav__mobile {
   position: fixed;
-  top: var(--nav-height);
+  top: 0;
   left: 0;
   width: 100%;
-  height: calc(100vh - var(--nav-height));
-  background: var(--clr-white);
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.93);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow-y: auto;
-  transform: translateX(-100%);
-  transition: transform var(--tr-base);
-  z-index: 999;
-  border-top: 3px solid var(--clr-primary);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  z-index: 1001;
 }
 
-.nav__mobile.is-open { transform: translateX(0); }
+.nav__mobile.is-open {
+  opacity: 1;
+  visibility: visible;
+}
 
 .nav__mobile-link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 700;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 2rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  font-weight: 800;
   text-transform: uppercase;
-  color: var(--clr-text-dark);
-  border-bottom: 1px solid var(--clr-border);
-  transition: background var(--tr-fast), color var(--tr-fast);
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.85);
+  border-bottom: none;
+  transition: color var(--tr-fast);
 }
 
-.nav__mobile-link:hover { background: var(--clr-primary); color: var(--clr-white); }
+.nav__mobile-link:hover {
+  background: transparent;
+  color: var(--clr-primary-light);
+}
 
 .nav__mobile-sub {
   display: none;
-  background: var(--clr-off-white);
+  text-align: center;
+  background: transparent;
 }
 
 .nav__mobile-sub.is-open { display: block; }
 
 .nav__mobile-sublink {
   display: block;
-  padding: 0.75rem 2rem;
+  padding: 0.4rem 1.5rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--clr-text);
-  border-bottom: 1px solid var(--clr-border);
-  transition: background var(--tr-fast), color var(--tr-fast), padding-left var(--tr-fast);
+  color: rgba(255, 255, 255, 0.5);
+  border-bottom: none;
+  transition: color var(--tr-fast);
 }
 
 .nav__mobile-sublink:hover {
-  background: var(--clr-primary-light);
-  color: var(--clr-primary-dark);
-  padding-left: 2.5rem;
+  background: transparent;
+  color: var(--clr-primary-light);
+  padding-left: 1.5rem;
 }
 
 /* Body padding for fixed nav */
@@ -512,6 +527,7 @@ body { padding-top: var(--nav-height); }
   content: '';
   position: absolute;
   inset: 0;
+  bottom: -2px;
 }
 
 /* white section above → green section below */
@@ -530,6 +546,7 @@ body { padding-top: var(--nav-height); }
 /* green section above → white section below */
 .torn-divider--green-to-white {
   background: var(--clr-primary);
+  transform: scaleY(-1);
 }
 
 .torn-divider--green-to-white::before {
@@ -557,24 +574,29 @@ body { padding-top: var(--nav-height); }
   );
 }
 
-/* dark green → white */
+/* dark green → white (peaks point DOWN) */
 .torn-divider--dark-to-white {
-  background: var(--clr-primary-dark);
+  background: var(--clr-off-white);
 }
 
 .torn-divider--dark-to-white::before {
-  background: var(--clr-white);
+  background: var(--clr-primary-dark);
   clip-path: polygon(
-    0 0, 2% 45%, 5% 20%, 8% 60%, 11% 30%, 14% 70%, 17% 35%,
-    20% 80%, 23% 45%, 26% 85%, 29% 50%, 32% 90%, 35% 55%,
-    38% 95%, 41% 60%, 44% 100%, 47% 65%, 50% 95%, 53% 55%,
-    56% 90%, 59% 50%, 62% 85%, 65% 45%, 68% 80%, 71% 40%,
-    74% 75%, 77% 35%, 80% 70%, 83% 30%, 86% 65%, 89% 25%,
-    92% 60%, 95% 20%, 98% 55%, 100% 30%, 100% 0
+    0% 0%, 100% 0%, 100% 20%,
+    98% 50%, 95% 10%, 92% 45%, 89% 5%, 86% 40%, 83% 0%,
+    80% 40%, 77% 0%, 74% 45%, 71% 5%, 68% 50%, 65% 10%,
+    62% 55%, 59% 15%, 56% 60%, 53% 20%, 50% 65%, 47% 25%,
+    44% 70%, 41% 30%, 38% 75%, 35% 35%, 32% 80%, 29% 40%,
+    26% 85%, 23% 45%, 20% 90%, 17% 50%, 14% 95%, 11% 55%,
+    8% 95%, 5% 60%, 2% 100%, 0% 70%
   );
 }
 
 /* white → secondary-dark */
+.torn-divider--white-to-secondary-dark {
+  background: var(--clr-off-white);
+}
+
 .torn-divider--white-to-secondary-dark::before {
   background: var(--clr-secondary-dark);
   clip-path: polygon(
