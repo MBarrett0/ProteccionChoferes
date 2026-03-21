@@ -1,0 +1,12 @@
+[     632ms] [ERROR] Access to script at 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585844901351029' from origin 'https://www.proteccionchoferes.org.uy' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://www.proteccionchoferes.org.uy/links:0
+[     633ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585844901351029:0
+[    1226ms] [ERROR] public/pages/masterPage.js: Missing semicolon. (15:4)
+
+  13 | 	//Add your code for this event here: 
+  14 | }
+> 15 | zomm 100%
+     |     ^
+  16 | export function horizontalMenu1_mouseOut(event) {
+  17 | 	//Add your code for this event here: 
+  18 | } @ https://www.proteccionchoferes.org.uy/_partials/wix-thunderbolt/dist/clientWorker.b8bdcec4.bundle.min.js:1
+[    1405ms] [WARNING] Unrecognized feature: 'vr'. @ https://www.proteccionchoferes.org.uy/links:98

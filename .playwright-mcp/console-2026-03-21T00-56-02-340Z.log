@@ -1,0 +1,18 @@
+[     625ms] [WARNING] Unrecognized feature: 'vr'. @ https://www.proteccionchoferes.org.uy/informacion:985
+[     673ms] [ERROR] Access to script at 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585844901351029' from origin 'https://www.proteccionchoferes.org.uy' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://www.proteccionchoferes.org.uy/informacion:0
+[     673ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1585844901351029:0
+[    1441ms] [ERROR] public/pages/masterPage.js: Missing semicolon. (15:4)
+
+  13 | 	//Add your code for this event here: 
+  14 | }
+> 15 | zomm 100%
+     |     ^
+  16 | export function horizontalMenu1_mouseOut(event) {
+  17 | 	//Add your code for this event here: 
+  18 | } @ https://www.proteccionchoferes.org.uy/_partials/wix-thunderbolt/dist/clientWorker.b8bdcec4.bundle.min.js:1
+[    1763ms] Uncaught TypeError: this.log is not a function
+    at processEvent (https://analytics.sitewit.com/wixembedded.js?ns=kliwix&id=288213382&instance=6057c422-36a4-4c84-bc67-e3fe7e9e1909&verify=:0:520)
+[    1926ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://sentry-next.wixpress.com/api/68/envelope/?sentry_key=605a7baede844d278b89dc95ae0a9123&sentry_version=7&sentry_client=sentry.javascript.browser%2F7.120.3:0
+[    4145ms] [WARNING] Style "Streets Default v2" is deprecated and will be removed in a future version. @ https://cdn.maptiler.com/maptiler-sdk-js/v3.10.2/maptiler-sdk.umd.min.js:807
+[    4145ms] [WARNING] Invalid style. A style must be a valid URL to a style.json, a JSON string representing a valid StyleSpecification or a valid StyleSpecification object. Fallback to default MapTiler style. @ https://cdn.maptiler.com/maptiler-sdk-js/v3.10.2/maptiler-sdk.umd.min.js:927
+[    4184ms] [WARNING] Style "Streets Default v2" is deprecated and will be removed in a future version. @ https://cdn.maptiler.com/maptiler-sdk-js/v3.10.2/maptiler-sdk.umd.min.js:807

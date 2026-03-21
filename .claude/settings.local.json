@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.proteccionchoferes.org.uy)",
+      "WebFetch(domain:en.proteccionchoferes.org.uy)",
+      "WebSearch",
+      "WebFetch(domain:www.mapeosociedadcivil.uy)",
+      "WebFetch(domain:uy.near-place.com)",
+      "WebFetch(domain:www.facebook.com)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_run_code",
+      "Bash(python -c \"print\\(''python available''\\)\")",
+      "Bash(python -c \"import os; print\\(os.getcwd\\(\\)\\)\")",
+      "Bash(python -c \":*)",
+      "Bash(python gen_pages2.py)",
+      "mcp__playwright__browser_resize",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3456/)",
+      "Bash(ls:*)",
+      "Bash(python3 fix_accents.py)",
+      "Read(//mnt/c/Windows/**)",
+      "Read(//usr/**)",
+      "Bash(/c/Python313/python fix_accents.py)",
+      "Bash(/c/Python313/python fix_overreplacements.py)"
+    ]
+  }
+}
