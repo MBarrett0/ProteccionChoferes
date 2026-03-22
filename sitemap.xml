@@ -10,210 +10,210 @@
 
   <!-- Institución -->
   <url>
-    <loc>https://proteccionchoferes.org.uy/quienes-somos.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/institucion/quienes-somos.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/historia.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/institucion/historia.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/autoridades.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/institucion/autoridades.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/asociarse.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/institucion/asociarse.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/informacion.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/contacto/informacion.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/secretaria.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/secretaria.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Beneficios -->
   <url>
-    <loc>https://proteccionchoferes.org.uy/convenios.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/convenios.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/area-salud.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/area-salud.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/juridico.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/juridico.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/parque-social.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/parque-social.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/sala-de-aparatos.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/sala-de-aparatos.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/complejo-deportivo.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/complejo-deportivo.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/colonia-de-verano.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/colonia-de-verano.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/biblioteca.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/biblioteca.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/auxilio-mecanico.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/beneficios/auxilio-mecanico.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Tránsito -->
   <url>
-    <loc>https://proteccionchoferes.org.uy/transito.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/transito.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/alcoholemia.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/alcoholemia.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/aquaplaning.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/aquaplaning.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/cinturon.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/cinturon.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/celular.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/celular.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/retencion-infantil.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/retencion-infantil.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/preferencias-de-paso.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/preferencias-de-paso.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/adulto-mayor.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/adulto-mayor.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/apnea-del-sueno.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/apnea-del-sueno.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/amaxofobia.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/amaxofobia.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/recomendaciones.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/recomendaciones.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/parque-tematico.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/parque-tematico.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/tenga-en-cuenta.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/transito/tenga-en-cuenta.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <!-- Eventos -->
   <url>
-    <loc>https://proteccionchoferes.org.uy/eventos.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/eventos/eventos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/eventos-cursos.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/eventos/eventos-cursos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/eventos-reconocimientos.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/eventos/eventos-reconocimientos.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/eventos-elecciones.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/eventos/eventos-elecciones.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/eventos-fiesta-inau.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/eventos/eventos-fiesta-inau.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/eventos-100.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/eventos/eventos-100.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <!-- Multimedia y Contacto -->
   <url>
-    <loc>https://proteccionchoferes.org.uy/multimedia.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/multimedia.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/contacto.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/contacto/contacto.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/links.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/contacto/links.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/primer.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/misc/primer.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/segundo.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/misc/segundo.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://proteccionchoferes.org.uy/tecnologias-futuristas.html</loc>
+    <loc>https://proteccionchoferes.org.uy/pages/misc/tecnologias-futuristas.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
