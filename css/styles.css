@@ -135,10 +135,13 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   height: var(--nav-height);
   background: var(--clr-white);
   z-index: 1000;
-  transition: box-shadow var(--tr-base);
+  transition: box-shadow var(--tr-base), background var(--tr-base);
 }
 
-.site-nav.is-solid { box-shadow: 0 2px 16px rgba(0,0,0,0.12); }
+.site-nav.is-solid {
+  background: var(--clr-primary);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
 
 .nav__container {
   display: flex;
@@ -151,8 +154,21 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   gap: 1rem;
 }
 
-.nav__logo { flex-shrink: 0; }
-.nav__logo img { height: 56px; width: auto; }
+.nav__logo {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.nav__logo img {
+  height: 104px;
+  width: auto;
+  transition: height 0.35s ease, transform 0.35s ease;
+  transform: translateY(12px);
+}
+.site-nav.is-solid .nav__logo img {
+  height: 65px;
+  transform: translateY(0);
+}
 
 .nav__menu {
   display: flex;
@@ -183,6 +199,16 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
 .nav__link.active {
   color: var(--clr-white);
   background: var(--clr-primary);
+}
+
+.site-nav.is-solid .nav__link {
+  color: var(--clr-white);
+}
+
+.site-nav.is-solid .nav__link:hover,
+.site-nav.is-solid .nav__link.active {
+  color: var(--clr-white);
+  background: rgba(255,255,255,0.16);
 }
 
 /* Dropdown arrow */
@@ -252,6 +278,8 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   border-radius: 2px;
   transition: transform var(--tr-base), opacity var(--tr-base), background var(--tr-base);
 }
+
+.site-nav.is-solid .nav__hamburger span { background: var(--clr-white); }
 
 .nav__hamburger.is-open { position: relative; z-index: 1002; }
 .nav__hamburger.is-open span { background: var(--clr-white); }
@@ -1587,9 +1615,11 @@ counter-increment: decalogo-counter;
 @media (max-width: 1024px) {
   :root { --nav-height: 70px; }
 
-  /* Nav: show hamburger */
+  /* Nav: show hamburger, shrink logo overflow */
   .nav__menu { display: none; }
   .nav__hamburger { display: flex; }
+  .nav__logo img { height: 86px; transform: translateY(8px); }
+  .site-nav.is-solid .nav__logo img { height: 54px; transform: translateY(0); }
 
   /* Hero: shrink height on tablet */
   .hero { height: calc(75vh - var(--nav-height)); }
