@@ -261,6 +261,37 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   padding-left: 1.4rem;
 }
 
+/* Nav CTA button — Horarios */
+.nav__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.2rem;
+  margin-left: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--clr-amber);
+  color: #333;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background var(--tr-fast), transform var(--tr-fast), box-shadow var(--tr-fast);
+  flex-shrink: 0;
+}
+
+.nav__cta:hover {
+  background: #d99c1e;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  color: #333;
+}
+
+.nav__cta svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.site-nav.is-solid .nav__cta { background: var(--clr-amber); color: #333; }
+.site-nav.is-solid .nav__cta:hover { background: #fff; color: var(--clr-primary-dark); }
+
 /* Hamburger button */
 .nav__hamburger {
   display: none;
@@ -360,6 +391,27 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   color: var(--clr-primary-light);
   padding-left: 1.5rem;
 }
+
+/* Mobile menu CTA — Horarios */
+.nav__mobile-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  margin: 0.5rem 1.5rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--clr-amber);
+  color: #333;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background var(--tr-fast);
+}
+
+.nav__mobile-cta:hover { background: #d99c1e; color: #333; }
+.nav__mobile-cta svg { width: 16px; height: 16px; }
 
 /* Body padding for fixed nav */
 body { padding-top: var(--nav-height); }
@@ -1617,6 +1669,7 @@ counter-increment: decalogo-counter;
 
   /* Nav: show hamburger, shrink logo overflow */
   .nav__menu { display: none; }
+  .nav__cta { display: none; }
   .nav__hamburger { display: flex; }
   .nav__logo img { height: 86px; transform: translateY(8px); }
   .site-nav.is-solid .nav__logo img { height: 54px; transform: translateY(0); }
@@ -1961,4 +2014,397 @@ counter-increment: decalogo-counter;
   .timeline::before { left: 15px; }
   .timeline__content { padding-left: 48px; }
   .timeline__header { gap: 0.75rem; }
+}
+
+/* ============================================================
+   HORARIOS — Filter & Schedule Tables
+   ============================================================ */
+
+/* Search-dropdown filter */
+.horarios-filter {
+  position: relative;
+  z-index: 100;
+  max-width: 520px;
+  margin: 0 auto 2rem;
+}
+
+.horarios-filter__bar {
+  display: flex;
+  align-items: center;
+  background: var(--clr-white);
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  gap: 0.6rem;
+  cursor: text;
+  transition: border-color var(--tr-fast), box-shadow var(--tr-fast);
+}
+
+.horarios-filter__bar:focus-within {
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 3px rgba(98,170,35,0.12);
+}
+
+.horarios-filter__icon {
+  flex-shrink: 0;
+  color: var(--clr-text);
+  opacity: 0.5;
+}
+
+.horarios-filter__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: var(--clr-text-dark);
+  background: transparent;
+}
+
+.horarios-filter__input::placeholder { color: var(--clr-text); opacity: 0.55; }
+
+.horarios-filter__count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  background: var(--clr-primary);
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Dropdown */
+.horarios-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--clr-white);
+  border: 2px solid var(--clr-primary);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  z-index: 200;
+}
+
+.horarios-dropdown.is-open {
+  max-height: 420px;
+  overflow-y: auto;
+  opacity: 1;
+}
+
+.horarios-dropdown__actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--clr-border);
+  position: sticky;
+  top: 0;
+  background: var(--clr-white);
+  z-index: 1;
+}
+
+.horarios-dropdown__actions button {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--clr-primary);
+  padding: 0.25rem 0.65rem;
+  border: 1.5px solid var(--clr-primary);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--tr-fast), color var(--tr-fast);
+}
+
+.horarios-dropdown__actions button:hover {
+  background: var(--clr-primary);
+  color: var(--clr-white);
+}
+
+.horarios-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+  transition: background var(--tr-fast);
+  user-select: none;
+  font-size: 0.88rem;
+}
+
+.horarios-dropdown__item:hover { background: var(--clr-off-white); }
+.horarios-dropdown__item.is-filtered { display: none; }
+
+.horarios-dropdown__item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--clr-border);
+  border-radius: 3px;
+  background: var(--clr-white);
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  transition: background var(--tr-fast), border-color var(--tr-fast);
+}
+
+.horarios-dropdown__item input[type="checkbox"]:checked {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+.horarios-dropdown__item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 6px;
+  height: 10px;
+  border: solid var(--clr-white);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.horarios-dropdown__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.horarios-dropdown__dot--piscina   { background: #1a8fc4; }
+.horarios-dropdown__dot--gimnasio  { background: var(--clr-primary); }
+.horarios-dropdown__dot--infantil  { background: #d4960a; }
+.horarios-dropdown__dot--cancha    { background: #2a9d8f; }
+
+.horarios-dropdown__label {
+  font-weight: 600;
+  color: var(--clr-text-dark);
+  line-height: 1.3;
+}
+
+/* Full-width grid wrapper */
+.horarios-grid-wrapper {
+  width: 100%;
+  padding: 0 1.5rem 3rem;
+}
+
+/* Table-like schedule grid: hour col + 5 day cols */
+.horarios-grid {
+  display: grid;
+  grid-template-columns: 64px repeat(5, 1fr);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--clr-white);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.horarios-grid__corner {
+  background: var(--clr-primary-dark);
+  padding: 0.7rem 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.horarios-grid__day-header {
+  background: var(--clr-primary);
+  color: var(--clr-white);
+  text-align: center;
+  padding: 0.7rem 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-left: 1px solid rgba(255,255,255,0.15);
+}
+
+.horarios-grid__hour {
+  background: var(--clr-off-white);
+  padding: 0.5rem 0.3rem;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: var(--clr-text);
+  border-top: 1px solid var(--clr-border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.65rem;
+}
+
+.horarios-grid__cell {
+  padding: 0.4rem;
+  border-top: 1px solid var(--clr-border);
+  border-left: 1px solid var(--clr-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 48px;
+}
+
+.horarios-grid__entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 5px;
+  border-left: 3px solid transparent;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  transition: opacity 0.25s ease, max-height 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+  max-height: 70px;
+  overflow: hidden;
+}
+
+.horarios-grid__entry.is-hidden {
+  opacity: 0;
+  max-height: 0;
+  padding: 0 0.6rem;
+  margin: 0;
+}
+
+.horarios-grid__time {
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+
+.horarios-grid__name {
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+/* Category colors — left border accent */
+.horarios-grid__entry--piscina   { background: #e8f4fd; border-left-color: #1a8fc4; color: #065C81; }
+.horarios-grid__entry--gimnasio  { background: #e8f5e0; border-left-color: var(--clr-primary); color: var(--clr-primary-dark); }
+.horarios-grid__entry--infantil  { background: #fef8e8; border-left-color: #d4960a; color: #7a5f12; }
+.horarios-grid__entry--cancha    { background: #e0f2f1; border-left-color: #2a9d8f; color: #1a7a6e; }
+
+/* ---- Mobile day-swipe carousel ---- */
+.horarios-swipe { display: none; }
+
+.horarios-swipe__tabs {
+  display: flex;
+  position: sticky;
+  top: 56px;
+  z-index: 5;
+}
+
+.horarios-swipe__tab {
+  flex: 1;
+  padding: 0.65rem 0.3rem;
+  border: none;
+  background: var(--clr-off-white);
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 3px solid transparent;
+}
+
+.horarios-swipe__tab.is-active {
+  background: var(--clr-white);
+  color: var(--clr-primary);
+  border-bottom-color: var(--clr-primary);
+}
+
+.horarios-swipe__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.horarios-swipe__track::-webkit-scrollbar { display: none; }
+
+.horarios-swipe__day {
+  min-width: 100%;
+  scroll-snap-align: start;
+  padding: 1rem 1rem 2rem;
+}
+
+.horarios-swipe__hour-group {
+  margin-bottom: 0.6rem;
+}
+
+.horarios-swipe__hour-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--clr-primary-dark);
+  margin-bottom: 0.3rem;
+  padding-left: 0.15rem;
+  opacity: 0.7;
+}
+
+.horarios-swipe__hour-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Entries in swipe are bigger */
+.horarios-swipe .horarios-grid__entry {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.88rem;
+  border-left-width: 4px;
+  border-radius: 6px;
+  max-height: 80px;
+}
+
+.horarios-swipe .horarios-grid__time { font-size: 0.78rem; }
+.horarios-swipe .horarios-grid__name { font-size: 0.88rem; }
+
+/* Empty state */
+.horarios-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--clr-text);
+  display: none;
+}
+
+.horarios-empty.is-visible { display: block; }
+
+/* Sticky hour column */
+.horarios-grid__corner,
+.horarios-grid__hour {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .horarios-grid-wrapper { padding: 0 0.75rem 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .horarios-grid { min-width: 700px; grid-template-columns: 54px repeat(5, 1fr); }
+  .horarios-grid__entry { font-size: 0.72rem; padding: 0.35rem 0.5rem; }
+  .horarios-grid__name { font-size: 0.72rem; }
+  .horarios-grid__time { font-size: 0.65rem; }
+}
+
+@media (max-width: 768px) {
+  .horarios-grid-wrapper { display: none; }
+  .horarios-swipe { display: block; }
+  .horarios-filter { max-width: 100%; margin-left: 1rem; margin-right: 1rem; }
+}
+
+@media (max-width: 375px) {
+  .horarios-filter__bar { padding: 0.5rem 0.75rem; }
 }
