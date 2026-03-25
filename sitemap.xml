@@ -87,73 +87,6 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Tránsito -->
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/transito.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/alcoholemia.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/aquaplaning.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/cinturon.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/celular.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/retencion-infantil.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/preferencias-de-paso.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/adulto-mayor.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/apnea-del-sueno.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/amaxofobia.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/recomendaciones.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/parque-tematico.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/transito/tenga-en-cuenta.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
   <!-- Eventos -->
   <url>
     <loc>https://proteccionchoferes.org.uy/eventos/eventos.html</loc>
@@ -199,21 +132,6 @@
   </url>
   <url>
     <loc>https://proteccionchoferes.org.uy/contacto/links.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/misc/primer.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/misc/segundo.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://proteccionchoferes.org.uy/misc/tecnologias-futuristas.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
