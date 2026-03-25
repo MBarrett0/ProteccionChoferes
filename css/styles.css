@@ -522,14 +522,15 @@ body { padding-top: var(--nav-height); }
 
 .service-card__link:hover { color: var(--clr-primary-dark); }
 
-/* === SMOOTH WAVE DIVIDERS === */
+/* === HEXAGONAL HONEYCOMB DIVIDERS === */
 /*
-  SVG sine-wave paths (1 period, amplitude ~35px in 80px height).
-  white→color: colored wave fills from bottom up.
-  color→white: colored wave fills from top down.
+  Flat-top hexagons (r_grid=50, r_draw=47) in a honeycomb grid.
+  3 rows: top tips poke into the source section, bottom merges solid
+  into the destination section via a hard background-gradient cutoff.
+  Mask tile repeats every 150px (3 × r_grid) on the x-axis.
 */
 .torn-divider {
-  height: 80px;
+  height: 120px;
   position: relative;
   overflow: hidden;
 }
@@ -538,48 +539,66 @@ body { padding-top: var(--nav-height); }
   content: '';
   position: absolute;
   inset: 0;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  bottom: -1px;
+  -webkit-mask-size: 150px 100%;
+  mask-size: 150px 100%;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
 }
 
-/* ─── white / off-white → primary green ─── */
+/* Upward hex mask (▲) — hex tips point up into the lighter section */
+.torn-divider--white-to-green::before,
+.torn-divider--white-to-dark::before,
+.torn-divider--white-to-secondary-dark::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 120'%3E%3Cpolygon points='47,35 23.5,75.7 -23.5,75.7 -47,35 -23.5,-5.7 23.5,-5.7' fill='white'/%3E%3Cpolygon points='197,35 173.5,75.7 126.5,75.7 103,35 126.5,-5.7 173.5,-5.7' fill='white'/%3E%3Cpolygon points='122,78.3 98.5,119 51.5,119 28,78.3 51.5,37.6 98.5,37.6' fill='white'/%3E%3Cpolygon points='47,121.6 23.5,162.3 -23.5,162.3 -47,121.6 -23.5,80.9 23.5,80.9' fill='white'/%3E%3Cpolygon points='197,121.6 173.5,162.3 126.5,162.3 103,121.6 126.5,80.9 173.5,80.9' fill='white'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 120'%3E%3Cpolygon points='47,35 23.5,75.7 -23.5,75.7 -47,35 -23.5,-5.7 23.5,-5.7' fill='white'/%3E%3Cpolygon points='197,35 173.5,75.7 126.5,75.7 103,35 126.5,-5.7 173.5,-5.7' fill='white'/%3E%3Cpolygon points='122,78.3 98.5,119 51.5,119 28,78.3 51.5,37.6 98.5,37.6' fill='white'/%3E%3Cpolygon points='47,121.6 23.5,162.3 -23.5,162.3 -47,121.6 -23.5,80.9 23.5,80.9' fill='white'/%3E%3Cpolygon points='197,121.6 173.5,162.3 126.5,162.3 103,121.6 126.5,80.9 173.5,80.9' fill='white'/%3E%3C/svg%3E");
+}
+
+/* Downward hex mask (▼) — hex tips point down into the lighter section */
+.torn-divider--green-to-white::before,
+.torn-divider--dark-to-white::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 120'%3E%3Cpolygon points='47,85 23.5,125.7 -23.5,125.7 -47,85 -23.5,44.3 23.5,44.3' fill='white'/%3E%3Cpolygon points='197,85 173.5,125.7 126.5,125.7 103,85 126.5,44.3 173.5,44.3' fill='white'/%3E%3Cpolygon points='122,41.7 98.5,82.4 51.5,82.4 28,41.7 51.5,1 98.5,1' fill='white'/%3E%3Cpolygon points='47,-1.6 23.5,39.1 -23.5,39.1 -47,-1.6 -23.5,-42.3 23.5,-42.3' fill='white'/%3E%3Cpolygon points='197,-1.6 173.5,39.1 126.5,39.1 103,-1.6 126.5,-42.3 173.5,-42.3' fill='white'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 120'%3E%3Cpolygon points='47,85 23.5,125.7 -23.5,125.7 -47,85 -23.5,44.3 23.5,44.3' fill='white'/%3E%3Cpolygon points='197,85 173.5,125.7 126.5,125.7 103,85 126.5,44.3 173.5,44.3' fill='white'/%3E%3Cpolygon points='122,41.7 98.5,82.4 51.5,82.4 28,41.7 51.5,1 98.5,1' fill='white'/%3E%3Cpolygon points='47,-1.6 23.5,39.1 -23.5,39.1 -47,-1.6 -23.5,-42.3 23.5,-42.3' fill='white'/%3E%3Cpolygon points='197,-1.6 173.5,39.1 126.5,39.1 103,-1.6 126.5,-42.3 173.5,-42.3' fill='white'/%3E%3C/svg%3E");
+}
+
+/* ─── white → dark-green section (▲) ─── */
 .torn-divider--white-to-green {
-  background: var(--clr-off-white);
+  background: linear-gradient(to bottom, var(--clr-white) 60%, var(--clr-primary-dark) 60%);
 }
 .torn-divider--white-to-green::before {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,55 C240,15 480,75 720,40 C960,5 1200,65 1440,45 L1440,80 L0,80 Z' fill='%2362AA23'/></svg>");
+  background: var(--clr-primary-dark);
 }
 
-/* ─── primary green → white / off-white ─── */
+/* ─── dark-green section → white (▼) ─── */
 .torn-divider--green-to-white {
-  background: var(--clr-off-white);
+  background: linear-gradient(to bottom, var(--clr-primary-dark) 40%, var(--clr-white) 40%);
 }
 .torn-divider--green-to-white::before {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,25 C240,65 480,5 720,40 C960,75 1200,15 1440,35 L1440,0 L0,0 Z' fill='%2362AA23'/></svg>");
+  background: var(--clr-primary-dark);
 }
 
-/* ─── white → dark green ─── */
+/* ─── white → parallax dark-green (▲) ─── */
 .torn-divider--white-to-dark {
-  background: var(--clr-off-white);
+  background: linear-gradient(to bottom, var(--clr-white) 60%, var(--clr-primary-dark) 60%);
 }
 .torn-divider--white-to-dark::before {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,55 C240,15 480,75 720,40 C960,5 1200,65 1440,45 L1440,80 L0,80 Z' fill='%233F7652'/></svg>");
+  background: var(--clr-primary-dark);
 }
 
-/* ─── dark green → white ─── */
+/* ─── parallax dark-green → off-white (▼) ─── */
 .torn-divider--dark-to-white {
-  background: var(--clr-off-white);
+  background: linear-gradient(to bottom, var(--clr-primary-dark) 40%, var(--clr-off-white) 40%);
 }
 .torn-divider--dark-to-white::before {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,25 C240,65 480,5 720,40 C960,75 1200,15 1440,35 L1440,0 L0,0 Z' fill='%233F7652'/></svg>");
+  background: var(--clr-primary-dark);
 }
 
-/* ─── white → secondary dark ─── */
+/* ─── off-white → secondary-dark footer (▲) ─── */
 .torn-divider--white-to-secondary-dark {
-  background: var(--clr-off-white);
+  background: linear-gradient(to bottom, var(--clr-off-white) 60%, var(--clr-secondary-dark) 60%);
 }
 .torn-divider--white-to-secondary-dark::before {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,55 C240,15 480,75 720,40 C960,5 1200,65 1440,45 L1440,80 L0,80 Z' fill='%23065C81'/></svg>");
+  background: var(--clr-secondary-dark);
 }
 
 /* === STATS COUNTER SECTION === */
