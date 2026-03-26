@@ -2265,7 +2265,7 @@ counter-increment: decalogo-counter;
   font-size: 0.78rem;
   line-height: 1.3;
   transition: opacity 0.25s ease, max-height 0.3s ease, padding 0.3s ease, margin 0.3s ease;
-  max-height: 70px;
+  max-height: 120px;
   overflow: hidden;
 }
 
@@ -2293,6 +2293,21 @@ counter-increment: decalogo-counter;
 .horarios-grid__entry--gimnasio  { background: #e8f5e0; border-left-color: var(--clr-primary); color: var(--clr-primary-dark); }
 .horarios-grid__entry--infantil  { background: #fef8e8; border-left-color: #d4960a; color: #7a5f12; }
 .horarios-grid__entry--cancha    { background: #e0f2f1; border-left-color: #2a9d8f; color: #1a7a6e; }
+
+/* Red "no teacher" indicator inside Sala Entrenamiento */
+.horarios-grid__no-profe {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(185, 28, 28, 0.8);
+  margin-top: 3px;
+  margin-bottom: 2px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
 
 /* ---- Mobile day-swipe carousel ---- */
 .horarios-swipe { display: none; }

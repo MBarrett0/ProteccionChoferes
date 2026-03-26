@@ -437,6 +437,43 @@ function initHorarios() {
     {s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:0,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:1,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:2,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:3,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:4,t:'16:00',e:'21:00'}
   ];
 
+  // Profe en sala schedule per day: [start, end] ranges
+  var PROFE = {
+    0: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
+    1: [['08:00','12:00'],['16:00','21:00']],
+    2: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
+    3: [['08:00','12:00'],['16:00','21:00']],
+    4: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']]
+  };
+
+  function toMin(t) { var p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
+  function fromMin(m) { var h = Math.floor(m / 60), mm = m % 60; return (h < 10 ? '0' : '') + h + ':' + (mm < 10 ? '0' : '') + mm; }
+
+  function getNoProfeGaps(day, start, end) {
+    var sMin = toMin(start), eMin = toMin(end);
+    var ranges = PROFE[day] || [];
+    var gaps = [], cursor = sMin;
+    for (var i = 0; i < ranges.length; i++) {
+      var ps = toMin(ranges[i][0]), pe = toMin(ranges[i][1]);
+      if (pe <= cursor) continue;
+      if (ps > eMin) break;
+      if (ps > cursor) gaps.push([fromMin(cursor), fromMin(Math.min(ps, eMin))]);
+      cursor = Math.max(cursor, pe);
+    }
+    if (cursor < eMin) gaps.push([fromMin(cursor), fromMin(eMin)]);
+    return gaps;
+  }
+
+  function noProfeHtml(e, endTime) {
+    if (e.s !== 'sala-entrenamiento') return '';
+    var gaps = getNoProfeGaps(e.d, e.t, endTime);
+    var h = '';
+    for (var i = 0; i < gaps.length; i++) {
+      h += '<span class="horarios-grid__no-profe">' + gaps[i][0] + ' - ' + gaps[i][1] + ' Sin profesor en sala</span>';
+    }
+    return h;
+  }
+
   // Build table-like grid: hour column + 5 day columns
   function buildGrid() {
     // Collect unique hours that have entries
@@ -462,13 +499,14 @@ function initHorarios() {
         entries.sort(function(a, b) { return a.t < b.t ? -1 : a.t > b.t ? 1 : 0; });
         html += '<div class="horarios-grid__cell">';
         entries.forEach(function(e) {
-          var timeStr;
-          if (e.e) { timeStr = e.t + ' - ' + e.e; }
-          else if (DUR[e.s]) { timeStr = e.t + ' - ' + addMin(e.t, DUR[e.s]); }
-          else { timeStr = e.t; }
+          var timeStr, endTime;
+          if (e.e) { endTime = e.e; timeStr = e.t + ' - ' + endTime; }
+          else if (DUR[e.s]) { endTime = addMin(e.t, DUR[e.s]); timeStr = e.t + ' - ' + endTime; }
+          else { timeStr = e.t; endTime = e.t; }
           html += '<div class="horarios-grid__entry horarios-grid__entry--' + e.c + '" data-activity="' + e.s + '">';
           html += '<span class="horarios-grid__time">' + timeStr + '</span>';
           html += '<span class="horarios-grid__name">' + e.n + '</span>';
+          html += noProfeHtml(e, endTime);
           html += '</div>';
         });
         html += '</div>';
@@ -502,13 +540,15 @@ function initHorarios() {
         entries.sort(function(a, b) { return a.t < b.t ? -1 : a.t > b.t ? 1 : 0; });
         html += '<div class="horarios-swipe__hour-group"><div class="horarios-swipe__hour-label">' + hour + ':00</div><div class="horarios-swipe__hour-entries">';
         entries.forEach(function(e) {
-          var timeStr;
-          if (e.e) { timeStr = e.t + ' - ' + e.e; }
-          else if (DUR[e.s]) { timeStr = e.t + ' - ' + addMin(e.t, DUR[e.s]); }
-          else { timeStr = e.t; }
+          var timeStr, endTime;
+          if (e.e) { endTime = e.e; timeStr = e.t + ' - ' + endTime; }
+          else if (DUR[e.s]) { endTime = addMin(e.t, DUR[e.s]); timeStr = e.t + ' - ' + endTime; }
+          else { timeStr = e.t; endTime = e.t; }
           html += '<div class="horarios-grid__entry horarios-grid__entry--' + e.c + '" data-activity="' + e.s + '">';
           html += '<span class="horarios-grid__time">' + timeStr + '</span>';
-          html += '<span class="horarios-grid__name">' + e.n + '</span></div>';
+          html += '<span class="horarios-grid__name">' + e.n + '</span>';
+          html += noProfeHtml(e, endTime);
+          html += '</div>';
         });
         html += '</div></div>';
       });
