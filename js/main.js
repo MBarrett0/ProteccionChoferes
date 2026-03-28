@@ -340,7 +340,7 @@ function initContactForm() {
     await new Promise(r => setTimeout(r, 1200));
 
     btn.textContent       = 'Mensaje enviado';
-    btn.style.background  = '#3F7652';
+    btn.style.background  = '#1E3A5F';
     btn.style.color       = '#fff';
 
     setTimeout(() => {

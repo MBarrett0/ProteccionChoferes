@@ -37,16 +37,16 @@ contenido-sitio-web.md     # Content source extracted from proteccionchoferes.or
 
 ### Color Palette
 
-Colors come from the real proteccionchoferes.org.uy site. **Never use navy/gold** (those are Club Nautico, a different org).
+Blue-dominant palette.
 
 | Token | Hex | Role |
 |---|---|---|
-| `--clr-primary` | `#62AA23` | Brand green — nav active state, buttons, links, card borders |
-| `--clr-primary-dark` | `#3F7652` | Dark green — stats section bg, hover states, dark sections |
-| `--clr-primary-light` | `#C2E2A7` | Pale green — carousel tags, stat labels, footer column titles |
-| `--clr-secondary` | `#2596be` | Steel blue — complementary accent |
-| `--clr-secondary-dark` | `#065C81` | Dark teal — footer bottom bar, darkest sections |
-| `--clr-teal` | `#33A1A3` | Bright teal — card accent variant |
+| `--clr-primary` | `#2563EB` | Vivid blue — nav active state, buttons, links, card borders |
+| `--clr-primary-dark` | `#1E3A5F` | Navy blue — stats section bg, hover states, dark sections |
+| `--clr-primary-light` | `#B3D4F7` | Pale blue — carousel tags, stat labels, footer column titles |
+| `--clr-secondary` | `#3B82F6` | Medium blue — complementary accent |
+| `--clr-secondary-dark` | `#0F2847` | Deep navy — footer bottom bar, darkest sections |
+| `--clr-teal` | `#38BDF8` | Sky blue — card accent variant |
 | `--clr-amber` | `#F2AC2C` | Golden amber — CTA buttons ("Horarios", "Enviar Mensaje"), active timeline markers |
 | `--clr-white` | `#ffffff` | Backgrounds |
 | `--clr-off-white` | `#f5f7fa` | Subtle background sections |
@@ -113,9 +113,9 @@ Labels, nav links, and small text use uppercase + `letter-spacing: 0.06–0.18em
 
 ### Gradient Patterns
 
-- **Hero overlay**: `linear-gradient(160deg, rgba(63,118,82,0.82), rgba(6,92,129,0.75))`
-- **Parallax overlay**: `linear-gradient(135deg, rgba(63,118,82,0.82), rgba(6,92,129,0.72))`
-- **Page hero**: Same green-to-teal gradient with bg image at 15% opacity
+- **Hero overlay**: `linear-gradient(160deg, rgba(30,58,95,0.85), rgba(15,40,71,0.78))`
+- **Parallax overlay**: `linear-gradient(135deg, rgba(30,58,95,0.85), rgba(15,40,71,0.78))`
+- **Page hero**: Same navy-to-deep-navy gradient with bg image at 15% opacity
 - **Timeline line**: `linear-gradient(to bottom, --clr-primary, --clr-primary-dark)`
 - **Marquee fade mask**: `linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)`
 
@@ -151,7 +151,7 @@ BEM throughout: `.block__element--modifier`. State classes use `.is-` prefix:
 
 ### Navigation (`.site-nav`)
 
-Fixed position, white background, 80px height. On scroll > 40px, gains `.is-solid` class → green background (`--clr-primary`), white text, shadow, logo shrinks (104px → 65px).
+Fixed position, white background, 80px height. On scroll > 40px, gains `.is-solid` class → blue background (`--clr-primary`), white text, shadow, logo shrinks (104px → 65px).
 
 **Desktop menu structure:**
 - Home → `/`
@@ -167,7 +167,7 @@ Fixed position, white background, 80px height. On scroll > 40px, gains `.is-soli
 
 ### Page Hero (`.page-hero`)
 
-Green gradient banner with background image overlay at 15% opacity. Contains:
+Blue gradient banner with background image overlay at 15% opacity. Contains:
 - `.breadcrumb` — `Home / Section / Current Page` with `<a>` links and `<span>` separators
 - `<h1>` page title
 
@@ -177,7 +177,7 @@ Homepage 6-column grid with 3-top / 2-bottom asymmetric layout:
 - Cards 1–3: columns 1/3, 3/5, 5/7
 - Cards 4–5: columns 2/4, 4/6 (centered below)
 
-Each `.service-card`: image (200px, object-fit cover, zoom 1.05 on hover), body with 3px top border (green/teal variants), title, description, link.
+Each `.service-card`: image (200px, object-fit cover, zoom 1.05 on hover), body with 3px top border (blue/sky-blue variants), title, description, link.
 
 ### Info Cards (`.info-cards`)
 
@@ -190,7 +190,7 @@ Auto-fit grid `minmax(240px, 1fr)`. White background, 4px top border (color vari
 
 ### Data Table (`.data-table`)
 
-Full-width table, primary green header row (white text, uppercase 0.8rem), alternating hover, border-bottom separators. Wrap in `.table-wrap` for mobile horizontal scroll.
+Full-width table, primary blue header row (white text, uppercase 0.8rem), alternating hover, border-bottom separators. Wrap in `.table-wrap` for mobile horizontal scroll.
 
 ### Person Cards (`.person-cards`)
 
@@ -216,15 +216,15 @@ Slides use grid (1.2fr 1fr) with image + text content. Dot navigation below. Aut
 
 ### Stats Section (`.stats-section`)
 
-Dark green (`--clr-primary-dark`) background, 4-column grid. Each `.stat-item`: icon (48px), animated number (`[data-count]`), label. Numbers animate over 2s with easeOut curve using `es-UY` locale formatting. Use `data-suffix="+"` for suffix.
+Dark navy (`--clr-primary-dark`) background, 4-column grid. Each `.stat-item`: icon (48px), animated number (`[data-count]`), label. Numbers animate over 2s with easeOut curve using `es-UY` locale formatting. Use `data-suffix="+"` for suffix.
 
 ### Torn Dividers
 
 Hexagonal honeycomb-mask SVG pattern between sections (not clip-path polygons). Height 120px, `mask-image` with repeating hex pattern (150px repeat).
 
 Variants:
-- `.torn-divider--white-to-green` — white → primary-dark (60% split)
-- `.torn-divider--green-to-white` — primary-dark → white (40% split)
+- `.torn-divider--white-to-green` — white → primary-dark (60% split) [class name kept for compatibility]
+- `.torn-divider--green-to-white` — primary-dark → white (40% split) [class name kept for compatibility]
 - `.torn-divider--white-to-dark` — white → primary-dark (sharp)
 - `.torn-divider--dark-to-white` — primary-dark → off-white
 - `.torn-divider--white-to-secondary-dark` — off-white → secondary-dark
@@ -242,7 +242,7 @@ Auto-scrolling horizontal logo strip (48s linear infinite animation). Fade mask 
 | Class | Style |
 |---|---|
 | `.btn` | Base: inline-flex, padding 0.75rem 1.8rem, uppercase, hover translateY(-2px) |
-| `.btn--primary` | Green bg → dark green hover |
+| `.btn--primary` | Blue bg → dark blue hover |
 | `.btn--amber` | Amber bg → #d99c1e hover |
 | `.btn--secondary` | Steel blue bg |
 | `.btn--outline` | Transparent + 2px white border |
@@ -265,7 +265,7 @@ Duration: 0.7s ease. Elements unobserve after animating (one-shot).
 
 ### Scroll-to-Top (`.scroll-top`)
 
-Fixed button, bottom-right, 44px circle, primary green. Appears when scrollY > 400px. Smooth scrolls to top.
+Fixed button, bottom-right, 44px circle, primary blue. Appears when scrollY > 400px. Smooth scrolls to top.
 
 ---
 
