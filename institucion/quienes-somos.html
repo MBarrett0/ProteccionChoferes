@@ -20,6 +20,208 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    /* ---------- Quiénes Somos page-scoped styles ---------- */
+    .qs-intro {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    .qs-intro__text { font-size: 1.1rem; line-height: 1.75; color: var(--clr-text); }
+    .qs-intro__year {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .qs-intro__year-num {
+      font-size: 2.6rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .qs-intro__year-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 0.3rem;
+      opacity: 0.85;
+    }
+
+    .qs-mission {
+      background: var(--clr-off-white);
+      border-left: 5px solid var(--clr-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 2rem 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .qs-mission h2 {
+      font-size: 1.5rem;
+      margin: 0 0 1rem;
+      color: var(--clr-primary-dark);
+    }
+    .qs-mission p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--clr-text);
+      margin-bottom: 0.8rem;
+    }
+    .qs-mission p:last-child { margin-bottom: 0; }
+    .qs-mission .qs-quote {
+      font-style: italic;
+      color: var(--clr-text-dark);
+      font-size: 1.05rem;
+    }
+
+    .qs-values { margin-bottom: 3.5rem; }
+    .qs-values h2 { text-align: center; margin-bottom: 2rem; }
+    .qs-values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .qs-value {
+      text-align: center;
+      padding: 2rem 1.25rem 1.75rem;
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .qs-value:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .qs-value__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+    }
+    .qs-value__icon--sol { background: var(--clr-primary); }
+    .qs-value__icon--com { background: var(--clr-teal); }
+    .qs-value__icon--exc { background: var(--clr-amber); }
+    .qs-value__icon--cmp { background: var(--clr-primary-dark); }
+    .qs-value h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: var(--clr-text-dark);
+    }
+    .qs-value p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--clr-text);
+    }
+
+    .qs-stats-band {
+      background: var(--clr-primary-dark);
+      margin: 0 calc(-1 * clamp(1rem, 4vw, 3rem));
+      padding: 3rem clamp(1rem, 4vw, 3rem);
+      margin-bottom: 3.5rem;
+      border-radius: var(--radius-md);
+    }
+    .qs-stats-band h2 {
+      text-align: center;
+      color: #fff;
+      margin: 0 0 2rem;
+    }
+    .qs-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .qs-stat {
+      padding: 1rem;
+    }
+    .qs-stat__value {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .qs-stat__label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .qs-socios { margin-bottom: 3.5rem; }
+    .qs-socios h2 { margin-bottom: 1.25rem; }
+
+    .qs-cta {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+    }
+    .qs-cta p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .qs-cta .btn { margin: 0 0.5rem; }
+    .qs-cta .btn--white {
+      background: #fff;
+      color: var(--clr-primary-dark);
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .qs-cta .btn--white:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .qs-cta .btn--ghost {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.6);
+      padding: 0.7rem 2rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .qs-cta .btn--ghost:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+
+    @media (max-width: 768px) {
+      .qs-intro { grid-template-columns: 1fr; text-align: center; }
+      .qs-intro__year { margin: 0 auto 1rem; width: 130px; height: 130px; }
+      .qs-intro__year-num { font-size: 2.2rem; }
+      .qs-values-grid { grid-template-columns: repeat(2, 1fr); }
+      .qs-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .qs-mission { padding: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .qs-values-grid { grid-template-columns: 1fr; }
+      .qs-stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .qs-cta .btn--white, .qs-cta .btn--ghost { display: block; width: 100%; margin: 0 0 0.75rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -34,7 +236,15 @@
           <a class="nav__link" href="/" role="menuitem">Inicio</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/institucion/quienes-somos.html" role="menuitem">Institución</a>
+          <a class="nav__link active" href="/institucion/quienes-somos.html" role="menuitem">
+            Institución <span class="nav__arrow">&#9660;</span>
+          </a>
+          <ul class="nav__dropdown" role="menu">
+            <li><a class="nav__dropdown-link" href="/institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/autoridades.html" role="menuitem">Autoridades</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/historia.html" role="menuitem">Historia</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/asociarse.html" role="menuitem">Asociarse</a></li>
+          </ul>
         </li>
         <li class="nav__item" role="none">
           <a class="nav__link" href="/beneficios/complejo-deportivo.html" role="menuitem">Complejo Deportivo</a>
@@ -70,7 +280,15 @@
       Horarios
     </a>
     <a class="nav__mobile-link" href="/">Inicio</a>
-    <a class="nav__mobile-link" href="/institucion/quienes-somos.html">Institución</a>
+    <a class="nav__mobile-link" href="/institucion/quienes-somos.html" data-toggle="sub-institucion">
+      Institución <span>+</span>
+    </a>
+    <div class="nav__mobile-sub" id="sub-institucion">
+      <a class="nav__mobile-sublink" href="/institucion/quienes-somos.html">Quiénes Somos</a>
+      <a class="nav__mobile-sublink" href="/institucion/autoridades.html">Autoridades</a>
+      <a class="nav__mobile-sublink" href="/institucion/historia.html">Historia</a>
+      <a class="nav__mobile-sublink" href="/institucion/asociarse.html">Asociarse</a>
+    </div>
     <a class="nav__mobile-link" href="/beneficios/complejo-deportivo.html">Complejo Deportivo</a>
     <a class="nav__mobile-link" href="/beneficios/parque-social.html">Parque Social</a>
     <a class="nav__mobile-link" href="/beneficios/convenios.html" data-toggle="sub-beneficios">
@@ -100,45 +318,88 @@
   <main class="page-content">
     <div class="container">
 
-      <section class="reveal">
-        <p class="lead">El Centro Protección Choferes de Montevideo es una institución mutualista sin fines de lucro, fundada el 20 de octubre de 1909. Agrupa a conductores de vehículos motorizados y afines, ofreciendo beneficios sociales, culturales, deportivos y de seguridad vial a sus asociados y familias.</p>
-      </section>
+      <!-- Intro with year badge -->
+      <div class="qs-intro reveal">
+        <p class="qs-intro__text">El Centro Protección Choferes de Montevideo es una <strong>institución mutualista sin fines de lucro</strong>, fundada el 20 de octubre de 1909. Agrupa a conductores de vehículos motorizados y afines, ofreciendo beneficios sociales, culturales, deportivos y de seguridad vial a sus asociados y familias.</p>
+        <div class="qs-intro__year">
+          <span class="qs-intro__year-num">1909</span>
+          <span class="qs-intro__year-label">Fundación</span>
+        </div>
+      </div>
 
-      <section class="reveal">
+      <!-- Mission -->
+      <div class="qs-mission reveal">
         <h2>Nuestra Misión</h2>
-        <p>Nacimos de la necesidad de brindar solidaridad y ayuda mutua a quienes, en los albores del siglo XX, ejercian la difícil tarea de conducir vehículos en un Montevideo en plena transformacion urbana. Mas de 116 años despues, seguimos fieles a ese propósito: proteger, acompanar y servir a cada uno de nuestros socios.</p>
-        <p>Somos una institución que trabaja dia a dia para garantizar el bienestar de los conductores y sus familias, brindando servicios de salud, asistencia juridica, recreación, cultura y seguridad vial.</p>
-      </section>
+        <p class="qs-quote">"Nacimos de la necesidad de brindar solidaridad y ayuda mutua a quienes, en los albores del siglo XX, ejercían la difícil tarea de conducir vehículos en un Montevideo en plena transformación urbana. Más de 116 años después, seguimos fieles a ese propósito: proteger, acompañar y servir a cada uno de nuestros socios."</p>
+        <p>Somos una institución que trabaja día a día para garantizar el bienestar de los conductores y sus familias, brindando servicios de salud, asistencia jurídica, recreación, cultura y seguridad vial.</p>
+      </div>
 
-      <section class="reveal">
+      <!-- Values -->
+      <section class="qs-values reveal">
         <h2>Nuestros Valores</h2>
-        <div class="info-cards info-cards--2x2">
-          <div class="info-card">
-            <h3 class="info-card__title">Solidaridad</h3>
-            <p class="info-card__text">Protecci&oacute;n mutualista entre conductores y sus familias, desde 1909 hasta hoy. Nos cuidamos entre todos porque sabemos que la uni&oacute;n hace la fuerza.</p>
+        <div class="qs-values-grid">
+          <div class="qs-value" style="transition-delay: 0s">
+            <div class="qs-value__icon qs-value__icon--sol">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Solidaridad</h3>
+            <p>Protección mutualista entre conductores y sus familias, desde 1909 hasta hoy. Nos cuidamos entre todos porque sabemos que la unión hace la fuerza.</p>
           </div>
-          <div class="info-card">
-            <h3 class="info-card__title">Comunidad</h3>
-            <p class="info-card__text">Una gran familia de conductores montevideanos unidos por los mismos valores y objetivos. M&aacute;s de un siglo construyendo v&iacute;nculos genuinos.</p>
+          <div class="qs-value" style="transition-delay: 0.1s">
+            <div class="qs-value__icon qs-value__icon--com">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3>Comunidad</h3>
+            <p>Una gran familia de conductores montevideanos unidos por los mismos valores y objetivos. Más de un siglo construyendo vínculos genuinos.</p>
           </div>
-          <div class="info-card">
-            <h3 class="info-card__title">Excelencia</h3>
-            <p class="info-card__text">M&aacute;s de un siglo de trayectoria nos respalda en cada servicio que brindamos a nuestros socios y sus familias. La calidad no es un objetivo, es un est&aacute;ndar.</p>
+          <div class="qs-value" style="transition-delay: 0.2s">
+            <div class="qs-value__icon qs-value__icon--exc">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3>Excelencia</h3>
+            <p>Más de un siglo de trayectoria nos respalda en cada servicio que brindamos. La calidad no es un objetivo, es un estándar.</p>
           </div>
-          <div class="info-card">
-            <h3 class="info-card__title">Compromiso</h3>
-            <p class="info-card__text">Presencia ininterrumpida en la sociedad uruguaya, evento por evento, a&ntilde;o por a&ntilde;o. Nuestro compromiso con el conductor nunca se detiene.</p>
+          <div class="qs-value" style="transition-delay: 0.3s">
+            <div class="qs-value__icon qs-value__icon--cmp">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Compromiso</h3>
+            <p>Presencia ininterrumpida en la sociedad uruguaya, evento por evento, año por año. Nuestro compromiso con el conductor nunca se detiene.</p>
           </div>
         </div>
       </section>
 
-      <section class="reveal">
-        <h2>Categorias de Socios</h2>
+      <!-- Stats Band -->
+      <div class="qs-stats-band reveal">
+        <h2>Datos Institucionales</h2>
+        <div class="qs-stats-grid">
+          <div class="qs-stat">
+            <div class="qs-stat__value">20/10/1909</div>
+            <div class="qs-stat__label">Fecha de Fundación</div>
+          </div>
+          <div class="qs-stat">
+            <div class="qs-stat__value">Mutualista</div>
+            <div class="qs-stat__label">Sin fines de lucro</div>
+          </div>
+          <div class="qs-stat">
+            <div class="qs-stat__value">Soriano 1227</div>
+            <div class="qs-stat__label">Sede Social, Montevideo</div>
+          </div>
+          <div class="qs-stat">
+            <div class="qs-stat__value">2908 1207</div>
+            <div class="qs-stat__label">Teléfono de contacto</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Member Categories -->
+      <section class="qs-socios reveal">
+        <h2>Categorías de Socios</h2>
         <div class="table-wrap">
           <table class="data-table">
             <thead>
               <tr>
-                <th>Categoria</th>
+                <th>Categoría</th>
                 <th>Descripción</th>
               </tr>
             </thead>
@@ -157,7 +418,7 @@
               </tr>
               <tr>
                 <td><strong>Suscriptor Cadete</strong></td>
-                <td>Jovenes en proceso de afiliacion</td>
+                <td>Jóvenes en proceso de afiliación</td>
               </tr>
               <tr>
                 <td><strong>Protector</strong></td>
@@ -168,31 +429,12 @@
         </div>
       </section>
 
-      <section class="reveal">
-        <h2>Datos Institucionales</h2>
-        <div class="info-cards">
-          <div class="info-card">
-            <h3 class="info-card__title">Fundación</h3>
-            <p class="info-card__text">20 de octubre de 1909</p>
-          </div>
-          <div class="info-card">
-            <h3 class="info-card__title">Tipo</h3>
-            <p class="info-card__text">Institución mutualista sin fines de lucro</p>
-          </div>
-          <div class="info-card">
-            <h3 class="info-card__title">Sede Social</h3>
-            <p class="info-card__text">Soriano 1227, Montevideo &mdash; Tel. 2908 1207</p>
-          </div>
-          <div class="info-card">
-            <h3 class="info-card__title">Contacto</h3>
-            <p class="info-card__text">info@proteccionchoferes.org.uy &mdash; WhatsApp: 098 514 097</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="reveal">
-        <p><a href="/institucion/asociarse.html" class="btn btn--primary">Asociarse</a> &nbsp; <a href="/institucion/autoridades.html" class="btn btn--outline">Ver Autoridades</a></p>
-      </section>
+      <!-- CTA -->
+      <div class="qs-cta reveal">
+        <p>Sumate a la comunidad de conductores más grande de Uruguay</p>
+        <a href="/institucion/asociarse.html" class="btn--white">Asociarse</a>
+        <a href="/institucion/autoridades.html" class="btn--ghost">Ver Autoridades</a>
+      </div>
 
     </div>
   </main>

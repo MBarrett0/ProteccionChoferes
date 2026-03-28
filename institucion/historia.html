@@ -34,7 +34,15 @@
           <a class="nav__link" href="/" role="menuitem">Inicio</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/institucion/quienes-somos.html" role="menuitem">Institución</a>
+          <a class="nav__link" href="/institucion/quienes-somos.html" role="menuitem">
+            Institución <span class="nav__arrow">&#9660;</span>
+          </a>
+          <ul class="nav__dropdown" role="menu">
+            <li><a class="nav__dropdown-link" href="/institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/autoridades.html" role="menuitem">Autoridades</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/historia.html" role="menuitem">Historia</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/asociarse.html" role="menuitem">Asociarse</a></li>
+          </ul>
         </li>
         <li class="nav__item" role="none">
           <a class="nav__link" href="/beneficios/complejo-deportivo.html" role="menuitem">Complejo Deportivo</a>
@@ -70,7 +78,15 @@
       Horarios
     </a>
     <a class="nav__mobile-link" href="/">Inicio</a>
-    <a class="nav__mobile-link" href="/institucion/quienes-somos.html">Institución</a>
+    <a class="nav__mobile-link" href="/institucion/quienes-somos.html" data-toggle="sub-institucion">
+      Institución <span>+</span>
+    </a>
+    <div class="nav__mobile-sub" id="sub-institucion">
+      <a class="nav__mobile-sublink" href="/institucion/quienes-somos.html">Quiénes Somos</a>
+      <a class="nav__mobile-sublink" href="/institucion/autoridades.html">Autoridades</a>
+      <a class="nav__mobile-sublink" href="/institucion/historia.html">Historia</a>
+      <a class="nav__mobile-sublink" href="/institucion/asociarse.html">Asociarse</a>
+    </div>
     <a class="nav__mobile-link" href="/beneficios/complejo-deportivo.html">Complejo Deportivo</a>
     <a class="nav__mobile-link" href="/beneficios/parque-social.html">Parque Social</a>
     <a class="nav__mobile-link" href="/beneficios/convenios.html" data-toggle="sub-beneficios">

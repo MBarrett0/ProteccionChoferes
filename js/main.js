@@ -483,15 +483,13 @@ function initHorarios() {
 
     var html = '';
 
-    // Header row: corner + 5 day headers
-    html += '<div class="horarios-grid__corner">Hora</div>';
+    // Header row: 5 day headers
     for (var di = 0; di < 5; di++) {
       html += '<div class="horarios-grid__day-header">' + DAYS[di] + '</div>';
     }
 
     // One row per hour
     hours.forEach(function(hour) {
-      html += '<div class="horarios-grid__hour">' + hour + ':00</div>';
       for (var di = 0; di < 5; di++) {
         var entries = DATA.filter(function(e) {
           return e.d === di && e.t.split(':')[0] === hour;
@@ -680,6 +678,126 @@ function initHorarios() {
 }
 
 // ============================================================
+// CONVENIOS PAGE — CATEGORY FILTER + HORIZONTAL SCROLL
+// ============================================================
+function initConveniosPage() {
+  const filterScroll = document.getElementById('conv-filter-scroll');
+  const sections = document.getElementById('conv-sections');
+  if (!filterScroll || !sections) return;
+
+  const chips = filterScroll.querySelectorAll('.conv-filter__chip');
+  const catSections = sections.querySelectorAll('.conv-cat-section');
+  const prevBtn = document.getElementById('conv-filter-prev');
+  const nextBtn = document.getElementById('conv-filter-next');
+
+  // Category filter
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      const cat = chip.dataset.cat;
+
+      catSections.forEach(sec => {
+        if (cat === 'todos' || sec.dataset.section === cat) {
+          sec.classList.remove('is-hidden');
+        } else {
+          sec.classList.add('is-hidden');
+        }
+      });
+    });
+  });
+
+  // Filter bar scroll arrows
+  function updateFilterArrows() {
+    if (!prevBtn || !nextBtn) return;
+    prevBtn.disabled = filterScroll.scrollLeft <= 4;
+    nextBtn.disabled = filterScroll.scrollLeft >= filterScroll.scrollWidth - filterScroll.clientWidth - 4;
+  }
+
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      filterScroll.scrollBy({ left: -200, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      filterScroll.scrollBy({ left: 200, behavior: 'smooth' });
+    });
+    filterScroll.addEventListener('scroll', updateFilterArrows, { passive: true });
+    updateFilterArrows();
+  }
+
+  // Modal
+  const modal = document.getElementById('conv-modal');
+  const modalImg = document.getElementById('conv-modal-img');
+  const modalPlaceholder = document.getElementById('conv-modal-placeholder');
+  const modalCategory = document.getElementById('conv-modal-category');
+  const modalName = document.getElementById('conv-modal-name');
+  const modalDetail = document.getElementById('conv-modal-detail');
+  const modalClose = document.getElementById('conv-modal-close');
+  const modalBackdrop = document.getElementById('conv-modal-backdrop');
+
+  if (modal) {
+    // Open modal on card click
+    sections.querySelectorAll('.conv-logo-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const imgSrc = card.dataset.img || '';
+        const name = card.dataset.name || '';
+        const category = card.dataset.category || '';
+        const detail = card.dataset.detail || '';
+
+        modalCategory.textContent = category;
+        modalName.textContent = name;
+        modalDetail.innerHTML = detail;
+        modalPlaceholder.textContent = name;
+
+        // Reset image state
+        modalImg.style.display = '';
+        modalPlaceholder.style.display = 'none';
+        modalImg.src = imgSrc;
+        modalImg.alt = name;
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+  }
+
+  // Row scroll arrows for each category section
+  catSections.forEach(sec => {
+    const row = sec.querySelector('.conv-cat-section__row');
+    const prev = sec.querySelector('.conv-cat-section__arrow--prev');
+    const next = sec.querySelector('.conv-cat-section__arrow--next');
+    if (!row || !prev || !next) return;
+
+    function updateRowArrows() {
+      prev.disabled = row.scrollLeft <= 4;
+      next.disabled = row.scrollLeft >= row.scrollWidth - row.clientWidth - 4;
+    }
+
+    prev.addEventListener('click', () => {
+      row.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    next.addEventListener('click', () => {
+      row.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+    row.addEventListener('scroll', updateRowArrows, { passive: true });
+    updateRowArrows();
+  });
+}
+
+// ============================================================
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -694,4 +812,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimeline();
   initConveniosMarquee();
   initHorarios();
+  initConveniosPage();
 });

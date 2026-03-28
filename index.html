@@ -71,7 +71,15 @@
           <a class="nav__link" href="/" role="menuitem">Inicio</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/institucion/quienes-somos.html" role="menuitem">Institución</a>
+          <a class="nav__link" href="/institucion/quienes-somos.html" role="menuitem">
+            Institución <span class="nav__arrow">&#9660;</span>
+          </a>
+          <ul class="nav__dropdown" role="menu">
+            <li><a class="nav__dropdown-link" href="/institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/autoridades.html" role="menuitem">Autoridades</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/historia.html" role="menuitem">Historia</a></li>
+            <li><a class="nav__dropdown-link" href="/institucion/asociarse.html" role="menuitem">Asociarse</a></li>
+          </ul>
         </li>
         <li class="nav__item" role="none">
           <a class="nav__link" href="/beneficios/complejo-deportivo.html" role="menuitem">Complejo Deportivo</a>
@@ -109,7 +117,15 @@
       Horarios
     </a>
     <a class="nav__mobile-link" href="/">Inicio</a>
-    <a class="nav__mobile-link" href="/institucion/quienes-somos.html">Institución</a>
+    <a class="nav__mobile-link" href="/institucion/quienes-somos.html" data-toggle="sub-institucion">
+      Institución <span>+</span>
+    </a>
+    <div class="nav__mobile-sub" id="sub-institucion">
+      <a class="nav__mobile-sublink" href="/institucion/quienes-somos.html">Quiénes Somos</a>
+      <a class="nav__mobile-sublink" href="/institucion/autoridades.html">Autoridades</a>
+      <a class="nav__mobile-sublink" href="/institucion/historia.html">Historia</a>
+      <a class="nav__mobile-sublink" href="/institucion/asociarse.html">Asociarse</a>
+    </div>
     <a class="nav__mobile-link" href="/beneficios/complejo-deportivo.html">Complejo Deportivo</a>
     <a class="nav__mobile-link" href="/beneficios/parque-social.html">Parque Social</a>
     <a class="nav__mobile-link" href="/beneficios/convenios.html" data-toggle="sub-beneficios">
@@ -231,7 +247,7 @@
             <rect x="12" y="22" width="8" height="6" rx="1" fill="white" opacity="0.5"/>
             <rect x="22" y="22" width="8" height="6" rx="1" fill="white" opacity="0.5"/>
           </svg>
-          <div class="stat-number" data-count="3">0</div>
+          <div class="stat-number" data-count="2">0</div>
           <div class="stat-label">Sedes</div>
         </div>
 
@@ -246,10 +262,12 @@
 
         <div class="stat-item reveal">
           <svg class="stat-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-            <path d="M24 6 L28 16 H40 L30 24 L34 36 L24 28 L14 36 L18 24 L8 16 H20 Z" stroke="white" stroke-width="2" fill="white" opacity="0.3"/>
+            <circle cx="24" cy="24" r="22" stroke="white" stroke-width="2" opacity="0.4"/>
+            <path d="M24 14 V26 M24 26 L30 22" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+            <circle cx="24" cy="24" r="2" fill="white" opacity="0.7"/>
           </svg>
-          <div class="stat-number" data-count="14" data-suffix="+">0</div>
-          <div class="stat-label">Convenios Institucionales</div>
+          <div class="stat-number" data-count="1020" data-suffix="+">0</div>
+          <div class="stat-label">Horas de Profesores a tu Disposicion</div>
         </div>
 
       </div>
@@ -344,38 +362,40 @@
       </div>
       <div class="convenios-marquee reveal" aria-label="Convenios institucionales">
         <div class="convenios-marquee__track">
-          <!-- Set 1 of 15 -->
+          <!-- Set 1 of 16 -->
           <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">B</div><div class="convenio-card__name">BSE</div><div class="convenio-card__benefit">17% descuento en seguros</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">P</div><div class="convenio-card__name">Porto Seguro</div><div class="convenio-card__benefit">8% descuento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">P</div><div class="convenio-card__name">Porto Seguros</div><div class="convenio-card__benefit">8% descuento</div></div>
           <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">A</div><div class="convenio-card__name">AUTOK</div><div class="convenio-card__benefit">50% inspecci&oacute;n vehicular</div></div>
           <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">A</div><div class="convenio-card__name">Asoc. Espa&ntilde;ola</div><div class="convenio-card__benefit">Convenio de salud</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3F7652;">E</div><div class="convenio-card__name">Espa&ntilde;ola M&oacute;vil</div><div class="convenio-card__benefit">Salud m&oacute;vil</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#065C81;">C</div><div class="convenio-card__name">Academia CuatrOOjos</div><div class="convenio-card__benefit">Descuento en cursos</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">C</div><div class="convenio-card__name">Cymaco Repuestos</div><div class="convenio-card__benefit">10% descuento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">L</div><div class="convenio-card__name">Lavadero</div><div class="convenio-card__benefit">25% descuento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">F</div><div class="convenio-card__name">Fox Parking</div><div class="convenio-card__benefit">Estacionamiento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">C</div><div class="convenio-card__name">Cl&iacute;nica Brackets</div><div class="convenio-card__benefit">Convenio odontol&oacute;gico</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3F7652;">M</div><div class="convenio-card__name">M&uacute;ltiples &Oacute;pticas</div><div class="convenio-card__benefit">Descuento en lentes</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#065C81;">F</div><div class="convenio-card__name">Fondo Social Construcci&oacute;n</div><div class="convenio-card__benefit">Convenio social</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">U</div><div class="convenio-card__name">UDELAR</div><div class="convenio-card__benefit">Convenio universitario</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">T</div><div class="convenio-card__name">Turismo Parque de Minas</div><div class="convenio-card__benefit">Convenio tur&iacute;stico</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">S</div><div class="convenio-card__name">Scotiabank</div><div class="convenio-card__benefit">Beneficios bancarios</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3F7652;">E</div><div class="convenio-card__name">Espa&ntilde;ola M&oacute;vil</div><div class="convenio-card__benefit">Cobertura en locales</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#065C81;">C</div><div class="convenio-card__name">Academia CuatrOOjos</div><div class="convenio-card__benefit">15% dto. + 2 hrs. regalo</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">C</div><div class="convenio-card__name">Cymaco Repuestos</div><div class="convenio-card__benefit">10% dto. + servicios gratis</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">L</div><div class="convenio-card__name">Lavadero</div><div class="convenio-card__benefit">25% dto. lavado completo</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">F</div><div class="convenio-card__name">Fox Parking</div><div class="convenio-card__benefit">Dto. estacionamiento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">C</div><div class="convenio-card__name">Cl&iacute;nica Brackets</div><div class="convenio-card__benefit">Dto. en tratamientos</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3F7652;">O</div><div class="convenio-card__name">7 &Oacute;pticas</div><div class="convenio-card__benefit">Hasta 30% descuento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#065C81;">A</div><div class="convenio-card__name">ANDA</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">F</div><div class="convenio-card__name">Fondo Social Construcci&oacute;n</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">U</div><div class="convenio-card__name">UDELAR</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">T</div><div class="convenio-card__name">Parque de Minas</div><div class="convenio-card__benefit">Dto. seg&uacute;n temporada</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">S</div><div class="convenio-card__name">Scotiabank</div><div class="convenio-card__benefit">Cuenta personal + tarjetas</div></div>
           <!-- Set 2 (duplicate for seamless loop) -->
           <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">B</div><div class="convenio-card__name">BSE</div><div class="convenio-card__benefit">17% descuento en seguros</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">P</div><div class="convenio-card__name">Porto Seguro</div><div class="convenio-card__benefit">8% descuento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">P</div><div class="convenio-card__name">Porto Seguros</div><div class="convenio-card__benefit">8% descuento</div></div>
           <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">A</div><div class="convenio-card__name">AUTOK</div><div class="convenio-card__benefit">50% inspecci&oacute;n vehicular</div></div>
           <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">A</div><div class="convenio-card__name">Asoc. Espa&ntilde;ola</div><div class="convenio-card__benefit">Convenio de salud</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3F7652;">E</div><div class="convenio-card__name">Espa&ntilde;ola M&oacute;vil</div><div class="convenio-card__benefit">Salud m&oacute;vil</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#065C81;">C</div><div class="convenio-card__name">Academia CuatrOOjos</div><div class="convenio-card__benefit">Descuento en cursos</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">C</div><div class="convenio-card__name">Cymaco Repuestos</div><div class="convenio-card__benefit">10% descuento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">L</div><div class="convenio-card__name">Lavadero</div><div class="convenio-card__benefit">25% descuento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">F</div><div class="convenio-card__name">Fox Parking</div><div class="convenio-card__benefit">Estacionamiento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">C</div><div class="convenio-card__name">Cl&iacute;nica Brackets</div><div class="convenio-card__benefit">Convenio odontol&oacute;gico</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3F7652;">M</div><div class="convenio-card__name">M&uacute;ltiples &Oacute;pticas</div><div class="convenio-card__benefit">Descuento en lentes</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#065C81;">F</div><div class="convenio-card__name">Fondo Social Construcci&oacute;n</div><div class="convenio-card__benefit">Convenio social</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">U</div><div class="convenio-card__name">UDELAR</div><div class="convenio-card__benefit">Convenio universitario</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">T</div><div class="convenio-card__name">Turismo Parque de Minas</div><div class="convenio-card__benefit">Convenio tur&iacute;stico</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">S</div><div class="convenio-card__name">Scotiabank</div><div class="convenio-card__benefit">Beneficios bancarios</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3F7652;">E</div><div class="convenio-card__name">Espa&ntilde;ola M&oacute;vil</div><div class="convenio-card__benefit">Cobertura en locales</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#065C81;">C</div><div class="convenio-card__name">Academia CuatrOOjos</div><div class="convenio-card__benefit">15% dto. + 2 hrs. regalo</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">C</div><div class="convenio-card__name">Cymaco Repuestos</div><div class="convenio-card__benefit">10% dto. + servicios gratis</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">L</div><div class="convenio-card__name">Lavadero</div><div class="convenio-card__benefit">25% dto. lavado completo</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">F</div><div class="convenio-card__name">Fox Parking</div><div class="convenio-card__benefit">Dto. estacionamiento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">C</div><div class="convenio-card__name">Cl&iacute;nica Brackets</div><div class="convenio-card__benefit">Dto. en tratamientos</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3F7652;">O</div><div class="convenio-card__name">7 &Oacute;pticas</div><div class="convenio-card__benefit">Hasta 30% descuento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#065C81;">A</div><div class="convenio-card__name">ANDA</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#62AA23;">F</div><div class="convenio-card__name">Fondo Social Construcci&oacute;n</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#33A1A3;">U</div><div class="convenio-card__name">UDELAR</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2596be;">T</div><div class="convenio-card__name">Parque de Minas</div><div class="convenio-card__benefit">Dto. seg&uacute;n temporada</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">S</div><div class="convenio-card__name">Scotiabank</div><div class="convenio-card__benefit">Cuenta personal + tarjetas</div></div>
         </div>
       </div>
       <div style="text-align:center;margin-top:2rem;" class="reveal">
