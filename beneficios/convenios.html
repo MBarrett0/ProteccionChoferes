@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <base href="/pc/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:type" content="website">
@@ -19,50 +20,54 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
   <!-- NAV -->
   <nav class="site-nav" id="site-nav">
     <div class="nav__container">
-      <a class="nav__logo" href="/" aria-label="Inicio">
-        <img src="/images/logo.png" alt="Centro Protección Choferes" onerror="this.style.display='none'">
+      <a class="nav__logo" href="/pc/" aria-label="Inicio">
+        <img src="images/logo.png" alt="Centro Protección Choferes" onerror="this.style.display='none'">
       </a>
+      <div class="nav__brand">
+        <span class="nav__brand-name">Centro Protección Choferes</span>
+        <span class="nav__brand-sub">de Montevideo</span>
+      </div>
             <ul class="nav__menu" role="menubar">
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/" role="menuitem">Inicio</a>
+          <a class="nav__link" href="/pc/" role="menuitem">Inicio</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/institucion/quienes-somos.html" role="menuitem">
+          <a class="nav__link" href="institucion/quienes-somos.html" role="menuitem">
             Institución <span class="nav__arrow">&#9660;</span>
           </a>
           <ul class="nav__dropdown" role="menu">
-            <li><a class="nav__dropdown-link" href="/institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
-            <li><a class="nav__dropdown-link" href="/institucion/autoridades.html" role="menuitem">Autoridades</a></li>
-            <li><a class="nav__dropdown-link" href="/institucion/historia.html" role="menuitem">Historia</a></li>
-            <li><a class="nav__dropdown-link" href="/institucion/asociarse.html" role="menuitem">Asociarse</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/autoridades.html" role="menuitem">Autoridades</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/historia.html" role="menuitem">Historia</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/asociarse.html" role="menuitem">Asociarse</a></li>
           </ul>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/beneficios/complejo-deportivo.html" role="menuitem">Complejo Deportivo</a>
+          <a class="nav__link" href="beneficios/complejo-deportivo.html" role="menuitem">Complejo Deportivo</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/beneficios/parque-social.html" role="menuitem">Parque Social</a>
+          <a class="nav__link" href="beneficios/parque-social.html" role="menuitem">Parque Social</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/beneficios/convenios.html" role="menuitem">
+          <a class="nav__link" href="beneficios/convenios.html" role="menuitem">
             Beneficios <span class="nav__arrow">&#9660;</span>
           </a>
           <ul class="nav__dropdown" role="menu">
-            <li><a class="nav__dropdown-link" href="/beneficios/juridico.html" role="menuitem">Departamento Jurídico</a></li>
-            <li><a class="nav__dropdown-link" href="/beneficios/convenios.html" role="menuitem">Convenios</a></li>
-            <li><a class="nav__dropdown-link" href="/beneficios/secretaria.html" role="menuitem">Secretaría Administrativa</a></li>
-            <li><a class="nav__dropdown-link" href="/beneficios/biblioteca.html" role="menuitem">Biblioteca</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/juridico.html" role="menuitem">Departamento Jurídico</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/convenios.html" role="menuitem">Convenios</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/secretaria.html" role="menuitem">Secretaría Administrativa</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/biblioteca.html" role="menuitem">Biblioteca</a></li>
           </ul>
         </li>
       </ul>
-      <a class="nav__cta" href="/horarios.html">
+      <a class="nav__cta" href="horarios.html">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Horarios
       </a>
@@ -73,39 +78,39 @@
   </nav>
   <!-- MOBILE MENU -->
     <div class="nav__mobile" id="nav-mobile" role="dialog" aria-label="Menu de navegacion">
-    <a class="nav__mobile-cta" href="/horarios.html">
+    <a class="nav__mobile-cta" href="horarios.html">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Horarios
     </a>
-    <a class="nav__mobile-link" href="/">Inicio</a>
-    <a class="nav__mobile-link" href="/institucion/quienes-somos.html" data-toggle="sub-institucion">
+    <a class="nav__mobile-link" href="/pc/">Inicio</a>
+    <a class="nav__mobile-link" href="institucion/quienes-somos.html" data-toggle="sub-institucion">
       Institución <span>+</span>
     </a>
     <div class="nav__mobile-sub" id="sub-institucion">
-      <a class="nav__mobile-sublink" href="/institucion/quienes-somos.html">Quiénes Somos</a>
-      <a class="nav__mobile-sublink" href="/institucion/autoridades.html">Autoridades</a>
-      <a class="nav__mobile-sublink" href="/institucion/historia.html">Historia</a>
-      <a class="nav__mobile-sublink" href="/institucion/asociarse.html">Asociarse</a>
+      <a class="nav__mobile-sublink" href="institucion/quienes-somos.html">Quiénes Somos</a>
+      <a class="nav__mobile-sublink" href="institucion/autoridades.html">Autoridades</a>
+      <a class="nav__mobile-sublink" href="institucion/historia.html">Historia</a>
+      <a class="nav__mobile-sublink" href="institucion/asociarse.html">Asociarse</a>
     </div>
-    <a class="nav__mobile-link" href="/beneficios/complejo-deportivo.html">Complejo Deportivo</a>
-    <a class="nav__mobile-link" href="/beneficios/parque-social.html">Parque Social</a>
-    <a class="nav__mobile-link" href="/beneficios/convenios.html" data-toggle="sub-beneficios">
+    <a class="nav__mobile-link" href="beneficios/complejo-deportivo.html">Complejo Deportivo</a>
+    <a class="nav__mobile-link" href="beneficios/parque-social.html">Parque Social</a>
+    <a class="nav__mobile-link" href="beneficios/convenios.html" data-toggle="sub-beneficios">
       Beneficios <span>+</span>
     </a>
     <div class="nav__mobile-sub" id="sub-beneficios">
-      <a class="nav__mobile-sublink" href="/beneficios/juridico.html">Departamento Jurídico</a>
-      <a class="nav__mobile-sublink" href="/beneficios/convenios.html">Convenios</a>
-      <a class="nav__mobile-sublink" href="/beneficios/secretaria.html">Secretaría Administrativa</a>
-      <a class="nav__mobile-sublink" href="/beneficios/biblioteca.html">Biblioteca</a>
+      <a class="nav__mobile-sublink" href="beneficios/juridico.html">Departamento Jurídico</a>
+      <a class="nav__mobile-sublink" href="beneficios/convenios.html">Convenios</a>
+      <a class="nav__mobile-sublink" href="beneficios/secretaria.html">Secretaría Administrativa</a>
+      <a class="nav__mobile-sublink" href="beneficios/biblioteca.html">Biblioteca</a>
     </div>
   </div>
 
-  <section class="page-hero">
+  <section class="page-hero page-hero--bus">
     <div class="page-hero__content">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Inicio</a>
+        <a href="/pc/">Inicio</a>
         <span>/</span>
-        <a href="/beneficios/convenios.html">Beneficios</a>
+        <a href="beneficios/convenios.html">Beneficios</a>
         <span>/</span>
         <span class="current">Convenios</span>
       </nav>
@@ -196,14 +201,14 @@
             <div class="conv-cat-section__row">
               <div class="conv-logo-card" data-name="BSE — Banco de Seguros del Estado" data-category="Seguros" data-detail="&lt;strong&gt;¿Para quién?&lt;/strong&gt; Socio, cónyuge e hijos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;¿Qué se obtiene?&lt;/strong&gt; Descuento del 17% al contratar o renovar el seguro de automóviles, manteniendo otras bonificaciones ya otorgadas por no siniestro (incluso de otras aseguradoras). A partir de Octubre de 2009, también la tarifa 1.&lt;br&gt;&lt;br&gt;&lt;strong&gt;¿Cómo?&lt;/strong&gt; Pedir una constancia en el centro y entregarla a su corredor de confianza antes de la renovación/contratación del seguro. Obtenerla en forma personal con recibo social al día y cédula de identidad en nuestra oficina jurídica.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Formas de pago:&lt;/strong&gt; Débito en tarjeta de crédito y/o cuenta bancaria y en red de cobranza.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Vehículos incluidos:&lt;/strong&gt; Todo tipo, excepto: taxis, remises, vehículos de alquiler, ambulancias, coches de auxilio, ley de lisiados, vehículos con descuentos por flota o por integrar otro tipo de afinidad con el BSE, y asegurados con tarifa 8." data-img="/images/convenios/bse.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/bse.png" alt="BSE" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/bse.png" alt="BSE" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">BSE</div>
                 </div>
                 <span class="conv-logo-card__benefit">17% dto. en seguros</span>
               </div>
               <div class="conv-logo-card" data-name="Porto Seguros" data-category="Seguros" data-detail="El Centro Protección Choferes de Montevideo ha firmado un convenio con Porto Seguro, mediante el cual nuestros asociados obtienen un &lt;strong&gt;8%&lt;/strong&gt; de bonificación en el seguro automotriz. Consulte con su corredor de confianza." data-img="/images/convenios/porto-seguro.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/porto-seguro.png" alt="Porto Seguros" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/porto-seguro.png" alt="Porto Seguros" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Porto Seguros</div>
                 </div>
                 <span class="conv-logo-card__benefit">8% dto. en seguros</span>
@@ -225,28 +230,28 @@
             <div class="conv-cat-section__row">
               <div class="conv-logo-card" data-name="Asociación Española" data-category="Salud" data-detail="El Centro ha firmado un convenio con la Asociación Española Primera en Salud.&lt;br&gt;&lt;br&gt;Por mayor información consulte al &lt;strong&gt;1920 1234&lt;/strong&gt;." data-img="/images/convenios/asociacion-espanola.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/asociacion-espanola.png" alt="Asociación Española" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/asociacion-espanola.png" alt="Asociación Española" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Asociación Española</div>
                 </div>
                 <span class="conv-logo-card__benefit">Convenio de salud</span>
               </div>
               <div class="conv-logo-card" data-name="Española Móvil" data-category="Salud" data-detail="Dentro de todos nuestros locales, los asociados están cubiertos por la atención médica de la Española Móvil a través de un convenio firmado con dicha empresa." data-img="/images/convenios/espanola-movil.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/espanola-movil.png" alt="Española Móvil" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/espanola-movil.png" alt="Española Móvil" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Española Móvil</div>
                 </div>
                 <span class="conv-logo-card__benefit">Cobertura médica en locales</span>
               </div>
               <div class="conv-logo-card" data-name="Clínica Brackets del Uruguay" data-category="Salud" data-detail="Descuento en tratamientos odontológicos para socios y familiares.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Contacto:&lt;/strong&gt; 092 602 121 — 099 714 514" data-img="/images/convenios/clinica-brackets.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/clinica-brackets.png" alt="Clínica Brackets" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/clinica-brackets.png" alt="Clínica Brackets" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Clínica Brackets</div>
                 </div>
                 <span class="conv-logo-card__benefit">Dto. en tratamientos</span>
               </div>
               <div class="conv-logo-card" data-name="Ópticas" data-category="Salud" data-detail="&lt;strong&gt;Enfoque Óptica Visual&lt;/strong&gt; — Consulte por descuentos — Tel. 2408 5446&lt;br&gt;&lt;br&gt;&lt;strong&gt;Óptica Briozzio&lt;/strong&gt; — Consulte por descuentos — Tel. 2902 5051 / 098 118 896&lt;br&gt;&lt;br&gt;&lt;strong&gt;Óptica Fornio&lt;/strong&gt; — Consulte por descuentos — Tel. 2900 2000&lt;br&gt;&lt;br&gt;&lt;strong&gt;Óptica Italiana&lt;/strong&gt; — 20% de descuento contado — Tel. 2408 7026&lt;br&gt;&lt;br&gt;&lt;strong&gt;Óptica Onix&lt;/strong&gt; — 20% de descuento — Tel. 2409 9127 / 099 106 295&lt;br&gt;&lt;br&gt;&lt;strong&gt;Todo Óptica&lt;/strong&gt; — 25% de descuento — Tel. 2356 1582&lt;br&gt;&lt;br&gt;&lt;strong&gt;Óptica Prada&lt;/strong&gt; — 21 de Setiembre 2871 — Tel. 2711 4479&lt;br&gt;• 25% dto. en lentes de receta (armazón y cristales)&lt;br&gt;• 30% dto. en cristales multifocales&lt;br&gt;• 20% dto. en lentes de contacto no descartables&lt;br&gt;• 10% dto. en lentes de contacto descartables&lt;br&gt;• 10% dto. en lentes de sol" data-img="/images/convenios/multiples-opticas.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/multiples-opticas.png" alt="Ópticas" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/multiples-opticas.png" alt="Ópticas" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Ópticas</div>
                 </div>
                 <span class="conv-logo-card__benefit">Hasta 30% dto. — 7 ópticas</span>
@@ -268,21 +273,21 @@
             <div class="conv-cat-section__row">
               <div class="conv-logo-card" data-name="AUTOK — Inspección Técnica Vehicular" data-category="Automotriz" data-detail="El Centro ha firmado un convenio con la firma AUTOK por el cual dicha empresa otorga un &lt;strong&gt;50% de descuento&lt;/strong&gt; en la Inspección Técnica Vehicular.&lt;br&gt;&lt;br&gt;Esta inspección es obligatoria para todos los vehículos a partir del quinto año de circulación contado desde el primer empadronamiento.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Dirección:&lt;/strong&gt; Dámaso A. Larrañaga 3347 esq. Monte Caseros&lt;br&gt;&lt;strong&gt;Tel:&lt;/strong&gt; 2481 9312" data-img="/images/convenios/autok.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/autok.png" alt="AUTOK" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/autok.png" alt="AUTOK" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">AUTOK</div>
                 </div>
                 <span class="conv-logo-card__benefit">50% dto. inspección vehicular</span>
               </div>
-              <div class="conv-logo-card" data-name="Cymaco Repuestos" data-category="Automotriz" data-detail="Presentando recibo al día, los asociados del Centro tienen un &lt;strong&gt;10% de descuento&lt;/strong&gt; en cualquiera de las sucursales.&lt;br&gt;&lt;br&gt;Además tendrán &lt;strong&gt;servicio gratuito&lt;/strong&gt; en Bv. Batlle y Ordóñez 2334 o Galicia 1224 para:&lt;br&gt;• Mano de obra en cambio de aceite&lt;br&gt;• Control de baterías&lt;br&gt;• Chequeo de luces" data-img="/images/convenios/cymaco.png">
+              <div class="conv-logo-card" data-name="Cymaco Repuestos" data-category="Automotriz" data-detail="Presentando recibo al día, los asociados del Centro tienen un &lt;strong&gt;10% de descuento&lt;/strong&gt; en cualquiera de las sucursales.&lt;br&gt;&lt;br&gt;Además tendrán &lt;strong&gt;servicio gratuito&lt;/strong&gt; en Bv. Batlle y Ordóñez 2334 o Galicia 1224 para:&lt;br&gt;• Mano de obra en cambio de aceite&lt;br&gt;• Control de baterías&lt;br&gt;• Chequeo de luces" data-img="/images/convenios/cymaco.svg">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/cymaco.png" alt="Cymaco Repuestos" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/cymaco.svg" alt="Cymaco Repuestos" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Cymaco Repuestos</div>
                 </div>
                 <span class="conv-logo-card__benefit">10% dto. + servicios gratis</span>
               </div>
               <div class="conv-logo-card" data-name="Lavadero Automotriz" data-category="Automotriz" data-detail="&lt;strong&gt;25% de descuento&lt;/strong&gt; para socios en lavado completo de interior: limpieza de tapizado, piso, butacas con descontaminador de plásticos y recuperador. Lavado por fuera común y descontaminador de plásticos y recuperador.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Dirección:&lt;/strong&gt; Comercio 2181&lt;br&gt;&lt;strong&gt;Tel:&lt;/strong&gt; 095 866 857" data-img="/images/convenios/lavadero.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/lavadero.png" alt="Lavadero Automotriz" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/lavadero.png" alt="Lavadero Automotriz" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Lavadero</div>
                 </div>
                 <span class="conv-logo-card__benefit">25% dto. lavado completo</span>
@@ -302,9 +307,9 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
             <div class="conv-cat-section__row">
-              <div class="conv-logo-card" data-name="Academia de Choferes CuatrOOjos" data-category="Educación" data-detail="&lt;strong&gt;Beneficios para socios y familiares directos:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;• Curso de 15 clases prácticas de 1 hora, más 2 horas de regalo adicionales, así como todo el material de estudio.&lt;br&gt;• 15% de descuento por pago contado.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Contacto:&lt;/strong&gt; 098 671 333" data-img="/images/convenios/cuatroojos.png">
+              <div class="conv-logo-card" data-name="Academia de Choferes CuatrOOjos" data-category="Educación" data-detail="&lt;strong&gt;Beneficios para socios y familiares directos:&lt;/strong&gt;&lt;br&gt;&lt;br&gt;• Curso de 15 clases prácticas de 1 hora, más 2 horas de regalo adicionales, así como todo el material de estudio.&lt;br&gt;• 15% de descuento por pago contado.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Contacto:&lt;/strong&gt; 098 671 333" data-img="/images/convenios/cuatroojos.jpg">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/cuatroojos.png" alt="Academia CuatrOOjos" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/cuatroojos.jpg" alt="Academia CuatrOOjos" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Academia CuatrOOjos</div>
                 </div>
                 <span class="conv-logo-card__benefit">15% dto. + 2 hrs. regalo</span>
@@ -326,7 +331,7 @@
             <div class="conv-cat-section__row">
               <div class="conv-logo-card" data-name="Fox Parking — Estacionamiento" data-category="Servicios" data-detail="Tarifas con descuentos para socios: por hora y todo el día (diurno).&lt;br&gt;&lt;br&gt;&lt;strong&gt;Dirección:&lt;/strong&gt; Carlos Quijano (ex Yi) N.º 1230, entre Soriano y Canelones." data-img="/images/convenios/fox-parking.png">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/fox-parking.png" alt="Fox Parking" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/fox-parking.png" alt="Fox Parking" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Fox Parking</div>
                 </div>
                 <span class="conv-logo-card__benefit">Dto. en estacionamiento</span>
@@ -346,9 +351,9 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
             <div class="conv-cat-section__row">
-              <div class="conv-logo-card" data-name="Parque de Minas — Hotel Vacacional" data-category="Turismo" data-detail="Descuento según temporada para socios y familiares.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Dirección:&lt;/strong&gt; Lavalleja - Minas / Ruta 12 Km 347.500&lt;br&gt;&lt;strong&gt;Tel:&lt;/strong&gt; 2200 3010 — 4443 0000&lt;br&gt;&lt;strong&gt;WhatsApp:&lt;/strong&gt; 092 446 200&lt;br&gt;&lt;strong&gt;Email:&lt;/strong&gt; parqueminasreservas@ute.com.uy&lt;br&gt;&lt;strong&gt;Web:&lt;/strong&gt; www.parquedeminas.uy" data-img="/images/convenios/parque-de-minas.png">
+              <div class="conv-logo-card" data-name="Parque de Minas — Hotel Vacacional" data-category="Turismo" data-detail="Descuento según temporada para socios y familiares.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Dirección:&lt;/strong&gt; Lavalleja - Minas / Ruta 12 Km 347.500&lt;br&gt;&lt;strong&gt;Tel:&lt;/strong&gt; 2200 3010 — 4443 0000&lt;br&gt;&lt;strong&gt;WhatsApp:&lt;/strong&gt; 092 446 200&lt;br&gt;&lt;strong&gt;Email:&lt;/strong&gt; parqueminasreservas@ute.com.uy&lt;br&gt;&lt;strong&gt;Web:&lt;/strong&gt; www.parquedeminas.uy" data-img="/images/convenios/parque-de-minas.svg">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/parque-de-minas.png" alt="Parque de Minas" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/parque-de-minas.svg" alt="Parque de Minas" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Parque de Minas</div>
                 </div>
                 <span class="conv-logo-card__benefit">Dto. según temporada</span>
@@ -368,9 +373,9 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
             <div class="conv-cat-section__row">
-              <div class="conv-logo-card" data-name="Scotiabank" data-category="Financiero" data-detail="&lt;strong&gt;Para todos los afiliados.&lt;/strong&gt; Cuenta Personal Scotiabank con beneficios especiales:&lt;br&gt;&lt;br&gt;• Débito automático de cuota social del centro (sin costo)&lt;br&gt;• Caja de Ahorro / Cuenta Corriente en pesos y/o dólares, sin exigencias de promedios mínimos ni cargos por movimiento&lt;br&gt;• Bonificación en el costo mensual de Tarjeta BanRed para cajeros automáticos&lt;br&gt;• Débito automático de servicios sin costo (tributos municipales, entes estatales y más de 30 empresas adheridas)&lt;br&gt;• Tarjetas de Crédito MasterCard y Visa con logo del Centro, sin costo durante el primer año (regional e internacional)&lt;br&gt;• Programa de beneficios: consumos en tarjetas acumulan unidades canjeables por vouchers, productos, pasajes aéreos o millas Smiles&lt;br&gt;• Servicio de emergencia vehicular y domiciliaria gratuita (al solicitar tarjeta de crédito)&lt;br&gt;&lt;br&gt;&lt;strong&gt;Info:&lt;/strong&gt; 2908 1207 (C. P. Choferes) o 1958 Int. 4848 (Scotiabank) — www.scotiabank.com.uy" data-img="/images/convenios/scotiabank.png">
+              <div class="conv-logo-card" data-name="Scotiabank" data-category="Financiero" data-detail="&lt;strong&gt;Para todos los afiliados.&lt;/strong&gt; Cuenta Personal Scotiabank con beneficios especiales:&lt;br&gt;&lt;br&gt;• Débito automático de cuota social del centro (sin costo)&lt;br&gt;• Caja de Ahorro / Cuenta Corriente en pesos y/o dólares, sin exigencias de promedios mínimos ni cargos por movimiento&lt;br&gt;• Bonificación en el costo mensual de Tarjeta BanRed para cajeros automáticos&lt;br&gt;• Débito automático de servicios sin costo (tributos municipales, entes estatales y más de 30 empresas adheridas)&lt;br&gt;• Tarjetas de Crédito MasterCard y Visa con logo del Centro, sin costo durante el primer año (regional e internacional)&lt;br&gt;• Programa de beneficios: consumos en tarjetas acumulan unidades canjeables por vouchers, productos, pasajes aéreos o millas Smiles&lt;br&gt;• Servicio de emergencia vehicular y domiciliaria gratuita (al solicitar tarjeta de crédito)&lt;br&gt;&lt;br&gt;&lt;strong&gt;Info:&lt;/strong&gt; 2908 1207 (C. P. Choferes) o 1958 Int. 4848 (Scotiabank) — www.scotiabank.com.uy" data-img="/images/convenios/scotiabank.svg">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/scotiabank.png" alt="Scotiabank" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/scotiabank.svg" alt="Scotiabank" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Scotiabank</div>
                 </div>
                 <span class="conv-logo-card__benefit">Cuenta personal + tarjetas</span>
@@ -390,23 +395,23 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
             <div class="conv-cat-section__row">
-              <div class="conv-logo-card" data-name="Socios de ANDA" data-category="Institucional" data-detail="Descuento en cuota deportiva y parque social para socios de ANDA.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Tel:&lt;/strong&gt; 2400 0714" data-img="/images/convenios/anda.png">
+              <div class="conv-logo-card" data-name="Socios de ANDA" data-category="Institucional" data-detail="Descuento en cuota deportiva y parque social para socios de ANDA.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Tel:&lt;/strong&gt; 2400 0714" data-img="/images/convenios/anda.svg">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/anda.png" alt="ANDA" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/anda.svg" alt="ANDA" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">ANDA</div>
                 </div>
                 <span class="conv-logo-card__benefit">Dto. cuota deportiva y parque</span>
               </div>
-              <div class="conv-logo-card" data-name="Fondo Social de la Construcción" data-category="Institucional" data-detail="Descuento en cuota deportiva y parque social para socios del Fondo Social de la Industria de la Construcción.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Tel:&lt;/strong&gt; 2901 2222" data-img="/images/convenios/fondo-social.png">
+              <div class="conv-logo-card" data-name="Fondo Social de la Construcción" data-category="Institucional" data-detail="Descuento en cuota deportiva y parque social para socios del Fondo Social de la Industria de la Construcción.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Tel:&lt;/strong&gt; 2901 2222" data-img="/images/convenios/fondo-social.webp">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/fondo-social.png" alt="Fondo Social Construcción" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/fondo-social.webp" alt="Fondo Social Construcción" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">Fondo Social</div>
                 </div>
                 <span class="conv-logo-card__benefit">Dto. cuota deportiva y parque</span>
               </div>
-              <div class="conv-logo-card" data-name="UDELAR — Estudiantes, trabajadores y familiares" data-category="Institucional" data-detail="Descuento en cuota deportiva y parque social para estudiantes, trabajadores y familiares directos de la Universidad de la República.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Info:&lt;/strong&gt; 2408 5865 (Bienestar Universitario)" data-img="/images/convenios/udelar.png">
+              <div class="conv-logo-card" data-name="UDELAR — Estudiantes, trabajadores y familiares" data-category="Institucional" data-detail="Descuento en cuota deportiva y parque social para estudiantes, trabajadores y familiares directos de la Universidad de la República.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Info:&lt;/strong&gt; 2408 5865 (Bienestar Universitario)" data-img="/images/convenios/udelar.svg">
                 <div class="conv-logo-card__img">
-                  <img src="/images/convenios/udelar.png" alt="UDELAR" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <img src="images/convenios/udelar.svg" alt="UDELAR" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
                   <div class="conv-logo-card__placeholder">UDELAR</div>
                 </div>
                 <span class="conv-logo-card__benefit">Dto. cuota deportiva y parque</span>
@@ -443,7 +448,7 @@
         <h2>Cómo Acceder a los Convenios</h2>
         <p>Para acceder a los beneficios de los convenios, debes presentar tu <strong>credencial de socio vigente</strong> en el establecimiento correspondiente. Para consultas sobre los convenios vigentes o nuevos acuerdos, comunicate con la Secretaría Administrativa.</p>
         <p><strong>Tel:</strong> 2908 1207 &nbsp;|&nbsp; <strong>Email:</strong> info@proteccionchoferes.org.uy</p>
-        <p style="margin-top:1.5rem;"><a href="/institucion/asociarse.html" class="btn btn--primary">Asociarse para acceder a los beneficios &rarr;</a></p>
+        <p style="margin-top:1.5rem;"><a href="institucion/asociarse.html" class="btn btn--primary">Asociarse para acceder a los beneficios &rarr;</a></p>
       </section>
 
     </div>
@@ -455,7 +460,7 @@
       <div class="container">
         <div class="footer__grid">
           <div>
-            <img src="/images/logo.png" alt="CPCH" style="height:56px;width:auto;margin-bottom:1rem;filter:brightness(10);" onerror="this.style.display='none'">
+            <img src="images/logo.png" alt="CPCH" style="height:56px;width:auto;margin-bottom:1rem;filter:brightness(10);" onerror="this.style.display='none'">
             <p class="footer__desc">Institución mutualista sin fines de lucro al servicio de los conductores de Montevideo desde 1909. De todos y para todos.</p>
             <div class="footer__socials">
               <a class="footer__social-link" href="https://www.instagram.com/cpchmontevideo/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -469,20 +474,20 @@
           <div>
             <h4 class="footer__col-title">Institución</h4>
             <nav class="footer__links">
-              <a class="footer__link" href="/institucion/quienes-somos.html">Quiénes Somos</a>
-              <a class="footer__link" href="/institucion/historia.html">Historia</a>
-              <a class="footer__link" href="/institucion/autoridades.html">Autoridades</a>
-              <a class="footer__link" href="/institucion/asociarse.html">Asociarse</a>
+              <a class="footer__link" href="institucion/quienes-somos.html">Quiénes Somos</a>
+              <a class="footer__link" href="institucion/historia.html">Historia</a>
+              <a class="footer__link" href="institucion/autoridades.html">Autoridades</a>
+              <a class="footer__link" href="institucion/asociarse.html">Asociarse</a>
             </nav>
           </div>
           <div>
             <h4 class="footer__col-title">Beneficios</h4>
             <nav class="footer__links">
-              <a class="footer__link" href="/beneficios/convenios.html">Convenios</a>
-              <a class="footer__link" href="/beneficios/area-salud.html">Área Salud</a>
-              <a class="footer__link" href="/beneficios/complejo-deportivo.html">Complejo Deportivo</a>
-              <a class="footer__link" href="/beneficios/parque-social.html">Parque Social</a>
-              <a class="footer__link" href="/beneficios/biblioteca.html">Biblioteca</a>
+              <a class="footer__link" href="beneficios/convenios.html">Convenios</a>
+              <a class="footer__link" href="beneficios/area-salud.html">Área Salud</a>
+              <a class="footer__link" href="beneficios/complejo-deportivo.html">Complejo Deportivo</a>
+              <a class="footer__link" href="beneficios/parque-social.html">Parque Social</a>
+              <a class="footer__link" href="beneficios/biblioteca.html">Biblioteca</a>
             </nav>
           </div>
           <div>
@@ -501,7 +506,7 @@
     </div>
   </footer>
   <button class="scroll-top" id="scroll-top" aria-label="Volver arriba">&#8593;</button>
-  <script src="/js/main.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>

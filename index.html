@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <base href="/pc/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_UY">
@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -62,45 +62,49 @@
   <!-- ======================== NAVIGATION ======================== -->
   <nav class="site-nav" id="site-nav">
     <div class="nav__container">
-      <a class="nav__logo" href="/" aria-label="Inicio">
-        <img src="/images/logo.png" alt="Centro Protección Choferes" onerror="this.style.display='none'">
+      <a class="nav__logo" href="/pc/" aria-label="Inicio">
+        <img src="images/logo.png" alt="Centro Protección Choferes" onerror="this.style.display='none'">
       </a>
+      <div class="nav__brand">
+        <span class="nav__brand-name">Centro Protección Choferes</span>
+        <span class="nav__brand-sub">de Montevideo</span>
+      </div>
 
             <ul class="nav__menu" role="menubar">
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/" role="menuitem">Inicio</a>
+          <a class="nav__link" href="/pc/" role="menuitem">Inicio</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/institucion/quienes-somos.html" role="menuitem">
+          <a class="nav__link" href="institucion/quienes-somos.html" role="menuitem">
             Institución <span class="nav__arrow">&#9660;</span>
           </a>
           <ul class="nav__dropdown" role="menu">
-            <li><a class="nav__dropdown-link" href="/institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
-            <li><a class="nav__dropdown-link" href="/institucion/autoridades.html" role="menuitem">Autoridades</a></li>
-            <li><a class="nav__dropdown-link" href="/institucion/historia.html" role="menuitem">Historia</a></li>
-            <li><a class="nav__dropdown-link" href="/institucion/asociarse.html" role="menuitem">Asociarse</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/autoridades.html" role="menuitem">Autoridades</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/historia.html" role="menuitem">Historia</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/asociarse.html" role="menuitem">Asociarse</a></li>
           </ul>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/beneficios/complejo-deportivo.html" role="menuitem">Complejo Deportivo</a>
+          <a class="nav__link" href="beneficios/complejo-deportivo.html" role="menuitem">Complejo Deportivo</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/beneficios/parque-social.html" role="menuitem">Parque Social</a>
+          <a class="nav__link" href="beneficios/parque-social.html" role="menuitem">Parque Social</a>
         </li>
         <li class="nav__item" role="none">
-          <a class="nav__link" href="/beneficios/convenios.html" role="menuitem">
+          <a class="nav__link" href="beneficios/convenios.html" role="menuitem">
             Beneficios <span class="nav__arrow">&#9660;</span>
           </a>
           <ul class="nav__dropdown" role="menu">
-            <li><a class="nav__dropdown-link" href="/beneficios/juridico.html" role="menuitem">Departamento Jurídico</a></li>
-            <li><a class="nav__dropdown-link" href="/beneficios/convenios.html" role="menuitem">Convenios</a></li>
-            <li><a class="nav__dropdown-link" href="/beneficios/secretaria.html" role="menuitem">Secretaría Administrativa</a></li>
-            <li><a class="nav__dropdown-link" href="/beneficios/biblioteca.html" role="menuitem">Biblioteca</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/juridico.html" role="menuitem">Departamento Jurídico</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/convenios.html" role="menuitem">Convenios</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/secretaria.html" role="menuitem">Secretaría Administrativa</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/biblioteca.html" role="menuitem">Biblioteca</a></li>
           </ul>
         </li>
       </ul>
 
-      <a class="nav__cta" href="/horarios.html">
+      <a class="nav__cta" href="horarios.html">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Horarios
       </a>
@@ -112,30 +116,30 @@
 
   <!-- Mobile menu -->
     <div class="nav__mobile" id="nav-mobile" role="dialog" aria-label="Menu de navegacion">
-    <a class="nav__mobile-cta" href="/horarios.html">
+    <a class="nav__mobile-cta" href="horarios.html">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Horarios
     </a>
-    <a class="nav__mobile-link" href="/">Inicio</a>
-    <a class="nav__mobile-link" href="/institucion/quienes-somos.html" data-toggle="sub-institucion">
+    <a class="nav__mobile-link" href="/pc/">Inicio</a>
+    <a class="nav__mobile-link" href="institucion/quienes-somos.html" data-toggle="sub-institucion">
       Institución <span>+</span>
     </a>
     <div class="nav__mobile-sub" id="sub-institucion">
-      <a class="nav__mobile-sublink" href="/institucion/quienes-somos.html">Quiénes Somos</a>
-      <a class="nav__mobile-sublink" href="/institucion/autoridades.html">Autoridades</a>
-      <a class="nav__mobile-sublink" href="/institucion/historia.html">Historia</a>
-      <a class="nav__mobile-sublink" href="/institucion/asociarse.html">Asociarse</a>
+      <a class="nav__mobile-sublink" href="institucion/quienes-somos.html">Quiénes Somos</a>
+      <a class="nav__mobile-sublink" href="institucion/autoridades.html">Autoridades</a>
+      <a class="nav__mobile-sublink" href="institucion/historia.html">Historia</a>
+      <a class="nav__mobile-sublink" href="institucion/asociarse.html">Asociarse</a>
     </div>
-    <a class="nav__mobile-link" href="/beneficios/complejo-deportivo.html">Complejo Deportivo</a>
-    <a class="nav__mobile-link" href="/beneficios/parque-social.html">Parque Social</a>
-    <a class="nav__mobile-link" href="/beneficios/convenios.html" data-toggle="sub-beneficios">
+    <a class="nav__mobile-link" href="beneficios/complejo-deportivo.html">Complejo Deportivo</a>
+    <a class="nav__mobile-link" href="beneficios/parque-social.html">Parque Social</a>
+    <a class="nav__mobile-link" href="beneficios/convenios.html" data-toggle="sub-beneficios">
       Beneficios <span>+</span>
     </a>
     <div class="nav__mobile-sub" id="sub-beneficios">
-      <a class="nav__mobile-sublink" href="/beneficios/juridico.html">Departamento Jurídico</a>
-      <a class="nav__mobile-sublink" href="/beneficios/convenios.html">Convenios</a>
-      <a class="nav__mobile-sublink" href="/beneficios/secretaria.html">Secretaría Administrativa</a>
-      <a class="nav__mobile-sublink" href="/beneficios/biblioteca.html">Biblioteca</a>
+      <a class="nav__mobile-sublink" href="beneficios/juridico.html">Departamento Jurídico</a>
+      <a class="nav__mobile-sublink" href="beneficios/convenios.html">Convenios</a>
+      <a class="nav__mobile-sublink" href="beneficios/secretaria.html">Secretaría Administrativa</a>
+      <a class="nav__mobile-sublink" href="beneficios/biblioteca.html">Biblioteca</a>
     </div>
   </div>
 
@@ -143,8 +147,8 @@
   <section class="hero" aria-label="Portada">
     <img
       class="hero__bg"
-      src="/images/Gym.jpeg"
-      alt="Instalaciones del centro"
+      src="images/hero-bus.jpg"
+      alt="Bus CUTCSA frente al Palacio Legislativo de Montevideo"
       loading="eager"
     >
     <div class="hero__overlay"></div>
@@ -153,16 +157,11 @@
       <h1 class="hero__title">116 años trabajando<br>para su tranquilidad</h1>
       <p class="hero__subtitle">De todos y para todos</p>
       <div class="hero__actions">
-        <a href="/institucion/asociarse.html" class="btn btn--amber">Asociarse</a>
+        <a href="institucion/asociarse.html" class="btn btn--amber">Pre-asociate</a>
         <a href="#beneficios" class="btn btn--outline-white">Nuestros Beneficios</a>
       </div>
     </div>
   </section>
-
-  <!-- ======================== TAGLINE BAR ======================== -->
-  <div class="tagline-bar">
-    <p>Institución mutualista sin fines de lucro &mdash; Fundada el 20 de octubre de 1909</p>
-  </div>
 
   <!-- ======================== SERVICES ======================== -->
   <section class="services section" id="beneficios">
@@ -175,34 +174,45 @@
 
         <article class="service-card">
           <img class="service-card__img"
-            src="/images/Psocial2.jpg"
+            src="images/Psocial2.jpg"
             alt="Parque Social" loading="lazy">
           <div class="service-card__body">
             <h3 class="service-card__title">Parque Social</h3>
-            <p class="service-card__desc">Barbacoas cerradas y abiertas, plaza de juegos, fogones, cancha futbol 5 y mucho más. Av. De las Instrucciones 997.</p>
-            <a class="service-card__link" href="/beneficios/parque-social.html">Ver más &rarr;</a>
+            <p class="service-card__desc">Barbacoas cerradas y abiertas, plaza de juegos, fogones, cancha futbol 5 y mucho más. Coronel Raiz 1002.</p>
+            <a class="service-card__link" href="beneficios/parque-social.html">Ver más &rarr;</a>
           </div>
         </article>
 
         <article class="service-card service-card--teal">
           <img class="service-card__img"
-            src="/images/Saparatos.jpeg"
+            src="images/Saparatos.jpeg"
             alt="Sala de Aparatos" loading="lazy">
           <div class="service-card__body">
             <h3 class="service-card__title">Sala de Aparatos</h3>
             <p class="service-card__desc">Equipada con aparatos de ultima generacion para el bienestar fisico de los socios y sus familias.</p>
-            <a class="service-card__link" href="/beneficios/sala-de-aparatos.html">Ver más &rarr;</a>
+            <a class="service-card__link" href="beneficios/sala-de-aparatos.html">Ver más &rarr;</a>
           </div>
         </article>
 
         <article class="service-card service-card--green">
           <img class="service-card__img"
-            src="/images/Cdeportivo.jpg"
+            src="images/Cdeportivo.jpg"
             alt="Complejo Deportivo" loading="lazy">
           <div class="service-card__body">
             <h3 class="service-card__title">Complejo Deportivo</h3>
             <p class="service-card__desc">Natación, hidrogimnasia, entrenamiento funcional y mas actividades para todas las edades. Soriano 1217.</p>
-            <a class="service-card__link" href="/beneficios/complejo-deportivo.html">Ver más &rarr;</a>
+            <a class="service-card__link" href="beneficios/complejo-deportivo.html">Ver más &rarr;</a>
+          </div>
+        </article>
+
+        <article class="service-card service-card--teal">
+          <img class="service-card__img"
+            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=75"
+            alt="Departamento Jurídico" loading="lazy">
+          <div class="service-card__body">
+            <h3 class="service-card__title">Asesoramiento Jurídico</h3>
+            <p class="service-card__desc">Atención jurídica especializada para socios. <strong>365 días del año, las 24 horas</strong> — Tel. emergencias: 099 605 400.</p>
+            <a class="service-card__link" href="beneficios/juridico.html">Ver más &rarr;</a>
           </div>
         </article>
 
@@ -213,7 +223,7 @@
           <div class="service-card__body">
             <h3 class="service-card__title">Colonia de Verano</h3>
             <p class="service-card__desc">Propuesta para chicos de 3 a 12 años con deportes, natación, musica, expresion plastica y mas actividades.</p>
-            <a class="service-card__link" href="/beneficios/colonia-de-verano.html">Ver más &rarr;</a>
+            <a class="service-card__link" href="beneficios/colonia-de-verano.html">Ver más &rarr;</a>
           </div>
         </article>
 
@@ -236,8 +246,8 @@
             <circle cx="24" cy="20" r="5" fill="white" opacity="0.7"/>
             <path d="M14 36 C14 30 18 26 24 26 C30 26 34 30 34 36" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
           </svg>
-          <div class="stat-number" data-count="116" data-suffix="+">0</div>
-          <div class="stat-label">Anos de Historia</div>
+          <div class="stat-number" data-count="116" data-prefix="+">0</div>
+          <div class="stat-label">Años de Historia</div>
         </div>
 
         <div class="stat-item reveal">
@@ -251,14 +261,6 @@
           <div class="stat-label">Sedes</div>
         </div>
 
-        <div class="stat-item reveal">
-          <svg class="stat-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-            <rect x="8" y="8" width="32" height="34" rx="3" stroke="white" stroke-width="2" opacity="0.4"/>
-            <path d="M14 18 H34 M14 24 H34 M14 30 H26" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-          </svg>
-          <div class="stat-number" data-count="68000" data-suffix="+">0</div>
-          <div class="stat-label">Volumenes en Biblioteca</div>
-        </div>
 
         <div class="stat-item reveal">
           <svg class="stat-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -266,7 +268,7 @@
             <path d="M24 14 V26 M24 26 L30 22" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
             <circle cx="24" cy="24" r="2" fill="white" opacity="0.7"/>
           </svg>
-          <div class="stat-number" data-count="1020" data-suffix="+">0</div>
+          <div class="stat-number" data-count="1020" data-prefix="+">0</div>
           <div class="stat-label">Horas de Profesores a tu Disposicion</div>
         </div>
 
@@ -291,37 +293,37 @@
 
           <div class="carousel__slide">
             <div class="carousel__img-wrap">
-              <img src="/images/Ssocial2.jpg" alt="Sede Social" loading="lazy">
+              <img src="images/Ssocial2.jpg" alt="Sede Social" loading="lazy">
             </div>
             <div class="carousel__content">
               <span class="carousel__tag">Sede Central</span>
               <h3 class="carousel__title">Sede Social</h3>
               <p class="carousel__text">Nuestra sede principal ubicada en Soriano 1227 es el corazon de la institución. Aqui funcionan la secretaria administrativa, el departamento jurídico, la biblioteca y los principales servicios para los socios.</p>
-              <a class="carousel__cta" href="/beneficios/secretaria.html">Conocer mas</a>
+              <a class="carousel__cta" href="beneficios/secretaria.html">Conocer mas</a>
             </div>
           </div>
 
           <div class="carousel__slide">
             <div class="carousel__img-wrap">
-              <img src="/images/Cdeportivo.jpg" alt="Complejo Deportivo" loading="lazy">
+              <img src="images/Cdeportivo.jpg" alt="Complejo Deportivo" loading="lazy">
             </div>
             <div class="carousel__content">
               <span class="carousel__tag">Deporte</span>
               <h3 class="carousel__title">Complejo Deportivo</h3>
               <p class="carousel__text">En Soriano 1217, el complejo deportivo ofrece piscina, gimnasio, hidrogimnasia, natación para todas las edades y una amplia variedad de actividades fisicas para socios y familias.</p>
-              <a class="carousel__cta" href="/beneficios/complejo-deportivo.html">Conocer mas</a>
+              <a class="carousel__cta" href="beneficios/complejo-deportivo.html">Conocer mas</a>
             </div>
           </div>
 
           <div class="carousel__slide">
             <div class="carousel__img-wrap">
-              <img src="/images/PSocial.JPG" alt="Parque Social" loading="lazy">
+              <img src="images/PSocial.JPG" alt="Parque Social" loading="lazy">
             </div>
             <div class="carousel__content">
               <span class="carousel__tag">Recreación</span>
               <h3 class="carousel__title">Parque Social</h3>
               <p class="carousel__text">Con 3,5 hectareas de area verde, el parque cuenta con 6 parrilleros cerrados, 7 ranchos abiertos cubiertos y el Salon Diamante para 250 personas. Ubicado en Av. De las Instrucciones 997.</p>
-              <a class="carousel__cta" href="/beneficios/parque-social.html">Conocer mas</a>
+              <a class="carousel__cta" href="beneficios/parque-social.html">Conocer mas</a>
             </div>
           </div>
 
@@ -345,9 +347,9 @@
   <section class="parallax-section" aria-label="Sobre la institución">
     <div class="container">
       <div class="parallax-content reveal">
-        <h2>116 Anos al Servicio de los Conductores</h2>
+        <h2>116 Años al Servicio de los Conductores</h2>
         <p>El Centro Protección Choferes de Montevideo es una institución mutualista sin fines de lucro fundada el 20 de octubre de 1909. Agrupa a conductores de vehículos motorizados y afines, brindando beneficios sociales, culturales, deportivos y de seguridad vial.</p>
-        <a class="btn btn--outline" href="/institucion/quienes-somos.html">Conocer nuestra historia</a>
+        <a class="btn btn--outline" href="institucion/quienes-somos.html">Conocer nuestra historia</a>
       </div>
     </div>
   </section>
@@ -362,44 +364,44 @@
       </div>
       <div class="convenios-marquee reveal" aria-label="Convenios institucionales">
         <div class="convenios-marquee__track">
-          <!-- Set 1 of 16 -->
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2563EB;">B</div><div class="convenio-card__name">BSE</div><div class="convenio-card__benefit">17% descuento en seguros</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3B82F6;">P</div><div class="convenio-card__name">Porto Seguros</div><div class="convenio-card__benefit">8% descuento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#38BDF8;">A</div><div class="convenio-card__name">AUTOK</div><div class="convenio-card__benefit">50% inspecci&oacute;n vehicular</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">A</div><div class="convenio-card__name">Asoc. Espa&ntilde;ola</div><div class="convenio-card__benefit">Convenio de salud</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#1E3A5F;">E</div><div class="convenio-card__name">Espa&ntilde;ola M&oacute;vil</div><div class="convenio-card__benefit">Cobertura en locales</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#0F2847;">C</div><div class="convenio-card__name">Academia CuatrOOjos</div><div class="convenio-card__benefit">15% dto. + 2 hrs. regalo</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2563EB;">C</div><div class="convenio-card__name">Cymaco Repuestos</div><div class="convenio-card__benefit">10% dto. + servicios gratis</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3B82F6;">L</div><div class="convenio-card__name">Lavadero</div><div class="convenio-card__benefit">25% dto. lavado completo</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#38BDF8;">F</div><div class="convenio-card__name">Fox Parking</div><div class="convenio-card__benefit">Dto. estacionamiento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">C</div><div class="convenio-card__name">Cl&iacute;nica Brackets</div><div class="convenio-card__benefit">Dto. en tratamientos</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#1E3A5F;">O</div><div class="convenio-card__name">7 &Oacute;pticas</div><div class="convenio-card__benefit">Hasta 30% descuento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#0F2847;">A</div><div class="convenio-card__name">ANDA</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2563EB;">F</div><div class="convenio-card__name">Fondo Social Construcci&oacute;n</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3B82F6;">U</div><div class="convenio-card__name">UDELAR</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#38BDF8;">T</div><div class="convenio-card__name">Parque de Minas</div><div class="convenio-card__benefit">Dto. seg&uacute;n temporada</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">S</div><div class="convenio-card__name">Scotiabank</div><div class="convenio-card__benefit">Cuenta personal + tarjetas</div></div>
+          <!-- Set 1 -->
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/bse.png" alt="BSE" onerror="this.style.display='none';this.parentElement.innerHTML='BSE'"></div><div class="convenio-card__name">BSE</div><div class="convenio-card__benefit">17% dto. en seguros</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/porto-seguro.png" alt="Porto Seguros" onerror="this.style.display='none';this.parentElement.innerHTML='Porto'"></div><div class="convenio-card__name">Porto Seguros</div><div class="convenio-card__benefit">8% dto. en seguros</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/asociacion-espanola.png" alt="Asoc. Española" onerror="this.style.display='none';this.parentElement.innerHTML='Española'"></div><div class="convenio-card__name">Asoc. Española</div><div class="convenio-card__benefit">Convenio de salud</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/espanola-movil.png" alt="Española Móvil" onerror="this.style.display='none';this.parentElement.innerHTML='Esp. Móvil'"></div><div class="convenio-card__name">Española Móvil</div><div class="convenio-card__benefit">Cobertura en locales</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/clinica-brackets.png" alt="Clínica Brackets" onerror="this.style.display='none';this.parentElement.innerHTML='Brackets'"></div><div class="convenio-card__name">Clínica Brackets</div><div class="convenio-card__benefit">Dto. odontológico</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/multiples-opticas.png" alt="7 Ópticas" onerror="this.style.display='none';this.parentElement.innerHTML='7 Ópticas'"></div><div class="convenio-card__name">7 Ópticas</div><div class="convenio-card__benefit">Hasta 30% descuento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/autok.png" alt="AUTOK" onerror="this.style.display='none';this.parentElement.innerHTML='AUTOK'"></div><div class="convenio-card__name">AUTOK</div><div class="convenio-card__benefit">50% inspecci&oacute;n vehicular</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/cymaco.svg" alt="Cymaco Repuestos" onerror="this.style.display='none';this.parentElement.innerHTML='Cymaco'"></div><div class="convenio-card__name">Cymaco Repuestos</div><div class="convenio-card__benefit">10% dto. + servicios gratis</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/lavadero.png" alt="Lavadero" onerror="this.style.display='none';this.parentElement.innerHTML='Lavadero'"></div><div class="convenio-card__name">Lavadero</div><div class="convenio-card__benefit">25% dto. lavado completo</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/cuatroojos.jpg" alt="Academia CuatrOOjos" onerror="this.style.display='none';this.parentElement.innerHTML='CuatrOOjos'"></div><div class="convenio-card__name">Academia CuatrOOjos</div><div class="convenio-card__benefit">15% dto. + 2 hrs. regalo</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/fox-parking.png" alt="Fox Parking" onerror="this.style.display='none';this.parentElement.innerHTML='Fox Parking'"></div><div class="convenio-card__name">Fox Parking</div><div class="convenio-card__benefit">Dto. en estacionamiento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/parque-de-minas.svg" alt="Parque de Minas" onerror="this.style.display='none';this.parentElement.innerHTML='Parque Minas'"></div><div class="convenio-card__name">Parque de Minas</div><div class="convenio-card__benefit">Dto. seg&uacute;n temporada</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/scotiabank.svg" alt="Scotiabank" onerror="this.style.display='none';this.parentElement.innerHTML='Scotiabank'"></div><div class="convenio-card__name">Scotiabank</div><div class="convenio-card__benefit">Cuenta personal + tarjetas</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/anda.svg" alt="ANDA" onerror="this.style.display='none';this.parentElement.innerHTML='ANDA'"></div><div class="convenio-card__name">ANDA</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/fondo-social.webp" alt="Fondo Social Construcción" onerror="this.style.display='none';this.parentElement.innerHTML='Fondo Social'"></div><div class="convenio-card__name">Fondo Social</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/udelar.svg" alt="UDELAR" onerror="this.style.display='none';this.parentElement.innerHTML='UDELAR'"></div><div class="convenio-card__name">UDELAR</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
           <!-- Set 2 (duplicate for seamless loop) -->
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2563EB;">B</div><div class="convenio-card__name">BSE</div><div class="convenio-card__benefit">17% descuento en seguros</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3B82F6;">P</div><div class="convenio-card__name">Porto Seguros</div><div class="convenio-card__benefit">8% descuento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#38BDF8;">A</div><div class="convenio-card__name">AUTOK</div><div class="convenio-card__benefit">50% inspecci&oacute;n vehicular</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">A</div><div class="convenio-card__name">Asoc. Espa&ntilde;ola</div><div class="convenio-card__benefit">Convenio de salud</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#1E3A5F;">E</div><div class="convenio-card__name">Espa&ntilde;ola M&oacute;vil</div><div class="convenio-card__benefit">Cobertura en locales</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#0F2847;">C</div><div class="convenio-card__name">Academia CuatrOOjos</div><div class="convenio-card__benefit">15% dto. + 2 hrs. regalo</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2563EB;">C</div><div class="convenio-card__name">Cymaco Repuestos</div><div class="convenio-card__benefit">10% dto. + servicios gratis</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3B82F6;">L</div><div class="convenio-card__name">Lavadero</div><div class="convenio-card__benefit">25% dto. lavado completo</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#38BDF8;">F</div><div class="convenio-card__name">Fox Parking</div><div class="convenio-card__benefit">Dto. estacionamiento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">C</div><div class="convenio-card__name">Cl&iacute;nica Brackets</div><div class="convenio-card__benefit">Dto. en tratamientos</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#1E3A5F;">O</div><div class="convenio-card__name">7 &Oacute;pticas</div><div class="convenio-card__benefit">Hasta 30% descuento</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#0F2847;">A</div><div class="convenio-card__name">ANDA</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#2563EB;">F</div><div class="convenio-card__name">Fondo Social Construcci&oacute;n</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#3B82F6;">U</div><div class="convenio-card__name">UDELAR</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#38BDF8;">T</div><div class="convenio-card__name">Parque de Minas</div><div class="convenio-card__benefit">Dto. seg&uacute;n temporada</div></div>
-          <div class="convenio-card"><div class="convenio-card__logo" style="background:#F2AC2C;">S</div><div class="convenio-card__name">Scotiabank</div><div class="convenio-card__benefit">Cuenta personal + tarjetas</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/bse.png" alt="BSE" onerror="this.style.display='none';this.parentElement.innerHTML='BSE'"></div><div class="convenio-card__name">BSE</div><div class="convenio-card__benefit">17% dto. en seguros</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/porto-seguro.png" alt="Porto Seguros" onerror="this.style.display='none';this.parentElement.innerHTML='Porto'"></div><div class="convenio-card__name">Porto Seguros</div><div class="convenio-card__benefit">8% dto. en seguros</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/asociacion-espanola.png" alt="Asoc. Española" onerror="this.style.display='none';this.parentElement.innerHTML='Española'"></div><div class="convenio-card__name">Asoc. Española</div><div class="convenio-card__benefit">Convenio de salud</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/espanola-movil.png" alt="Española Móvil" onerror="this.style.display='none';this.parentElement.innerHTML='Esp. Móvil'"></div><div class="convenio-card__name">Española Móvil</div><div class="convenio-card__benefit">Cobertura en locales</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/clinica-brackets.png" alt="Clínica Brackets" onerror="this.style.display='none';this.parentElement.innerHTML='Brackets'"></div><div class="convenio-card__name">Clínica Brackets</div><div class="convenio-card__benefit">Dto. odontológico</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/multiples-opticas.png" alt="7 Ópticas" onerror="this.style.display='none';this.parentElement.innerHTML='7 Ópticas'"></div><div class="convenio-card__name">7 Ópticas</div><div class="convenio-card__benefit">Hasta 30% descuento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/autok.png" alt="AUTOK" onerror="this.style.display='none';this.parentElement.innerHTML='AUTOK'"></div><div class="convenio-card__name">AUTOK</div><div class="convenio-card__benefit">50% inspecci&oacute;n vehicular</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/cymaco.svg" alt="Cymaco Repuestos" onerror="this.style.display='none';this.parentElement.innerHTML='Cymaco'"></div><div class="convenio-card__name">Cymaco Repuestos</div><div class="convenio-card__benefit">10% dto. + servicios gratis</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/lavadero.png" alt="Lavadero" onerror="this.style.display='none';this.parentElement.innerHTML='Lavadero'"></div><div class="convenio-card__name">Lavadero</div><div class="convenio-card__benefit">25% dto. lavado completo</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/cuatroojos.jpg" alt="Academia CuatrOOjos" onerror="this.style.display='none';this.parentElement.innerHTML='CuatrOOjos'"></div><div class="convenio-card__name">Academia CuatrOOjos</div><div class="convenio-card__benefit">15% dto. + 2 hrs. regalo</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/fox-parking.png" alt="Fox Parking" onerror="this.style.display='none';this.parentElement.innerHTML='Fox Parking'"></div><div class="convenio-card__name">Fox Parking</div><div class="convenio-card__benefit">Dto. en estacionamiento</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/parque-de-minas.svg" alt="Parque de Minas" onerror="this.style.display='none';this.parentElement.innerHTML='Parque Minas'"></div><div class="convenio-card__name">Parque de Minas</div><div class="convenio-card__benefit">Dto. seg&uacute;n temporada</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/scotiabank.svg" alt="Scotiabank" onerror="this.style.display='none';this.parentElement.innerHTML='Scotiabank'"></div><div class="convenio-card__name">Scotiabank</div><div class="convenio-card__benefit">Cuenta personal + tarjetas</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/anda.svg" alt="ANDA" onerror="this.style.display='none';this.parentElement.innerHTML='ANDA'"></div><div class="convenio-card__name">ANDA</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/fondo-social.webp" alt="Fondo Social Construcción" onerror="this.style.display='none';this.parentElement.innerHTML='Fondo Social'"></div><div class="convenio-card__name">Fondo Social</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
+          <div class="convenio-card"><div class="convenio-card__logo"><img src="images/convenios/udelar.svg" alt="UDELAR" onerror="this.style.display='none';this.parentElement.innerHTML='UDELAR'"></div><div class="convenio-card__name">UDELAR</div><div class="convenio-card__benefit">Dto. cuota deportiva</div></div>
         </div>
       </div>
       <div style="text-align:center;margin-top:2rem;" class="reveal">
-        <a class="btn btn--primary" href="/beneficios/convenios.html">Ver todos los convenios</a>
+        <a class="btn btn--primary" href="beneficios/convenios.html">Ver todos los convenios</a>
       </div>
     </div>
   </section>
@@ -449,7 +451,7 @@
             </div>
             <div class="contact-info-text">
               <strong>Parque Social</strong>
-              <span>Av. De las Instrucciones 997 &mdash; Tel. 2359 5074</span>
+              <span>Coronel Raiz 1002 &mdash; Tel. 2359 5074</span>
             </div>
           </div>
           <div class="contact-info-item">
@@ -457,7 +459,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </div>
             <div class="contact-info-text">
-              <strong>Jurídico Emergencias</strong>
+              <strong>Asesoramiento Jurídico — 365 días, 24 hs</strong>
               <span>099 605 400</span>
             </div>
           </div>
@@ -502,7 +504,7 @@
       <div class="container">
         <div class="footer__grid">
           <div>
-            <img src="/images/logo.png" alt="CPCH" style="height:56px;width:auto;margin-bottom:1rem;filter:brightness(10);" onerror="this.style.display='none'">
+            <img src="images/logo.png" alt="CPCH" style="height:56px;width:auto;margin-bottom:1rem;filter:brightness(10);" onerror="this.style.display='none'">
             <p class="footer__desc">Institución mutualista sin fines de lucro al servicio de los conductores de Montevideo desde 1909. De todos y para todos.</p>
             <div class="footer__socials">
               <a class="footer__social-link" href="https://www.instagram.com/cpchmontevideo/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -520,23 +522,23 @@
           <div>
             <h4 class="footer__col-title">Institución</h4>
             <nav class="footer__links" aria-label="Links institución">
-              <a class="footer__link" href="/institucion/quienes-somos.html">Quiénes Somos</a>
-              <a class="footer__link" href="/institucion/historia.html">Historia</a>
-              <a class="footer__link" href="/institucion/autoridades.html">Autoridades</a>
-              <a class="footer__link" href="/institucion/asociarse.html">Asociarse</a>
-              <a class="footer__link" href="/contacto/informacion.html">Información</a>
+              <a class="footer__link" href="institucion/quienes-somos.html">Quiénes Somos</a>
+              <a class="footer__link" href="institucion/historia.html">Historia</a>
+              <a class="footer__link" href="institucion/autoridades.html">Autoridades</a>
+              <a class="footer__link" href="institucion/asociarse.html">Asociarse</a>
+              <a class="footer__link" href="contacto/informacion.html">Información</a>
             </nav>
           </div>
 
           <div>
             <h4 class="footer__col-title">Beneficios</h4>
             <nav class="footer__links" aria-label="Links beneficios">
-              <a class="footer__link" href="/beneficios/convenios.html">Convenios</a>
-              <a class="footer__link" href="/beneficios/area-salud.html">Área Salud</a>
-              <a class="footer__link" href="/beneficios/complejo-deportivo.html">Complejo Deportivo</a>
-              <a class="footer__link" href="/beneficios/parque-social.html">Parque Social</a>
-              <a class="footer__link" href="/beneficios/biblioteca.html">Biblioteca</a>
-              <a class="footer__link" href="/beneficios/auxilio-mecanico.html">Auxilio Mecánico</a>
+              <a class="footer__link" href="beneficios/convenios.html">Convenios</a>
+              <a class="footer__link" href="beneficios/area-salud.html">Área Salud</a>
+              <a class="footer__link" href="beneficios/complejo-deportivo.html">Complejo Deportivo</a>
+              <a class="footer__link" href="beneficios/parque-social.html">Parque Social</a>
+              <a class="footer__link" href="beneficios/biblioteca.html">Biblioteca</a>
+              <a class="footer__link" href="beneficios/auxilio-mecanico.html">Auxilio Mecánico</a>
             </nav>
           </div>
 
@@ -547,7 +549,7 @@
             <div class="footer__contact-item"><strong>Email:</strong> <span>info@proteccionchoferes.org.uy</span></div>
             <div class="footer__contact-item"><strong>Sede:</strong> <span>Soriano 1227</span></div>
             <div style="margin-top:1rem;">
-              <a class="btn btn--outline" href="/contacto/informacion.html" style="font-size:0.78rem;padding:0.5rem 1rem;">Suscribirse</a>
+              <a class="btn btn--outline" href="contacto/informacion.html" style="font-size:0.78rem;padding:0.5rem 1rem;">Suscribirse</a>
             </div>
           </div>
         </div>
@@ -562,6 +564,25 @@
   <!-- Scroll to top button -->
   <button class="scroll-top" id="scroll-top" aria-label="Volver arriba">&#8593;</button>
 
-  <script src="/js/main.js"></script>
+  <!-- MODAL CONVENIO MARQUEE -->
+  <div class="conv-modal" id="conv-modal" aria-hidden="true">
+    <div class="conv-modal__backdrop" id="conv-modal-backdrop"></div>
+    <div class="conv-modal__content">
+      <button class="conv-modal__close" id="conv-modal-close" aria-label="Cerrar">&times;</button>
+      <div class="conv-modal__body">
+        <div class="conv-modal__logo" id="conv-modal-logo">
+          <img id="conv-modal-img" src="" alt="" onerror="this.style.display='none';document.getElementById('conv-modal-placeholder').style.display='flex'">
+          <div class="conv-modal__placeholder" id="conv-modal-placeholder"></div>
+        </div>
+        <div class="conv-modal__info">
+          <h3 class="conv-modal__name" id="conv-modal-name"></h3>
+          <p class="conv-modal__detail" id="conv-modal-detail"></p>
+          <a class="btn btn--primary" href="beneficios/convenios.html">Ver todos los convenios &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>

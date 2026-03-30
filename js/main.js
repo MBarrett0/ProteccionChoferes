@@ -320,6 +320,129 @@ function initConveniosMarquee() {
       wrapper.style.maskImage = 'none';
     }
   }
+
+  // Full detail data keyed by the card name shown in the marquee
+  const DETAILS = {
+    'BSE': {
+      fullName: 'BSE — Banco de Seguros del Estado',
+      detail: '<strong>¿Para quién?</strong> Socio, cónyuge e hijos.<br><br><strong>¿Qué se obtiene?</strong> Descuento del 17% al contratar o renovar el seguro de automóviles, manteniendo otras bonificaciones ya otorgadas por no siniestro (incluso de otras aseguradoras). A partir de Octubre de 2009, también la tarifa 1.<br><br><strong>¿Cómo?</strong> Pedir una constancia en el centro y entregarla a su corredor de confianza antes de la renovación/contratación del seguro. Obtenerla en forma personal con recibo social al día y cédula de identidad en nuestra oficina jurídica.<br><br><strong>Formas de pago:</strong> Débito en tarjeta de crédito y/o cuenta bancaria y en red de cobranza.<br><br><strong>Vehículos incluidos:</strong> Todo tipo, excepto: taxis, remises, vehículos de alquiler, ambulancias, coches de auxilio, ley de lisiados, vehículos con descuentos por flota o por integrar otro tipo de afinidad con el BSE, y asegurados con tarifa 8.'
+    },
+    'Porto Seguros': {
+      fullName: 'Porto Seguros',
+      detail: 'El Centro Protección Choferes de Montevideo ha firmado un convenio con Porto Seguro, mediante el cual nuestros asociados obtienen un <strong>8%</strong> de bonificación en el seguro automotriz. Consulte con su corredor de confianza.'
+    },
+    'Asoc. Española': {
+      fullName: 'Asociación Española Primera en Salud',
+      detail: 'El Centro ha firmado un convenio con la Asociación Española Primera en Salud.<br><br>Por mayor información consulte al <strong>1920 1234</strong>.'
+    },
+    'Española Móvil': {
+      fullName: 'Española Móvil',
+      detail: 'Dentro de todos nuestros locales, los asociados están cubiertos por la atención médica de la Española Móvil a través de un convenio firmado con dicha empresa.'
+    },
+    'Clínica Brackets': {
+      fullName: 'Clínica Brackets del Uruguay',
+      detail: 'Descuento en tratamientos odontológicos para socios y familiares.<br><br><strong>Contacto:</strong> 092 602 121 — 099 714 514'
+    },
+    '7 Ópticas': {
+      fullName: 'Ópticas Convenidas',
+      detail: '<strong>Enfoque Óptica Visual</strong> — Consulte por descuentos — Tel. 2408 5446<br><br><strong>Óptica Briozzio</strong> — Consulte por descuentos — Tel. 2902 5051 / 098 118 896<br><br><strong>Óptica Fornio</strong> — Consulte por descuentos — Tel. 2900 2000<br><br><strong>Óptica Italiana</strong> — 20% de descuento contado — Tel. 2408 7026<br><br><strong>Óptica Onix</strong> — 20% de descuento — Tel. 2409 9127 / 099 106 295<br><br><strong>Todo Óptica</strong> — 25% de descuento — Tel. 2356 1582<br><br><strong>Óptica Prada</strong> — 21 de Setiembre 2871 — Tel. 2711 4479<br>• 25% dto. en lentes de receta (armazón y cristales)<br>• 30% dto. en cristales multifocales<br>• 20% dto. en lentes de contacto no descartables<br>• 10% dto. en lentes de contacto descartables<br>• 10% dto. en lentes de sol'
+    },
+    'AUTOK': {
+      fullName: 'AUTOK — Inspección Técnica Vehicular',
+      detail: 'El Centro ha firmado un convenio con la firma AUTOK por el cual dicha empresa otorga un <strong>50% de descuento</strong> en la Inspección Técnica Vehicular.<br><br>Esta inspección es obligatoria para todos los vehículos a partir del quinto año de circulación contado desde el primer empadronamiento.<br><br><strong>Dirección:</strong> Dámaso A. Larrañaga 3347 esq. Monte Caseros<br><strong>Tel:</strong> 2481 9312'
+    },
+    'Cymaco Repuestos': {
+      fullName: 'Cymaco Repuestos',
+      detail: 'Presentando recibo al día, los asociados del Centro tienen un <strong>10% de descuento</strong> en cualquiera de las sucursales.<br><br>Además tendrán <strong>servicio gratuito</strong> en Bv. Batlle y Ordóñez 2334 o Galicia 1224 para:<br>• Mano de obra en cambio de aceite<br>• Control de baterías<br>• Chequeo de luces'
+    },
+    'Lavadero': {
+      fullName: 'Lavadero Automotriz',
+      detail: '<strong>25% de descuento</strong> para socios en lavado completo de interior: limpieza de tapizado, piso, butacas con descontaminador de plásticos y recuperador. Lavado por fuera común y descontaminador de plásticos y recuperador.<br><br><strong>Dirección:</strong> Comercio 2181<br><strong>Tel:</strong> 095 866 857'
+    },
+    'Academia CuatrOOjos': {
+      fullName: 'Academia de Choferes CuatrOOjos',
+      detail: '<strong>Beneficios para socios y familiares directos:</strong><br><br>• Curso de 15 clases prácticas de 1 hora, más 2 horas de regalo adicionales, así como todo el material de estudio.<br>• 15% de descuento por pago contado.<br><br><strong>Contacto:</strong> 098 671 333'
+    },
+    'Fox Parking': {
+      fullName: 'Fox Parking — Estacionamiento',
+      detail: 'Tarifas con descuentos para socios: por hora y todo el día (diurno).<br><br><strong>Dirección:</strong> Carlos Quijano (ex Yi) N.º 1230, entre Soriano y Canelones.'
+    },
+    'Parque de Minas': {
+      fullName: 'Parque de Minas — Hotel Vacacional',
+      detail: 'Descuento según temporada para socios y familiares.<br><br><strong>Dirección:</strong> Lavalleja - Minas / Ruta 12 Km 347.500<br><strong>Tel:</strong> 2200 3010 — 4443 0000<br><strong>WhatsApp:</strong> 092 446 200<br><strong>Email:</strong> parqueminasreservas@ute.com.uy<br><strong>Web:</strong> www.parquedeminas.uy'
+    },
+    'Scotiabank': {
+      fullName: 'Scotiabank',
+      detail: '<strong>Para todos los afiliados.</strong> Cuenta Personal Scotiabank con beneficios especiales:<br><br>• Débito automático de cuota social del centro (sin costo)<br>• Caja de Ahorro / Cuenta Corriente en pesos y/o dólares, sin exigencias de promedios mínimos ni cargos por movimiento<br>• Bonificación en el costo mensual de Tarjeta BanRed para cajeros automáticos<br>• Débito automático de servicios sin costo (tributos municipales, entes estatales y más de 30 empresas adheridas)<br>• Tarjetas de Crédito MasterCard y Visa con logo del Centro, sin costo durante el primer año (regional e internacional)<br>• Programa de beneficios: consumos en tarjetas acumulan unidades canjeables por vouchers, productos, pasajes aéreos o millas Smiles<br>• Servicio de emergencia vehicular y domiciliaria gratuita (al solicitar tarjeta de crédito)<br><br><strong>Info:</strong> 2908 1207 (C. P. Choferes) o 1958 Int. 4848 (Scotiabank) — www.scotiabank.com.uy'
+    },
+    'ANDA': {
+      fullName: 'Socios de ANDA',
+      detail: 'Descuento en cuota deportiva y parque social para socios de ANDA.<br><br><strong>Tel:</strong> 2400 0714'
+    },
+    'Fondo Social': {
+      fullName: 'Fondo Social de la Construcción',
+      detail: 'Descuento en cuota deportiva y parque social para socios del Fondo Social de la Industria de la Construcción.<br><br><strong>Tel:</strong> 2901 2222'
+    },
+    'UDELAR': {
+      fullName: 'UDELAR — Estudiantes, trabajadores y familiares',
+      detail: 'Descuento en cuota deportiva y parque social para estudiantes, trabajadores y familiares directos de la Universidad de la República.<br><br><strong>Info:</strong> 2408 5865 (Bienestar Universitario)'
+    }
+  };
+
+  // Bind clicks on each card directly — most reliable approach
+  const modal = document.getElementById('conv-modal');
+  if (!modal) return;
+
+  const modalImg         = document.getElementById('conv-modal-img');
+  const modalPlaceholder = document.getElementById('conv-modal-placeholder');
+  const modalName        = document.getElementById('conv-modal-name');
+  const modalDetail      = document.getElementById('conv-modal-detail');
+  const modalClose       = document.getElementById('conv-modal-close');
+  const modalBackdrop    = document.getElementById('conv-modal-backdrop');
+
+  function openConvenioModal(card) {
+    const imgEl   = card.querySelector('.convenio-card__logo img');
+    const cardKey = card.querySelector('.convenio-card__name')?.textContent.trim() || '';
+    const data    = DETAILS[cardKey] || {};
+    const name    = data.fullName || cardKey;
+    const detail  = data.detail  || card.querySelector('.convenio-card__benefit')?.textContent.trim() || '';
+
+    modalName.textContent        = name;
+    modalDetail.innerHTML        = detail;
+    modalPlaceholder.textContent = name;
+
+    if (imgEl && imgEl.getAttribute('src')) {
+      modalImg.src           = imgEl.getAttribute('src');
+      modalImg.alt           = name;
+      modalImg.style.display = '';
+      modalPlaceholder.style.display = 'none';
+    } else {
+      modalImg.style.display         = 'none';
+      modalPlaceholder.style.display = 'flex';
+    }
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Attach click to every card (touch-action:manipulation in CSS ensures
+  // mobile browsers fire click without scroll-cancellation interference)
+  track.querySelectorAll('.convenio-card').forEach(card => {
+    card.addEventListener('click', () => openConvenioModal(card));
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
 }
 
 // ============================================================
