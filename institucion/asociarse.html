@@ -291,31 +291,24 @@
             var tipo = selector.value === 'cuota_social' ? 'Cuota Social' : 'Complejo Deportivo';
             subjectField.value = 'Pre Asociaci\u00f3n \u2013 ' + nombre + ' \u2013 CI ' + cedula + ' \u2013 ' + tipo;
 
+            var successHTML =
+              '<div class="form-success">' +
+                '<div class="form-success__icon">' +
+                  '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>' +
+                '</div>' +
+                '<h2>&#161;Solicitud enviada correctamente!</h2>' +
+                '<p>Su solicitud de pre asociaci\u00f3n fue recibida. El personal administrativo la revisar\u00e1 y se comunicar\u00e1 con usted a la brevedad.</p>' +
+                '<a href="/pc/" class="btn btn--primary" style="margin-top:1.5rem;">Volver al inicio</a>' +
+              '</div>';
+
             fetch(form.action, {
               method: 'POST',
-              headers: { 'Accept': 'application/json' },
+              redirect: 'manual',
               body: new FormData(form)
             })
-            .then(function(res) {
-              // Re-enable hidden inputs in case of error
+            .then(function() {
               hiddenInputs.forEach(function(el) { el.disabled = false; });
-              return res.json();
-            })
-            .then(function(res) { return res.json(); })
-            .then(function(data) {
-              if (data.success) {
-                formSection.innerHTML =
-                  '<div class="form-success">' +
-                    '<div class="form-success__icon">' +
-                      '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>' +
-                    '</div>' +
-                    '<h2>&#161;Solicitud enviada correctamente!</h2>' +
-                    '<p>Su solicitud de pre asociaci&oacute;n fue recibida. El personal administrativo la revisar&aacute; y se comunicar&aacute; con usted a la brevedad.</p>' +
-                    '<a href="/pc/" class="btn btn--primary" style="margin-top:1.5rem;">Volver al inicio</a>' +
-                  '</div>';
-              } else {
-                throw new Error('error');
-              }
+              formSection.innerHTML = successHTML;
             })
             .catch(function() {
               hiddenInputs.forEach(function(el) { el.disabled = false; });
