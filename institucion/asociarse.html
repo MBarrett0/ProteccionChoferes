@@ -294,23 +294,26 @@
             function playSuccessSound() {
               try {
                 var ctx = new (window.AudioContext || window.webkitAudioContext)();
-                function note(freq, start, dur) {
-                  var osc = ctx.createOscillator();
+                var t = ctx.currentTime;
+                // Bell partials: each harmonic decays faster than the one below
+                var partials = [
+                  { freq: 880,  amp: 0.55, decay: 1.8  },
+                  { freq: 1760, amp: 0.25, decay: 0.9  },
+                  { freq: 2640, amp: 0.10, decay: 0.45 },
+                  { freq: 3520, amp: 0.05, decay: 0.2  }
+                ];
+                partials.forEach(function(p) {
+                  var osc  = ctx.createOscillator();
                   var gain = ctx.createGain();
                   osc.connect(gain);
                   gain.connect(ctx.destination);
                   osc.type = 'sine';
-                  osc.frequency.value = freq;
-                  gain.gain.setValueAtTime(0, start);
-                  gain.gain.linearRampToValueAtTime(0.25, start + 0.02);
-                  gain.gain.exponentialRampToValueAtTime(0.001, start + dur);
-                  osc.start(start);
-                  osc.stop(start + dur);
-                }
-                var t = ctx.currentTime;
-                note(523, t,        0.35);
-                note(659, t + 0.18, 0.35);
-                note(784, t + 0.36, 0.55);
+                  osc.frequency.value = p.freq;
+                  gain.gain.setValueAtTime(p.amp, t);           // instant attack
+                  gain.gain.exponentialRampToValueAtTime(0.001, t + p.decay);
+                  osc.start(t);
+                  osc.stop(t + p.decay);
+                });
               } catch(e) {}
             }
 
