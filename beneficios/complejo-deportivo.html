@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <base href="/pc/">
+  <link rel="icon" type="image/png" href="images/logo.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:type" content="website">
@@ -45,7 +46,6 @@
           <ul class="nav__dropdown" role="menu">
             <li><a class="nav__dropdown-link" href="institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
             <li><a class="nav__dropdown-link" href="institucion/autoridades.html" role="menuitem">Autoridades</a></li>
-            <li><a class="nav__dropdown-link" href="institucion/historia.html" role="menuitem">Historia</a></li>
             <li><a class="nav__dropdown-link" href="institucion/asociarse.html" role="menuitem">Asociarse</a></li>
           </ul>
         </li>
@@ -63,7 +63,6 @@
             <li><a class="nav__dropdown-link" href="beneficios/juridico.html" role="menuitem">Departamento Jurídico</a></li>
             <li><a class="nav__dropdown-link" href="beneficios/convenios.html" role="menuitem">Convenios</a></li>
             <li><a class="nav__dropdown-link" href="beneficios/secretaria.html" role="menuitem">Secretaría Administrativa</a></li>
-            <li><a class="nav__dropdown-link" href="beneficios/biblioteca.html" role="menuitem">Biblioteca</a></li>
           </ul>
         </li>
       </ul>
@@ -89,8 +88,7 @@
     <div class="nav__mobile-sub" id="sub-institucion">
       <a class="nav__mobile-sublink" href="institucion/quienes-somos.html">Quiénes Somos</a>
       <a class="nav__mobile-sublink" href="institucion/autoridades.html">Autoridades</a>
-      <a class="nav__mobile-sublink" href="institucion/historia.html">Historia</a>
-      <a class="nav__mobile-sublink" href="institucion/asociarse.html">Asociarse</a>
+      <a class="nav__mobile-sublink" href="institucion/asociarse.html">Pre Asociarse</a>
     </div>
     <a class="nav__mobile-link" href="beneficios/complejo-deportivo.html">Complejo Deportivo</a>
     <a class="nav__mobile-link" href="beneficios/parque-social.html">Parque Social</a>
@@ -101,7 +99,6 @@
       <a class="nav__mobile-sublink" href="beneficios/juridico.html">Departamento Jurídico</a>
       <a class="nav__mobile-sublink" href="beneficios/convenios.html">Convenios</a>
       <a class="nav__mobile-sublink" href="beneficios/secretaria.html">Secretaría Administrativa</a>
-      <a class="nav__mobile-sublink" href="beneficios/biblioteca.html">Biblioteca</a>
     </div>
   </div>
 
@@ -122,25 +119,104 @@
     <div class="container">
 
       <section class="reveal">
-        <p class="lead">El Complejo Deportivo, ubicado en <strong>Soriano 1217</strong>, ofrece una amplia gama de actividades fisicas y deportivas para socios de todas las edades.</p>
+        <p class="lead">El Complejo Deportivo, ubicado en <strong>Soriano 1217</strong>, ofrece una amplia variedad de actividades acuáticas y de gimnasio para socios de todas las edades. Contamos con piscina climatizada, sala de aparatos, sala de cycling y cancha polideportiva.</p>
       </section>
-      <section class="reveal">
-        <h2>Actividades</h2>
-        <div class="activity-grid">
-          <div class="activity-card"><h3>Gimnasia Terapeutica</h3><p>Actividad orientada a la recuperacion y mantenimiento fisico.</p></div>
-          <div class="activity-card"><h3>Hidrogimnasia</h3><p>Ejercicios en el agua de bajo impacto articular.</p></div>
-          <div class="activity-card"><h3>Nado Libre</h3><p>Acceso libre a la piscina para socios y familias.</p></div>
-          <div class="activity-card"><h3>Higiene de Columna</h3><p>Programa para el cuidado y fortalecimiento de la columna vertebral.</p></div>
-          <div class="activity-card"><h3>Hidrofuncional</h3><p>Entrenamiento funcional en el medio acuatico.</p></div>
-          <div class="activity-card"><h3>Entrenamiento Funcional</h3><p>Circuitos de entrenamiento funcional.</p></div>
-          <div class="activity-card"><h3>Natación Ensenanza</h3><p>Clases de natación para principiantes de todas las edades.</p></div>
-          <div class="activity-card"><h3>Voleibol Social Mixto</h3><p>Practica recreativa de voleibol abierta a todos los socios.</p></div>
-          <div class="activity-card"><h3>Natación Entrenamiento</h3><p>Entrenamiento de natación para socios con mayor nivel tecnico.</p></div>
+
+      <!-- PISCINA -->
+      <section class="facility-block reveal">
+        <div class="facility-block__header">
+          <h2>
+Piscina
+          </h2>
+          <p>Piscina climatizada disponible todo el año. Ideal para actividades de bajo impacto, rehabilitación y aprendizaje de natación para todas las edades.</p>
+        </div>
+        <div class="fslider" data-facility-gallery>
+          <div class="fslider__track">
+            <div class="fslider__slide"><img src="images/Cdeportivo.jpg" alt="Piscina climatizada del Complejo Deportivo"></div>
+            <div class="fslider__slide"><img src="images/Gym.jpeg" alt="Vista del complejo deportivo"></div>
+            <div class="fslider__slide"><img src="images/Saparatos.jpeg" alt="Instalaciones del complejo"></div>
+          </div>
+          <button class="fslider__arrow fslider__arrow--prev" aria-label="Anterior">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="fslider__arrow fslider__arrow--next" aria-label="Siguiente">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+          </button>
+          <div class="fslider__counter">1 / 3</div>
+        </div>
+        <div class="facility-activities">
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Hidrogimnasia</strong><small>Ejercicios en el agua de bajo impacto articular.</small></div>
+          </div>
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Natación Enseñanza</strong><small>Clases para principiantes de todas las edades.</small></div>
+          </div>
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Natación Entrenamiento</strong><small>Para socios con mayor nivel técnico.</small></div>
+          </div>
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Nado Libre</strong><small>Acceso libre a la piscina para socios.</small></div>
+          </div>
         </div>
       </section>
+
+      <!-- GIMNASIO -->
+      <section class="facility-block reveal">
+        <div class="facility-block__header">
+          <h2>
+Gimnasio
+          </h2>
+          <p>Sala de aparatos completamente equipada, sala de cycling y espacio para clases grupales. Profesores capacitados que acompañan tu entrenamiento.</p>
+        </div>
+        <div class="fslider" data-facility-gallery>
+          <div class="fslider__track">
+            <div class="fslider__slide"><img src="images/Gym.jpeg" alt="Sala de gimnasio del Complejo Deportivo"></div>
+            <div class="fslider__slide"><img src="images/Saparatos.jpeg" alt="Sala de aparatos y musculación"></div>
+            <div class="fslider__slide"><img src="images/Cdeportivo.jpg" alt="Complejo deportivo"></div>
+          </div>
+          <button class="fslider__arrow fslider__arrow--prev" aria-label="Anterior">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="fslider__arrow fslider__arrow--next" aria-label="Siguiente">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+          </button>
+          <div class="fslider__counter">1 / 3</div>
+        </div>
+        <div class="facility-activities">
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Musculación</strong><small>Sala de aparatos con máquinas y peso libre.</small></div>
+          </div>
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Entrenamiento Funcional</strong><small>Circuitos de entrenamiento en grupo.</small></div>
+          </div>
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Pilates</strong><small>Flexibilidad, postura y fortalecimiento.</small></div>
+          </div>
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Cycling</strong><small>Ciclismo indoor de alta intensidad.</small></div>
+          </div>
+          <div class="facility-activity">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div><strong>Voleibol Social Mixto</strong><small>Práctica recreativa en la cancha polideportiva.</small></div>
+          </div>
+        </div>
+      </section>
+
       <section class="reveal">
-        <h2>Ubicacion y Contacto</h2>
-        <p><strong>Direccion:</strong> Soriano 1217, Montevideo &nbsp;|&nbsp; <strong>Tel:</strong> 2908 1207</p>
+        <h2>Ubicación y Contacto</h2>
+        <dl class="info-list">
+          <dt>Dirección</dt><dd>Soriano 1217, Montevideo</dd>
+          <dt>Teléfono</dt><dd><a href="tel:29081207">2908 1207</a></dd>
+          <dt>Horario de atención</dt><dd>Lunes a viernes</dd>
+        </dl>
       </section>
 
     </div>
@@ -152,7 +228,7 @@
       <div class="container">
         <div class="footer__grid">
           <div>
-            <img src="images/logo.png" alt="CPCH" style="height:56px;width:auto;margin-bottom:1rem;filter:brightness(10);" onerror="this.style.display='none'">
+            <img src="images/logo.png" alt="CPCH" style="height:56px;width:auto;margin-bottom:1rem;" onerror="this.style.display='none'">
             <p class="footer__desc">Institución mutualista sin fines de lucro al servicio de los conductores de Montevideo desde 1909. De todos y para todos.</p>
             <div class="footer__socials">
               <a class="footer__social-link" href="https://www.instagram.com/cpchmontevideo/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -167,19 +243,17 @@
             <h4 class="footer__col-title">Institución</h4>
             <nav class="footer__links">
               <a class="footer__link" href="institucion/quienes-somos.html">Quiénes Somos</a>
-              <a class="footer__link" href="institucion/historia.html">Historia</a>
               <a class="footer__link" href="institucion/autoridades.html">Autoridades</a>
-              <a class="footer__link" href="institucion/asociarse.html">Asociarse</a>
+              <a class="footer__link" href="institucion/asociarse.html">Pre Asociarse</a>
             </nav>
           </div>
           <div>
             <h4 class="footer__col-title">Beneficios</h4>
             <nav class="footer__links">
-              <a class="footer__link" href="beneficios/convenios.html">Convenios</a>
               <a class="footer__link" href="beneficios/area-salud.html">Área Salud</a>
               <a class="footer__link" href="beneficios/complejo-deportivo.html">Complejo Deportivo</a>
               <a class="footer__link" href="beneficios/parque-social.html">Parque Social</a>
-              <a class="footer__link" href="beneficios/biblioteca.html">Biblioteca</a>
+              <a class="footer__link" href="beneficios/convenios.html">Convenios</a>
             </nav>
           </div>
           <div>

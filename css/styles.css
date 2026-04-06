@@ -143,6 +143,33 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   box-shadow: 0 2px 16px rgba(0,0,0,0.12);
 }
 
+/* Home nav transparent when not scrolled */
+.is-home .site-nav:not(.is-solid) {
+  background: transparent;
+  box-shadow: none;
+}
+
+.is-home .site-nav:not(.is-solid) .nav__link,
+.is-home .site-nav:not(.is-solid) .nav__brand-name,
+.is-home .site-nav:not(.is-solid) .nav__brand-sub {
+  color: var(--clr-white);
+}
+
+.is-home .site-nav:not(.is-solid) .nav__hamburger span {
+  background: var(--clr-white);
+}
+
+.is-home .site-nav:not(.is-solid) .nav__cta {
+  background: rgba(255,255,255,0.2);
+  color: var(--clr-white);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.is-home .site-nav:not(.is-solid) .nav__cta:hover {
+  background: var(--clr-amber);
+  color: #333;
+}
+
 .nav__container {
   display: flex;
   align-items: center;
@@ -471,12 +498,13 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
 
 /* Body padding for fixed nav */
 body { padding-top: var(--nav-height); }
+body.is-home { padding-top: 0; }
 
 /* === HERO === */
 .hero {
   position: relative;
-  height: calc(88vh - var(--nav-height));
-  min-height: 480px;
+  height: 100vh;
+  min-height: 600px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -658,83 +686,20 @@ body { padding-top: var(--nav-height); }
 
 .service-card__link:hover { color: var(--clr-primary-dark); }
 
-/* === HEXAGONAL HONEYCOMB DIVIDERS === */
-/*
-  Flat-top hexagons (r_grid=50, r_draw=47) in a honeycomb grid.
-  3 rows: top tips poke into the source section, bottom merges solid
-  into the destination section via a hard background-gradient cutoff.
-  Mask tile repeats every 150px (3 × r_grid) on the x-axis.
-*/
-.torn-divider {
-  height: 60px;
-  position: relative;
+/* === CANVAS HEX DIVIDERS === */
+.hex-divider {
+  width: 100%;
+  height: 160px;
   overflow: hidden;
+  line-height: 0;
 }
-
-.torn-divider::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  bottom: -1px;
-  -webkit-mask-size: 150px 100%;
-  mask-size: 150px 100%;
-  -webkit-mask-repeat: repeat-x;
-  mask-repeat: repeat-x;
+.hex-divider--flip {
+  transform: scaleY(-1);
 }
-
-/* Upward hex mask (▲) — hex tips point up into the lighter section */
-.torn-divider--white-to-green::before,
-.torn-divider--white-to-dark::before,
-.torn-divider--white-to-secondary-dark::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 120'%3E%3Cpolygon points='47,35 23.5,75.7 -23.5,75.7 -47,35 -23.5,-5.7 23.5,-5.7' fill='white'/%3E%3Cpolygon points='197,35 173.5,75.7 126.5,75.7 103,35 126.5,-5.7 173.5,-5.7' fill='white'/%3E%3Cpolygon points='122,78.3 98.5,119 51.5,119 28,78.3 51.5,37.6 98.5,37.6' fill='white'/%3E%3Cpolygon points='47,121.6 23.5,162.3 -23.5,162.3 -47,121.6 -23.5,80.9 23.5,80.9' fill='white'/%3E%3Cpolygon points='197,121.6 173.5,162.3 126.5,162.3 103,121.6 126.5,80.9 173.5,80.9' fill='white'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 120'%3E%3Cpolygon points='47,35 23.5,75.7 -23.5,75.7 -47,35 -23.5,-5.7 23.5,-5.7' fill='white'/%3E%3Cpolygon points='197,35 173.5,75.7 126.5,75.7 103,35 126.5,-5.7 173.5,-5.7' fill='white'/%3E%3Cpolygon points='122,78.3 98.5,119 51.5,119 28,78.3 51.5,37.6 98.5,37.6' fill='white'/%3E%3Cpolygon points='47,121.6 23.5,162.3 -23.5,162.3 -47,121.6 -23.5,80.9 23.5,80.9' fill='white'/%3E%3Cpolygon points='197,121.6 173.5,162.3 126.5,162.3 103,121.6 126.5,80.9 173.5,80.9' fill='white'/%3E%3C/svg%3E");
-}
-
-/* Downward hex mask (▼) — hex tips point down into the lighter section */
-.torn-divider--green-to-white::before,
-.torn-divider--dark-to-white::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 120'%3E%3Cpolygon points='47,85 23.5,125.7 -23.5,125.7 -47,85 -23.5,44.3 23.5,44.3' fill='white'/%3E%3Cpolygon points='197,85 173.5,125.7 126.5,125.7 103,85 126.5,44.3 173.5,44.3' fill='white'/%3E%3Cpolygon points='122,41.7 98.5,82.4 51.5,82.4 28,41.7 51.5,1 98.5,1' fill='white'/%3E%3Cpolygon points='47,-1.6 23.5,39.1 -23.5,39.1 -47,-1.6 -23.5,-42.3 23.5,-42.3' fill='white'/%3E%3Cpolygon points='197,-1.6 173.5,39.1 126.5,39.1 103,-1.6 126.5,-42.3 173.5,-42.3' fill='white'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 120'%3E%3Cpolygon points='47,85 23.5,125.7 -23.5,125.7 -47,85 -23.5,44.3 23.5,44.3' fill='white'/%3E%3Cpolygon points='197,85 173.5,125.7 126.5,125.7 103,85 126.5,44.3 173.5,44.3' fill='white'/%3E%3Cpolygon points='122,41.7 98.5,82.4 51.5,82.4 28,41.7 51.5,1 98.5,1' fill='white'/%3E%3Cpolygon points='47,-1.6 23.5,39.1 -23.5,39.1 -47,-1.6 -23.5,-42.3 23.5,-42.3' fill='white'/%3E%3Cpolygon points='197,-1.6 173.5,39.1 126.5,39.1 103,-1.6 126.5,-42.3 173.5,-42.3' fill='white'/%3E%3C/svg%3E");
-}
-
-/* ─── white → dark-green section (▲) ─── */
-.torn-divider--white-to-green {
-  background: linear-gradient(to bottom, var(--clr-white) 50%, var(--clr-primary-dark) 50%);
-}
-.torn-divider--white-to-green::before {
-  background: var(--clr-primary-dark);
-}
-
-/* ─── dark-green section → white (▼) ─── */
-.torn-divider--green-to-white {
-  background: linear-gradient(to bottom, var(--clr-primary-dark) 50%, var(--clr-white) 50%);
-}
-.torn-divider--green-to-white::before {
-  background: var(--clr-primary-dark);
-}
-
-/* ─── white → parallax dark-green (▲) ─── */
-.torn-divider--white-to-dark {
-  background: linear-gradient(to bottom, var(--clr-white) 50%, var(--clr-primary-dark) 50%);
-}
-.torn-divider--white-to-dark::before {
-  background: var(--clr-primary-dark);
-}
-
-/* ─── parallax dark-green → off-white (▼) ─── */
-.torn-divider--dark-to-white {
-  background: linear-gradient(to bottom, var(--clr-primary-dark) 50%, var(--clr-off-white) 50%);
-}
-.torn-divider--dark-to-white::before {
-  background: var(--clr-primary-dark);
-}
-
-/* ─── off-white → secondary-dark footer (▲) ─── */
-.torn-divider--white-to-secondary-dark {
-  background: linear-gradient(to bottom, var(--clr-off-white) 50%, var(--clr-secondary-dark) 50%);
-}
-.torn-divider--white-to-secondary-dark::before {
-  background: var(--clr-secondary-dark);
+.hex-divider canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* === STATS COUNTER SECTION === */
@@ -2066,6 +2031,309 @@ counter-increment: decalogo-counter;
   text-align: center;
 }
 
+/* Complejo Deportivo – facility sections */
+/* ── Facility block (vertical: header → slider → activities) ── */
+.facility-block {
+  margin-block: 2.5rem;
+}
+
+.facility-block__header {
+  margin-bottom: 1.25rem;
+}
+
+.facility-block__header h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.facility-block__header h2 svg { flex-shrink: 0; color: var(--clr-primary); }
+
+.facility-block__header p { margin-top: 0.4rem; }
+
+/* ── In-page slider ── */
+.fslider {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--clr-off-white);
+  cursor: pointer;
+}
+
+.fslider__track {
+  display: flex;
+  align-items: stretch;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+.fslider__slide {
+  flex: 0 0 78%;
+  margin: 0 1%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  transition: filter 0.55s ease, transform 0.55s ease;
+  brightness: 0.35;
+  filter: brightness(0.35);
+  transform: scale(0.93);
+}
+
+.fslider__slide.is-active {
+  filter: none;
+  brightness: unset;
+  transform: scale(1);
+  box-shadow: var(--shadow-md);
+}
+
+.fslider__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Arrows */
+.fslider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--tr-fast), transform 0.2s ease, opacity var(--tr-fast);
+  color: var(--clr-primary-dark);
+}
+
+.fslider__arrow:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.fslider__arrow--prev { left: 1rem; }
+.fslider__arrow--next { right: 1rem; }
+
+.fslider__arrow[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Counter pill */
+.fslider__counter {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+  z-index: 2;
+}
+
+/* ── Fullscreen viewer ── */
+.fviewer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.94);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.fviewer.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fviewer__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  z-index: 3;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.75);
+  font-size: 2.2rem;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--tr-fast);
+}
+
+.fviewer__close:hover { color: #fff; }
+
+.fviewer__stage {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.fviewer__track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+.fviewer__slide {
+  flex: 0 0 72%;
+  height: 82%;
+  margin: 0 1.5%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.55s ease, transform 0.55s ease, opacity 0.55s ease;
+  filter: brightness(0.3);
+  transform: scale(0.88);
+  opacity: 0.7;
+}
+
+.fviewer__slide.is-active {
+  filter: none;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.fviewer__slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+.fviewer__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--tr-fast), transform 0.2s ease, opacity var(--tr-fast);
+}
+
+.fviewer__arrow:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.fviewer__arrow--prev { left: 1rem; }
+.fviewer__arrow--next { right: 1rem; }
+
+.fviewer__arrow[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Thumbnail HUD */
+.fviewer__hud {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+  width: 100%;
+}
+
+.fviewer__thumb {
+  width: 68px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0.35;
+  border: 2px solid transparent;
+  transition: opacity var(--tr-fast), border-color var(--tr-fast), transform var(--tr-fast);
+  flex-shrink: 0;
+}
+
+.fviewer__thumb:hover { opacity: 0.7; transform: translateY(-3px); }
+
+.fviewer__thumb.is-active {
+  opacity: 1;
+  border-color: #fff;
+}
+
+/* ── Activities (bullet list, below slider) ── */
+.facility-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.facility-activity {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--clr-border);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.facility-activity:last-child { border-bottom: none; }
+
+.facility-activity svg { display: none; }
+
+.facility-activity::before {
+  content: '•';
+  color: var(--clr-primary);
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.facility-activity strong { font-weight: 700; color: var(--clr-text-dark); margin-right: 0.35rem; }
+.facility-activity small  { font-size: 0.9rem; color: var(--clr-text); }
+
+@media (max-width: 1024px) {
+  .facility-activities { grid-template-columns: 1fr 1fr; }
+  .fviewer__arrow--prev { left: 0.5rem; }
+  .fviewer__arrow--next { right: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .facility-activities { grid-template-columns: 1fr; }
+  .fslider__arrow { width: 34px; height: 34px; }
+  .fslider__arrow--prev { left: 0.5rem; }
+  .fslider__arrow--next { right: 0.5rem; }
+  .fviewer__thumb { width: 50px; height: 38px; }
+  .fviewer__arrow { width: 40px; height: 40px; }
+}
+
 /* Video grid (multimedia) */
 .video-grid {
   display: grid;
@@ -2223,8 +2491,8 @@ counter-increment: decalogo-counter;
   .nav__logo img { height: 86px; transform: translateY(8px); }
   .site-nav.is-solid .nav__logo img { height: 54px; transform: translateY(0); }
 
-  /* Hero: shrink height on tablet */
-  .hero { height: calc(75vh - var(--nav-height)); }
+  /* Hero: full screen on tablet */
+  .hero { height: 100vh; }
 
   /* Services: 2 columns */
   .services__grid { grid-template-columns: 1fr 1fr; }
@@ -2255,7 +2523,7 @@ counter-increment: decalogo-counter;
 /* Tablet portrait */
 @media (max-width: 768px) {
   /* Hero */
-  .hero { height: 60vh; min-height: 380px; }
+  .hero { height: 100vh; min-height: 500px; }
   .hero__actions { flex-direction: column; align-items: center; }
 
   /* Services: single column */
@@ -2574,10 +2842,650 @@ counter-increment: decalogo-counter;
 }
 
 /* ============================================================
+   INSTALACIONES ACCORDION (Parque Social)
+   ============================================================ */
+.inst-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inst-card {
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--clr-white);
+  transition: box-shadow var(--tr-fast);
+}
+
+.inst-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.inst-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: var(--clr-white);
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  color: var(--clr-text-dark);
+  text-align: left;
+  transition: background var(--tr-fast);
+}
+
+.inst-card__header:hover {
+  background: var(--clr-off-white);
+}
+
+.inst-card.is-active .inst-card__header {
+  background: var(--clr-off-white);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.inst-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+  color: var(--clr-white);
+  flex-shrink: 0;
+}
+
+.inst-card__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.inst-card__name {
+  font-weight: 700;
+  flex: 1;
+  min-width: 0;
+}
+
+.inst-card__badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--clr-primary);
+  background: rgba(0, 71, 255, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.inst-card__arrow {
+  display: flex;
+  align-items: center;
+  transition: transform var(--tr-base);
+  color: var(--clr-text);
+  flex-shrink: 0;
+}
+
+.inst-card.is-active .inst-card__arrow {
+  transform: rotate(180deg);
+}
+
+/* Expandable body */
+.inst-card__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.45s ease, opacity 0.35s ease, padding 0.35s ease;
+}
+
+.inst-card.is-active .inst-card__body {
+  max-height: 800px;
+  opacity: 1;
+  padding: 1.5rem;
+}
+
+/* Gallery */
+.inst-card__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inst-card__gallery-main {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  background: var(--clr-off-white);
+}
+
+.inst-card__gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--tr-slow);
+}
+
+.inst-card__gallery-main:hover img {
+  transform: scale(1.03);
+}
+
+.inst-card__gallery-thumbs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.inst-card__gallery-thumbs img {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  cursor: zoom-in;
+  opacity: 0.5;
+  border: 2px solid transparent;
+  transition: opacity var(--tr-fast), border-color var(--tr-fast);
+}
+
+.inst-card__gallery-thumbs img:hover,
+.inst-card__gallery-thumbs img.is-active {
+  opacity: 1;
+  border-color: var(--clr-primary);
+}
+
+/* Info panel */
+.inst-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inst-card__info h4 {
+  color: var(--clr-primary-dark);
+  margin: 0;
+}
+
+.inst-card__info p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.inst-card__specs {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  font-size: 0.9rem;
+}
+
+.inst-card__specs dt {
+  font-weight: 700;
+  color: var(--clr-text-dark);
+}
+
+.inst-card__specs dd {
+  color: var(--clr-text);
+}
+
+.inst-card__reserva-btn {
+  align-self: flex-start;
+  margin-top: auto;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.5rem;
+}
+
+/* Pre-reserva notice */
+.prereserva-notice {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem 1.5rem;
+  background: rgba(242, 172, 44, 0.1);
+  border-left: 4px solid var(--clr-amber);
+  border-radius: var(--radius-sm);
+  margin-bottom: 2rem;
+  color: var(--clr-text-dark);
+}
+
+.prereserva-notice > svg {
+  flex-shrink: 0;
+  color: var(--clr-amber);
+  margin-top: 2px;
+}
+
+.prereserva-notice p {
+  margin: 0.4rem 0 0;
+  font-size: 0.92rem;
+  color: var(--clr-text);
+}
+
+.prereserva-notice--small {
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  background: rgba(0, 71, 255, 0.05);
+  border-left-color: var(--clr-primary);
+}
+
+.prereserva-notice--small svg {
+  color: var(--clr-primary);
+}
+
+.prereserva-notice--small p {
+  margin: 0;
+}
+
+/* Pre-reserva form */
+.prereserva-form {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+
+.prereserva-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.prereserva-form .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.prereserva-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--clr-text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.prereserva-form input,
+.prereserva-form select,
+.prereserva-form textarea {
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  color: var(--clr-text-dark);
+  background: var(--clr-white);
+  transition: border-color var(--tr-fast);
+  width: 100%;
+}
+
+.prereserva-form input:focus,
+.prereserva-form select:focus,
+.prereserva-form textarea:focus {
+  outline: none;
+  border-color: var(--clr-primary);
+}
+
+.prereserva-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.prereserva-form .form-field:last-of-type {
+  margin-bottom: 0.5rem;
+}
+
+/* Pre-reserva success overlay */
+.prereserva-success {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+}
+
+.prereserva-success.is-visible {
+  display: block;
+}
+
+.prereserva-success svg {
+  color: var(--clr-primary);
+  margin-bottom: 1rem;
+}
+
+.prereserva-success h3 {
+  color: var(--clr-primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.prereserva-success p {
+  max-width: 500px;
+  margin: 0 auto 0.5rem;
+}
+
+/* Responsive: Instalaciones accordion */
+@media (max-width: 768px) {
+  .inst-card__body {
+    grid-template-columns: 1fr;
+  }
+
+  .inst-card__badge {
+    display: none;
+  }
+
+  .inst-card__header {
+    padding: 0.85rem 1rem;
+  }
+
+  .prereserva-form .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .prereserva-form {
+    padding: 1.25rem;
+  }
+
+  .prereserva-notice {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .inst-card__icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .inst-card__icon svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .inst-card__gallery-thumbs img {
+    width: 48px;
+    height: 36px;
+  }
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.88);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  transform: scale(0.92);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.is-active .lightbox__img {
+  transform: scale(1);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  font-size: 2.5rem;
+  color: var(--clr-white);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity var(--tr-fast);
+}
+
+.lightbox__close:hover {
+  opacity: 1;
+}
+
+.lightbox__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.15);
+  color: var(--clr-white);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--tr-fast), background var(--tr-fast);
+}
+
+.lightbox__arrow:hover {
+  opacity: 1;
+  background: rgba(255,255,255,0.25);
+}
+
+.lightbox__arrow--prev { left: 1.5rem; }
+.lightbox__arrow--next { right: 1.5rem; }
+
+.lightbox__counter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  font-family: var(--font-main);
+  letter-spacing: 0.08em;
+}
+
+.inst-card__gallery-main {
+  cursor: zoom-in;
+}
+
+/* ============================================================
    HORARIOS — Filter & Schedule Tables
    ============================================================ */
 
-/* Search-dropdown filter */
+/* Section Picker */
+.horarios-picker {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.horarios-picker__title {
+  text-align: center;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  color: var(--clr-text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.horarios-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.horarios-picker__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem 1.25rem;
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  background: var(--clr-white);
+  cursor: pointer;
+  transition: transform var(--tr-fast), box-shadow var(--tr-fast), border-color var(--tr-fast);
+  font-family: var(--font-main);
+  text-align: center;
+}
+
+.horarios-picker__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.horarios-picker__card--piscina:hover,
+.horarios-picker__card--piscina:focus { border-color: #0047FF; }
+.horarios-picker__card--sala:hover,
+.horarios-picker__card--sala:focus    { border-color: #16a34a; }
+.horarios-picker__card--piso:hover,
+.horarios-picker__card--piso:focus    { border-color: var(--clr-amber); }
+
+.horarios-picker__icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.horarios-picker__icon {
+  width: 28px;
+  height: 28px;
+}
+
+.horarios-picker__card--piscina .horarios-picker__icon-wrap { color: #0047FF; background: #e8f0fd; }
+.horarios-picker__card--sala .horarios-picker__icon-wrap    { color: #16a34a; background: #e8f5e0; }
+.horarios-picker__card--piso .horarios-picker__icon-wrap    { color: #c9a817; background: #fefce8; }
+
+.horarios-picker__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.horarios-picker__label {
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--clr-text-dark);
+}
+
+.horarios-picker__sub {
+  font-size: 0.78rem;
+  color: var(--clr-text);
+  line-height: 1.4;
+}
+
+/* Section header (back + title) */
+.horarios-section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.horarios-section-header__title {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.horarios-section-header--piscina .horarios-section-header__title { color: #0047FF; }
+.horarios-section-header--sala .horarios-section-header__title    { color: #16a34a; }
+.horarios-section-header--piso .horarios-section-header__title    { color: #c9a817; }
+
+.horarios-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  background: var(--clr-off-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+  transition: background var(--tr-fast), color var(--tr-fast);
+  flex-shrink: 0;
+}
+
+.horarios-back:hover {
+  background: var(--clr-primary);
+  color: var(--clr-white);
+  border-color: var(--clr-primary);
+}
+
+/* Column-based grid — no empty cells */
+.horarios-cols {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--clr-white);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.horarios-cols__day {
+  border-left: 1px solid var(--clr-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.horarios-cols__day:first-child { border-left: none; }
+
+.horarios-cols__header {
+  text-align: center;
+  padding: 0.7rem 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-white);
+}
+
+.horarios-cols__header--piscina { background: #0047FF; }
+.horarios-cols__header--sala    { background: #16a34a; }
+.horarios-cols__header--piso    { background: #e6c619; }
+
+.horarios-cols__entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.4rem;
+  flex: 1;
+}
+
+/* Download button */
+.horarios-download-wrap {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.horarios-download {
+  gap: 0.5rem;
+}
+
+/* Activity filter (search + dropdown checkboxes) */
 .horarios-filter {
   position: relative;
   z-index: 100;
@@ -2631,7 +3539,6 @@ counter-increment: decalogo-counter;
   flex-shrink: 0;
 }
 
-/* Dropdown */
 .horarios-dropdown {
   position: absolute;
   top: calc(100% + 4px);
@@ -2736,10 +3643,10 @@ counter-increment: decalogo-counter;
   flex-shrink: 0;
 }
 
-.horarios-dropdown__dot--piscina   { background: #1a8fc4; }
-.horarios-dropdown__dot--gimnasio  { background: var(--clr-primary); }
-.horarios-dropdown__dot--infantil  { background: #d4960a; }
-.horarios-dropdown__dot--cancha    { background: #2a9d8f; }
+.horarios-dropdown__dot--piscina   { background: #0047FF; }
+.horarios-dropdown__dot--gimnasio  { background: #16a34a; }
+.horarios-dropdown__dot--infantil  { background: #e6c619; }
+.horarios-dropdown__dot--cancha    { background: #e6c619; }
 
 .horarios-dropdown__label {
   font-weight: 600;
@@ -2753,54 +3660,9 @@ counter-increment: decalogo-counter;
   padding: 0 1.5rem 3rem;
 }
 
-/* Table-like schedule grid: 5 day cols */
+/* Schedule grid container */
 .horarios-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background: var(--clr-white);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-}
-
-.horarios-grid__corner {
-  display: none;
-}
-
-.horarios-grid__day-header {
-  background: var(--clr-primary);
-  color: var(--clr-white);
-  text-align: center;
-  padding: 0.7rem 0.4rem;
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-left: 1px solid rgba(255,255,255,0.15);
-}
-
-.horarios-grid__hour {
-  background: var(--clr-off-white);
-  padding: 0.5rem 0.3rem;
-  font-weight: 800;
-  font-size: 0.75rem;
-  color: var(--clr-text);
-  border-top: 1px solid var(--clr-border);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 0.65rem;
-}
-
-.horarios-grid__cell {
-  padding: 0.4rem;
-  border-top: 1px solid var(--clr-border);
-  border-left: 1px solid var(--clr-border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  min-height: 48px;
+  /* No grid here — the .horarios-cols inside handles layout */
 }
 
 .horarios-grid__entry {
@@ -2812,16 +3674,11 @@ counter-increment: decalogo-counter;
   border-left: 3px solid transparent;
   font-size: 0.78rem;
   line-height: 1.3;
-  transition: opacity 0.25s ease, max-height 0.3s ease, padding 0.3s ease, margin 0.3s ease;
-  max-height: 120px;
-  overflow: hidden;
+  transition: opacity 0.25s ease;
 }
 
 .horarios-grid__entry.is-hidden {
-  opacity: 0;
-  max-height: 0;
-  padding: 0 0.6rem;
-  margin: 0;
+  display: none;
 }
 
 .horarios-grid__time {
@@ -2838,9 +3695,9 @@ counter-increment: decalogo-counter;
 
 /* Category colors — left border accent */
 .horarios-grid__entry--piscina   { background: #e8f0fd; border-left-color: #0047FF; color: #001F6B; }
-.horarios-grid__entry--gimnasio  { background: #e8f5e0; border-left-color: var(--clr-primary); color: var(--clr-primary-dark); }
-.horarios-grid__entry--infantil  { background: #fef8e8; border-left-color: #d4960a; color: #7a5f12; }
-.horarios-grid__entry--cancha    { background: #e0f2f1; border-left-color: #2a9d8f; color: #1a7a6e; }
+.horarios-grid__entry--gimnasio  { background: #e8f5e0; border-left-color: #16a34a; color: #14532d; }
+.horarios-grid__entry--infantil  { background: #fefce8; border-left-color: #e6c619; color: #713f12; }
+.horarios-grid__entry--cancha    { background: #fefce8; border-left-color: #e6c619; color: #713f12; }
 
 /* Red "no teacher" indicator inside Sala Entrenamiento */
 .horarios-grid__no-profe {
@@ -2889,6 +3746,10 @@ counter-increment: decalogo-counter;
   border-bottom-color: var(--clr-primary);
 }
 
+.horarios-swipe__tab--piscina.is-active { color: #0047FF; border-bottom-color: #0047FF; }
+.horarios-swipe__tab--sala.is-active    { color: #16a34a; border-bottom-color: #16a34a; }
+.horarios-swipe__tab--piso.is-active    { color: #e6c619; border-bottom-color: #e6c619; }
+
 .horarios-swipe__track {
   display: flex;
   overflow-x: auto;
@@ -2925,41 +3786,107 @@ counter-increment: decalogo-counter;
   font-size: 0.88rem;
   border-left-width: 4px;
   border-radius: 6px;
-  max-height: 80px;
 }
 
 .horarios-swipe .horarios-grid__time { font-size: 0.78rem; }
 .horarios-swipe .horarios-grid__name { font-size: 0.88rem; }
 
-/* Empty state */
-.horarios-empty {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: var(--clr-text);
-  display: none;
-}
-
-.horarios-empty.is-visible { display: block; }
-
-/* Hour column removed */
-.horarios-grid__hour {
-  display: none;
-}
-
 @media (max-width: 1024px) {
   .horarios-grid-wrapper { padding: 0 0.75rem 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .horarios-grid { min-width: 700px; grid-template-columns: repeat(5, 1fr); }
+  .horarios-cols { min-width: 700px; }
   .horarios-grid__entry { font-size: 0.72rem; padding: 0.35rem 0.5rem; }
   .horarios-grid__name { font-size: 0.72rem; }
   .horarios-grid__time { font-size: 0.65rem; }
 }
 
 @media (max-width: 768px) {
-  .horarios-grid-wrapper { display: none; }
+  .horarios-grid-wrapper { display: none !important; }
+  .horarios-download-wrap .horarios-download { font-size: 0.8rem; padding: 0.6rem 1.2rem; }
   .horarios-swipe { display: block; }
+  .horarios-picker__grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  .horarios-picker__card {
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+    text-align: left;
+  }
+  .horarios-picker__icon-wrap { width: 48px; height: 48px; }
+  .horarios-picker__icon { width: 24px; height: 24px; }
+  .horarios-picker__text { align-items: flex-start; }
+  .horarios-picker__label { font-size: 1rem; }
+  .horarios-picker__sub { font-size: 0.75rem; }
   .horarios-filter { max-width: 100%; margin-left: 1rem; margin-right: 1rem; }
 }
 
-@media (max-width: 375px) {
-  .horarios-filter__bar { padding: 0.5rem 0.75rem; }
+@media (max-width: 480px) {
+  .horarios-section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+
+/* Image preview modal (mobile PNG save) */
+.horarios-img-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.horarios-img-modal.is-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.horarios-img-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+}
+
+.horarios-img-modal__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 95vw;
+  max-height: 90vh;
+}
+
+.horarios-img-modal__hint {
+  color: var(--clr-white);
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  background: rgba(255,255,255,0.15);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.horarios-img-modal__img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  background: var(--clr-white);
+}
+
+.horarios-img-modal__close {
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  background: rgba(255,255,255,0.2);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1.5rem;
+  cursor: pointer;
+  transition: background var(--tr-fast);
+}
+
+.horarios-img-modal__close:hover {
+  background: rgba(255,255,255,0.35);
 }
