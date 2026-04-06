@@ -122,12 +122,11 @@
         <p class="lead">Puede llenar la solicitud de pre asociación a continuación. <strong>Nota: Dicha solicitud no habilita el uso de la piscina.</strong></p>
         <p>Una vez enviada la solicitud, deberá esperar a que sea <strong>aprobada manualmente</strong> por el personal administrativo de la institución. Una vez aprobada su pre asociación, tendrá acceso a todos los servicios y beneficios de nuestra Institución. En caso de algún inconveniente, personal administrativo se comunicará con usted.</p>
       </section>
-      <section class="reveal">
+      <section class="reveal" id="form-section">
         <h2>Solicitud de Pre Asociaci&oacute;n</h2>
 
         <form class="inner-form" action="https://formsubmit.co/matias.barretto@gmail.com" method="POST" id="asociarse-form" enctype="multipart/form-data">
-          <input type="hidden" name="_captcha" value="true">
-          <input type="hidden" name="_next" value="https://proteccionchoferes.org.uy/pc/institucion/asociarse.html?enviado=ok">
+          <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" id="form-subject" value="Nueva Solicitud de Pre Asociación">
           <input type="text" name="_honey" style="display:none">
 
@@ -241,11 +240,13 @@
 
       <script>
         (function() {
+          var form = document.getElementById('asociarse-form');
           var selector = document.getElementById('asociarse-a');
           var cuota = document.getElementById('campos-cuota');
           var deportivo = document.getElementById('campos-deportivo');
           var btnEnviar = document.getElementById('btn-enviar');
           var subjectField = document.getElementById('form-subject');
+          var formSection = document.getElementById('form-section');
 
           function toggleRequired(container, state) {
             container.querySelectorAll('[id^="cs-cobro"], [id^="cd-sexo"], [id^="cd-mutualista"], [id^="cd-pago"]').forEach(function(el) {
@@ -272,6 +273,56 @@
               toggleRequired(deportivo, true);
               subjectField.value = 'Nueva Solicitud - Complejo Deportivo';
             }
+          });
+
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            btnEnviar.textContent = 'Enviando\u2026';
+            btnEnviar.disabled = true;
+
+            // Disable inputs from the hidden section so they don't appear in the email
+            var hiddenSection = selector.value === 'cuota_social' ? deportivo : cuota;
+            var hiddenInputs = hiddenSection.querySelectorAll('input, select, textarea');
+            hiddenInputs.forEach(function(el) { el.disabled = true; });
+
+            // Build descriptive subject
+            var nombre = (document.getElementById('nombre-completo').value || '').trim();
+            var cedula = (document.getElementById('cedula').value || '').trim();
+            var tipo = selector.value === 'cuota_social' ? 'Cuota Social' : 'Complejo Deportivo';
+            subjectField.value = 'Pre Asociaci\u00f3n \u2013 ' + nombre + ' \u2013 CI ' + cedula + ' \u2013 ' + tipo;
+
+            fetch(form.action, {
+              method: 'POST',
+              headers: { 'Accept': 'application/json' },
+              body: new FormData(form)
+            })
+            .then(function(res) {
+              // Re-enable hidden inputs in case of error
+              hiddenInputs.forEach(function(el) { el.disabled = false; });
+              return res.json();
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+              if (data.success) {
+                formSection.innerHTML =
+                  '<div class="form-success">' +
+                    '<div class="form-success__icon">' +
+                      '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>' +
+                    '</div>' +
+                    '<h2>&#161;Solicitud enviada correctamente!</h2>' +
+                    '<p>Su solicitud de pre asociaci&oacute;n fue recibida. El personal administrativo la revisar&aacute; y se comunicar&aacute; con usted a la brevedad.</p>' +
+                    '<a href="/pc/" class="btn btn--primary" style="margin-top:1.5rem;">Volver al inicio</a>' +
+                  '</div>';
+              } else {
+                throw new Error('error');
+              }
+            })
+            .catch(function() {
+              hiddenInputs.forEach(function(el) { el.disabled = false; });
+              btnEnviar.textContent = 'Enviar Solicitud';
+              btnEnviar.disabled = false;
+              alert('Hubo un error al enviar el formulario. Por favor intente nuevamente o cont\u00e1ctenos por tel\u00e9fono.');
+            });
           });
         })();
       </script>
