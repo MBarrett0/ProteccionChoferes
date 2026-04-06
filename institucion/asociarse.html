@@ -374,7 +374,8 @@
           // Test: navigate to asociarse.html?test=1 to preview the success state
           if (window.location.search.indexOf('test=1') !== -1) {
             formSection.innerHTML = successHTML;
-            playSuccessSound();
+            // Sound requires a user gesture — play on first click
+            document.addEventListener('click', playSuccessSound, { once: true });
           }
         })();
       </script>
