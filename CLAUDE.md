@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code when working with this repository.
 
+## Important: Do NOT use Playwright
+
+Never use Playwright or any browser automation MCP tools. They crash the server.
+
 ## Development Server
 
 ```bash
@@ -41,12 +45,12 @@ Blue-dominant palette.
 
 | Token | Hex | Role |
 |---|---|---|
-| `--clr-primary` | `#2563EB` | Vivid blue — nav active state, buttons, links, card borders |
-| `--clr-primary-dark` | `#1E3A5F` | Navy blue — stats section bg, hover states, dark sections |
-| `--clr-primary-light` | `#B3D4F7` | Pale blue — carousel tags, stat labels, footer column titles |
-| `--clr-secondary` | `#3B82F6` | Medium blue — complementary accent |
-| `--clr-secondary-dark` | `#0F2847` | Deep navy — footer bottom bar, darkest sections |
-| `--clr-teal` | `#38BDF8` | Sky blue — card accent variant |
+| `--clr-primary` | `#0047FF` | Electric blue — nav active state, buttons, links, card borders |
+| `--clr-primary-dark` | `#001F6B` | Deep electric — stats section bg, hover states, dark sections |
+| `--clr-primary-light` | `#A0BFFF` | Pale electric — carousel tags, stat labels, footer column titles |
+| `--clr-secondary` | `#1A6BFF` | Bright blue — complementary accent |
+| `--clr-secondary-dark` | `#000D3D` | Darkest navy — footer bottom bar, darkest sections |
+| `--clr-teal` | `#00CFFF` | Electric cyan — card accent variant |
 | `--clr-amber` | `#F2AC2C` | Golden amber — CTA buttons ("Horarios", "Enviar Mensaje"), active timeline markers |
 | `--clr-white` | `#ffffff` | Backgrounds |
 | `--clr-off-white` | `#f5f7fa` | Subtle background sections |
@@ -113,8 +117,8 @@ Labels, nav links, and small text use uppercase + `letter-spacing: 0.06–0.18em
 
 ### Gradient Patterns
 
-- **Hero overlay**: `linear-gradient(160deg, rgba(30,58,95,0.85), rgba(15,40,71,0.78))`
-- **Parallax overlay**: `linear-gradient(135deg, rgba(30,58,95,0.85), rgba(15,40,71,0.78))`
+- **Hero overlay**: `linear-gradient(160deg, rgba(0,31,107,0.85), rgba(0,13,61,0.78))`
+- **Parallax overlay**: `linear-gradient(135deg, rgba(0,31,107,0.85), rgba(0,13,61,0.78))`
 - **Page hero**: Same navy-to-deep-navy gradient with bg image at 15% opacity
 - **Timeline line**: `linear-gradient(to bottom, --clr-primary, --clr-primary-dark)`
 - **Marquee fade mask**: `linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)`
@@ -129,7 +133,7 @@ Labels, nav links, and small text use uppercase + `letter-spacing: 0.06–0.18em
 2. **Global reset & typography** — box-sizing, font import, heading scale with `clamp()`
 3. **Utility classes** — `.container`, `.section`, `.text-center`, `.section-title`, `.section-subtitle`, `.section-header`, `.table-wrap`, `.layout-two-col`
 4. **Navigation** — `.site-nav`, `.nav__menu`, `.nav__item`, `.nav__link`, `.nav__dropdown`, `.nav__hamburger`, `.nav__mobile`, `.nav__cta`
-5. **Homepage sections** in page order: hero → tagline → services grid → torn dividers → stats → carousel → parallax → convenios marquee → contact form
+5. **Homepage sections** in page order: hero → tagline → services grid → hex dividers → stats → carousel → parallax → convenios marquee → contact form
 6. **Footer** — `.footer__top`, `.footer__grid`, `.footer__col`, `.footer__socials`, `.footer__bottom`
 7. **Scroll animations** — `.reveal`, `.reveal--left`, `.reveal--right`, `.reveal--scale`, `.reveal-group`
 8. **Scroll-to-top** — `.scroll-top`
@@ -218,16 +222,24 @@ Slides use grid (1.2fr 1fr) with image + text content. Dot navigation below. Aut
 
 Dark navy (`--clr-primary-dark`) background, 4-column grid. Each `.stat-item`: icon (48px), animated number (`[data-count]`), label. Numbers animate over 2s with easeOut curve using `es-UY` locale formatting. Use `data-suffix="+"` for suffix.
 
-### Torn Dividers
+### Hex Dividers (`.hex-divider`)
 
-Hexagonal honeycomb-mask SVG pattern between sections (not clip-path polygons). Height 120px, `mask-image` with repeating hex pattern (150px repeat).
+Canvas-drawn hexagonal pattern between homepage sections. Height 160px. Each divider is a `<div class="hex-divider"><canvas></canvas></div>` with data attributes for colors:
 
-Variants:
-- `.torn-divider--white-to-green` — white → primary-dark (60% split) [class name kept for compatibility]
-- `.torn-divider--green-to-white` — primary-dark → white (40% split) [class name kept for compatibility]
-- `.torn-divider--white-to-dark` — white → primary-dark (sharp)
-- `.torn-divider--dark-to-white` — primary-dark → off-white
-- `.torn-divider--white-to-secondary-dark` — off-white → secondary-dark
+- `data-bg` — canvas background color (matches section above)
+- `data-fill` — hexagon fill color (matches section below)
+- `data-stroke` — hexagon stroke color (matches `data-bg`)
+
+Add `.hex-divider--flip` class for reversed transitions (dark → light), which applies `transform: scaleY(-1)`.
+
+Dividers in `index.html`:
+1. Services → Stats: `bg=#ffffff`, `fill=#001F6B`
+2. Stats → Carousel: `bg=#ffffff`, `fill=#001F6B`, flipped
+3. Carousel → Parallax: `bg=#ffffff`, `fill=#001F6B`
+4. Parallax → Convenios: `bg=#f5f7fa`, `fill=#001F6B`, flipped
+5. Convenios → Contact: `bg=#f5f7fa`, `fill=#000D3D`
+
+Rendered by `initHexDividers()` in JS. Redraws on window resize.
 
 ### Convenios Marquee
 
@@ -330,7 +342,11 @@ All functions initialize in `DOMContentLoaded`. Each is guarded — only runs if
 | `initScrollTop()` | Show/hide scroll-to-top button | threshold: 400px |
 | `initTimeline()` | Expandable timeline items | mutual-exclusive, first item open |
 | `initConveniosMarquee()` | Auto-scrolling logo strip | respects `prefers-reduced-motion` |
+| `initHexDividers()` | Canvas hex pattern dividers | SIZE: 52px, redraws on resize |
 | `initHorarios()` | Schedule filter, grid, mobile tabs | localStorage key: 'cpch-horarios-filter' |
+| `initConveniosPage()` | Category filter + modal for convenios page | chip filter, scroll arrows, card modal |
+| `initInstAccordion()` | Accordion + lightbox for Parque Social | mutual-exclusive, swipe support |
+| `initPreReservaForm()` | Pre-reserva form with date validation | min date = today, success redirect |
 
 ### Data Attributes
 
@@ -343,6 +359,9 @@ All functions initialize in `DOMContentLoaded`. Each is guarded — only runs if
 | `data-activity="slug"` | Horarios filter activity identifier |
 | `data-day="0-4"` | Horarios day index (Mon=0, Fri=4) |
 | `data-cat="category"` | Horarios category (piscina, gimnasio, infantil, cancha) |
+| `data-bg="#hex"` | Hex divider canvas background color |
+| `data-fill="#hex"` | Hex divider hexagon fill color |
+| `data-stroke="#hex"` | Hex divider hexagon stroke color |
 
 ---
 
@@ -391,6 +410,7 @@ All functions initialize in `DOMContentLoaded`. Each is guarded — only runs if
 - **One-shot animations**: Scroll reveal unobserves after firing
 - **No external dependencies**: Zero npm packages, zero CDN JS libraries
 - **Image fallback**: Logo uses `onerror="this.style.display='none'"` when missing
+- **Cache busting**: Script tags use `?v=N` query parameter — bump the version number when making JS/CSS changes
 
 ---
 

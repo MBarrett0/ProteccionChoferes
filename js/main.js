@@ -477,26 +477,27 @@ function initContactForm() {
 }
 
 // ============================================================
-// 11. HORARIOS FILTER + WEEKLY GRID
+// 11. HORARIOS — SECTION PICKER + WEEKLY GRID
 // ============================================================
 function initHorarios() {
   var gridEl      = document.getElementById('horarios-grid');
-  var container   = document.getElementById('horarios-checkboxes');
-  var emptyMsg    = document.getElementById('horarios-empty');
-  var selectAll   = document.getElementById('horarios-select-all');
-  var deselectAll = document.getElementById('horarios-deselect-all');
-  var searchInput = document.getElementById('horarios-search');
-  var dropdown    = document.getElementById('horarios-dropdown');
-  var filterWrap  = document.getElementById('horarios-filter');
-  var countEl     = document.getElementById('horarios-count');
+  var gridWrapper = document.getElementById('horarios-grid-wrapper');
+  var picker      = document.getElementById('horarios-picker');
+  var sectionHdr  = document.getElementById('horarios-section-header');
+  var sectionTitle= document.getElementById('horarios-section-title');
+  var backBtn     = document.getElementById('horarios-back');
 
-  if (!gridEl || !container) return;
+  if (!gridEl || !picker) return;
 
-  var STORAGE_KEY = 'cpch-horarios-filter';
   var DAYS = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
-  var TOTAL = 12;
 
-  // Duration in minutes per activity (from PDF)
+  // Section definitions: which categories belong to each section
+  var SECTIONS = {
+    piscina: { cats: ['piscina'], label: 'Piscina' },
+    sala:    { cats: ['gimnasio'], label: 'Sala' },
+    piso:    { cats: ['infantil','cancha'], label: 'Piso' }
+  };
+
   var DUR = {
     'hidrogimnasia': 45,
     'natacion-infantil': 45,
@@ -592,93 +593,209 @@ function initHorarios() {
     var gaps = getNoProfeGaps(e.d, e.t, endTime);
     var h = '';
     for (var i = 0; i < gaps.length; i++) {
-      h += '<span class="horarios-grid__no-profe">' + gaps[i][0] + ' - ' + gaps[i][1] + ' Sin profesor en sala</span>';
+      h += '<span class="horarios-grid__no-profe">' + gaps[i][0] + ' - ' + gaps[i][1] + ' S/prof</span>';
     }
     return h;
   }
 
-  // Build table-like grid: hour column + 5 day columns
-  function buildGrid() {
-    // Collect unique hours that have entries
-    var hourSet = {};
-    DATA.forEach(function(e) { hourSet[e.t.split(':')[0]] = true; });
-    var hours = Object.keys(hourSet).sort();
+  // Activity display names for the filter
+  var ACTIVITY_NAMES = {
+    'hidrogimnasia': 'Hidrogimnasia',
+    'natacion-infantil': 'Natación Infantil (3-12)',
+    'natacion-adultos': 'Natación +13 años',
+    'nado-libre': 'Piscina Nado Libre',
+    'pilates': 'Pilates',
+    'gimnasia-correctiva': 'Gimnasia Correctiva',
+    'gimnasia-localizada': 'Gimnasia Localizada',
+    'indoor-cycling': 'Indoor Cycling',
+    'entrenamiento-funcional': 'Entrenamiento Funcional',
+    'sala-entrenamiento': 'Sala de Entrenamiento',
+    'juegos-infantil': 'Módulo de Juegos (3-12)',
+    'voleibol': 'Voleibol Social y Deportivo'
+  };
 
-    var html = '';
+  function entryHtml(e) {
+    var timeStr, endTime;
+    if (e.e) { endTime = e.e; timeStr = e.t + ' - ' + endTime; }
+    else if (DUR[e.s]) { endTime = addMin(e.t, DUR[e.s]); timeStr = e.t + ' - ' + endTime; }
+    else { timeStr = e.t; endTime = e.t; }
+    var h = '<div class="horarios-grid__entry horarios-grid__entry--' + e.c + '" data-activity="' + e.s + '">';
+    h += '<span class="horarios-grid__time">' + timeStr + '</span>';
+    h += '<span class="horarios-grid__name">' + e.n + '</span>';
+    h += noProfeHtml(e, endTime);
+    h += '</div>';
+    return h;
+  }
 
-    // Header row: 5 day headers
-    for (var di = 0; di < 5; di++) {
-      html += '<div class="horarios-grid__day-header">' + DAYS[di] + '</div>';
-    }
+  // Filter DATA by section and active activities
+  function filterData(sectionKey, activeSet) {
+    var cats = SECTIONS[sectionKey].cats;
+    return DATA.filter(function(e) {
+      return cats.indexOf(e.c) !== -1 && (!activeSet || activeSet.has(e.s));
+    });
+  }
 
-    // One row per hour
-    hours.forEach(function(hour) {
-      for (var di = 0; di < 5; di++) {
-        var entries = DATA.filter(function(e) {
-          return e.d === di && e.t.split(':')[0] === hour;
-        });
-        entries.sort(function(a, b) { return a.t < b.t ? -1 : a.t > b.t ? 1 : 0; });
-        html += '<div class="horarios-grid__cell">';
-        entries.forEach(function(e) {
-          var timeStr, endTime;
-          if (e.e) { endTime = e.e; timeStr = e.t + ' - ' + endTime; }
-          else if (DUR[e.s]) { endTime = addMin(e.t, DUR[e.s]); timeStr = e.t + ' - ' + endTime; }
-          else { timeStr = e.t; endTime = e.t; }
-          html += '<div class="horarios-grid__entry horarios-grid__entry--' + e.c + '" data-activity="' + e.s + '">';
-          html += '<span class="horarios-grid__time">' + timeStr + '</span>';
-          html += '<span class="horarios-grid__name">' + e.n + '</span>';
-          html += noProfeHtml(e, endTime);
-          html += '</div>';
-        });
-        html += '</div>';
+  // Get unique activities for a section
+  function getSectionActivities(sectionKey) {
+    var cats = SECTIONS[sectionKey].cats;
+    var seen = {};
+    var list = [];
+    DATA.forEach(function(e) {
+      if (cats.indexOf(e.c) !== -1 && !seen[e.s]) {
+        seen[e.s] = true;
+        list.push({ slug: e.s, cat: e.c });
       }
     });
+    return list;
+  }
 
+  // Filter elements
+  var filterWrap  = document.getElementById('horarios-filter');
+  var searchInput = document.getElementById('horarios-search');
+  var dropdown    = document.getElementById('horarios-dropdown');
+  var countEl     = document.getElementById('horarios-count');
+  var checkboxWrap= document.getElementById('horarios-checkboxes');
+  var selectAll   = document.getElementById('horarios-select-all');
+  var deselectAll = document.getElementById('horarios-deselect-all');
+  var currentSection = null;
+
+  function normalize(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+  function openDropdown()  { dropdown.classList.add('is-open'); }
+  function closeDropdown() { dropdown.classList.remove('is-open'); if (searchInput) { searchInput.value = ''; applySearch(); } }
+
+  if (searchInput) {
+    searchInput.addEventListener('focus', openDropdown);
+    searchInput.addEventListener('input', function() { openDropdown(); applySearch(); });
+  }
+
+  document.addEventListener('mousedown', function(ev) {
+    if (filterWrap && !filterWrap.contains(ev.target)) closeDropdown();
+  });
+
+  if (dropdown) dropdown.addEventListener('mousedown', function(ev) { ev.preventDefault(); });
+
+  function getCheckboxes() { return checkboxWrap.querySelectorAll('input[type="checkbox"]'); }
+  function getItems() { return checkboxWrap.querySelectorAll('.horarios-dropdown__item'); }
+
+  function getActiveSet() {
+    var active = new Set();
+    getCheckboxes().forEach(function(cb) { if (cb.checked) active.add(cb.value); });
+    return active;
+  }
+
+  function updateCount() {
+    var cbs = getCheckboxes();
+    var n = 0;
+    cbs.forEach(function(cb) { if (cb.checked) n++; });
+    if (countEl) countEl.textContent = n + ' de ' + cbs.length;
+  }
+
+  function applyFilter() {
+    if (!currentSection) return;
+    var active = getActiveSet();
+
+    // Hide/show entries in both grid and swipe
+    document.querySelectorAll('.horarios-grid__entry[data-activity]').forEach(function(entry) {
+      entry.classList.toggle('is-hidden', !active.has(entry.dataset.activity));
+    });
+
+    updateCount();
+  }
+
+  function applySearch() {
+    if (!searchInput) return;
+    var query = normalize(searchInput.value.trim());
+    getItems().forEach(function(item) {
+      var text = normalize(item.querySelector('.horarios-dropdown__label').textContent);
+      item.classList.toggle('is-filtered', query.length > 0 && text.indexOf(query) === -1);
+    });
+  }
+
+  if (selectAll) {
+    selectAll.addEventListener('click', function() {
+      getCheckboxes().forEach(function(cb) {
+        if (!cb.closest('.horarios-dropdown__item').classList.contains('is-filtered')) cb.checked = true;
+      });
+      applyFilter();
+    });
+  }
+
+  if (deselectAll) {
+    deselectAll.addEventListener('click', function() {
+      getCheckboxes().forEach(function(cb) {
+        if (!cb.closest('.horarios-dropdown__item').classList.contains('is-filtered')) cb.checked = false;
+      });
+      applyFilter();
+    });
+  }
+
+  // Build the checkboxes for a section's activities
+  function buildFilterCheckboxes(sectionKey) {
+    var activities = getSectionActivities(sectionKey);
+    var html = '';
+    activities.forEach(function(a) {
+      html += '<label class="horarios-dropdown__item">';
+      html += '<input type="checkbox" value="' + a.slug + '" checked>';
+      html += '<span class="horarios-dropdown__dot horarios-dropdown__dot--' + a.cat + '"></span>';
+      html += '<span class="horarios-dropdown__label">' + (ACTIVITY_NAMES[a.slug] || a.slug) + '</span>';
+      html += '</label>';
+    });
+    checkboxWrap.innerHTML = html;
+
+    // Wire change events
+    getCheckboxes().forEach(function(cb) { cb.addEventListener('change', applyFilter); });
+    updateCount();
+  }
+
+  // Build column-based grid (no empty cells): each day is an independent column
+  function buildGrid(sectionKey) {
+    var filtered = filterData(sectionKey);
+    var html = '<div class="horarios-cols">';
+
+    for (var di = 0; di < 5; di++) {
+      var dayEntries = filtered.filter(function(e) { return e.d === di; });
+      dayEntries.sort(function(a, b) { return a.t < b.t ? -1 : a.t > b.t ? 1 : 0; });
+
+      html += '<div class="horarios-cols__day">';
+      html += '<div class="horarios-cols__header horarios-cols__header--' + sectionKey + '">' + DAYS[di] + '</div>';
+      html += '<div class="horarios-cols__entries">';
+      dayEntries.forEach(function(e) { html += entryHtml(e); });
+      html += '</div></div>';
+    }
+
+    html += '</div>';
     gridEl.innerHTML = html;
   }
 
-  // Build mobile swipe carousel: one full-width card per day
-  function buildSwipe() {
+  // Build mobile swipe for a section
+  function buildSwipe(sectionKey) {
     var swipeEl = document.getElementById('horarios-swipe');
     if (!swipeEl) return;
 
-    var hourSet = {};
-    DATA.forEach(function(e) { hourSet[e.t.split(':')[0]] = true; });
-    var hours = Object.keys(hourSet).sort();
+    var filtered = filterData(sectionKey);
     var SHORT = ['Lun','Mar','Mié','Jue','Vie'];
 
     var html = '<div class="horarios-swipe__tabs" id="horarios-swipe-tabs">';
     for (var i = 0; i < 5; i++) {
-      html += '<button class="horarios-swipe__tab' + (i === 0 ? ' is-active' : '') + '" data-day="' + i + '">' + SHORT[i] + '</button>';
+      html += '<button class="horarios-swipe__tab horarios-swipe__tab--' + sectionKey + (i === 0 ? ' is-active' : '') + '" data-day="' + i + '">' + SHORT[i] + '</button>';
     }
     html += '</div><div class="horarios-swipe__track" id="horarios-swipe-track">';
 
     for (var di = 0; di < 5; di++) {
+      var dayEntries = filtered.filter(function(e) { return e.d === di; });
+      dayEntries.sort(function(a, b) { return a.t < b.t ? -1 : a.t > b.t ? 1 : 0; });
+
       html += '<div class="horarios-swipe__day">';
-      hours.forEach(function(hour) {
-        var entries = DATA.filter(function(e) { return e.d === di && e.t.split(':')[0] === hour; });
-        if (!entries.length) return;
-        entries.sort(function(a, b) { return a.t < b.t ? -1 : a.t > b.t ? 1 : 0; });
-        html += '<div class="horarios-swipe__hour-group"><div class="horarios-swipe__hour-label">' + hour + ':00</div><div class="horarios-swipe__hour-entries">';
-        entries.forEach(function(e) {
-          var timeStr, endTime;
-          if (e.e) { endTime = e.e; timeStr = e.t + ' - ' + endTime; }
-          else if (DUR[e.s]) { endTime = addMin(e.t, DUR[e.s]); timeStr = e.t + ' - ' + endTime; }
-          else { timeStr = e.t; endTime = e.t; }
-          html += '<div class="horarios-grid__entry horarios-grid__entry--' + e.c + '" data-activity="' + e.s + '">';
-          html += '<span class="horarios-grid__time">' + timeStr + '</span>';
-          html += '<span class="horarios-grid__name">' + e.n + '</span>';
-          html += noProfeHtml(e, endTime);
-          html += '</div>';
-        });
-        html += '</div></div>';
-      });
+      dayEntries.forEach(function(e) { html += entryHtml(e); });
       html += '</div>';
     }
     html += '</div>';
     swipeEl.innerHTML = html;
 
-    // Wire tabs ↔ scroll
+    // Wire tabs
     var track = document.getElementById('horarios-swipe-track');
     var tabs = swipeEl.querySelectorAll('.horarios-swipe__tab');
     if (!track) return;
@@ -696,108 +813,131 @@ function initHorarios() {
     }, { passive: true });
   }
 
-  buildGrid();
-  buildSwipe();
+  var downloadWrap = document.getElementById('horarios-download-wrap');
+  var downloadBtn  = document.getElementById('horarios-download');
 
-  var checkboxes = container.querySelectorAll('input[type="checkbox"]');
-  var items      = container.querySelectorAll('.horarios-dropdown__item');
-
-  function normalize(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  // Show section picker, hide grid
+  function showPicker() {
+    picker.style.display = '';
+    sectionHdr.style.display = 'none';
+    filterWrap.style.display = 'none';
+    if (downloadWrap) downloadWrap.style.display = 'none';
+    gridWrapper.style.display = 'none';
+    document.getElementById('horarios-swipe').innerHTML = '';
+    gridEl.innerHTML = '';
+    currentSection = null;
   }
 
-  // Dropdown open/close
-  function openDropdown()  { dropdown.classList.add('is-open'); }
-  function closeDropdown() { dropdown.classList.remove('is-open'); if (searchInput) { searchInput.value = ''; applySearch(); } }
-
-  if (searchInput) {
-    searchInput.addEventListener('focus', openDropdown);
-    searchInput.addEventListener('input', function() { openDropdown(); applySearch(); });
+  // Show a section's schedule
+  function showSection(sectionKey) {
+    currentSection = sectionKey;
+    picker.style.display = 'none';
+    sectionHdr.style.display = '';
+    sectionHdr.className = 'horarios-section-header horarios-section-header--' + sectionKey;
+    sectionTitle.textContent = SECTIONS[sectionKey].label;
+    filterWrap.style.display = '';
+    if (downloadWrap) downloadWrap.style.display = '';
+    gridWrapper.style.display = '';
+    buildFilterCheckboxes(sectionKey);
+    buildGrid(sectionKey);
+    buildSwipe(sectionKey);
+    closeDropdown();
   }
 
-  // Close when clicking outside
-  document.addEventListener('mousedown', function(ev) {
-    if (filterWrap && !filterWrap.contains(ev.target)) closeDropdown();
+  // PNG export — desktop: direct download / mobile: show image in modal
+  var DL_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar Horarios';
+
+  function isMobile() { return window.innerWidth <= 768; }
+
+  // Create image preview modal (once)
+  var imgModal = document.createElement('div');
+  imgModal.className = 'horarios-img-modal';
+  imgModal.innerHTML = '<div class="horarios-img-modal__overlay"></div>' +
+    '<div class="horarios-img-modal__content">' +
+      '<p class="horarios-img-modal__hint">Mantené presionada la imagen para guardarla</p>' +
+      '<img class="horarios-img-modal__img" id="horarios-img-preview" alt="Horarios">' +
+      '<button class="horarios-img-modal__close" id="horarios-img-close">Cerrar</button>' +
+    '</div>';
+  document.body.appendChild(imgModal);
+
+  var imgPreview = document.getElementById('horarios-img-preview');
+  var imgClose   = document.getElementById('horarios-img-close');
+
+  imgModal.querySelector('.horarios-img-modal__overlay').addEventListener('click', function() {
+    imgModal.classList.remove('is-open');
+  });
+  imgClose.addEventListener('click', function() {
+    imgModal.classList.remove('is-open');
   });
 
-  // Prevent dropdown from closing when clicking inside it
-  if (dropdown) dropdown.addEventListener('mousedown', function(ev) { ev.preventDefault(); });
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', function() {
+      if (!currentSection || typeof html2canvas === 'undefined') return;
 
-  function updateCount() {
-    var n = 0;
-    checkboxes.forEach(function(cb) { if (cb.checked) n++; });
-    if (countEl) countEl.textContent = n + ' de ' + TOTAL;
-  }
+      downloadBtn.disabled = true;
+      downloadBtn.textContent = 'Generando...';
 
-  function restoreState() {
-    try {
-      var saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (saved && typeof saved === 'object') {
-        checkboxes.forEach(function(cb) {
-          if (saved.hasOwnProperty(cb.value)) cb.checked = saved[cb.value];
-        });
+      var mobile = isMobile();
+
+      // On mobile the grid is CSS-hidden — force-show it offscreen to capture
+      if (mobile) {
+        gridWrapper.style.cssText = 'display:block !important; position:fixed; left:-9999px; top:0; width:1100px; z-index:-1;';
       }
-    } catch (e) { /* ignore */ }
-  }
 
-  function saveState() {
-    var state = {};
-    checkboxes.forEach(function(cb) { state[cb.value] = cb.checked; });
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* ignore */ }
-  }
+      var target = gridEl.querySelector('.horarios-cols');
+      if (!target) {
+        if (mobile) gridWrapper.style.cssText = '';
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = DL_SVG;
+        return;
+      }
 
-  function applyFilter() {
-    var active = new Set();
-    checkboxes.forEach(function(cb) { if (cb.checked) active.add(cb.value); });
-    // Update both table grid and swipe carousel entries
-    document.querySelectorAll('.horarios-grid__entry[data-activity]').forEach(function(entry) {
-      entry.classList.toggle('is-hidden', !active.has(entry.dataset.activity));
-    });
-    var empty = active.size === 0;
-    if (emptyMsg) emptyMsg.classList.toggle('is-visible', empty);
-    gridEl.style.display = empty ? 'none' : '';
-    var swipeEl = document.getElementById('horarios-swipe');
-    if (swipeEl) {
-      var swipeTrack = swipeEl.querySelector('.horarios-swipe__track');
-      var swipeTabs = swipeEl.querySelector('.horarios-swipe__tabs');
-      if (swipeTrack) swipeTrack.style.display = empty ? 'none' : '';
-      if (swipeTabs) swipeTabs.style.display = empty ? 'none' : '';
-    }
-    updateCount();
-    saveState();
-  }
-
-  function applySearch() {
-    if (!searchInput) return;
-    var query = normalize(searchInput.value.trim());
-    items.forEach(function(item) {
-      var text = normalize(item.querySelector('.horarios-dropdown__label').textContent);
-      item.classList.toggle('is-filtered', query.length > 0 && text.indexOf(query) === -1);
-    });
-  }
-
-  checkboxes.forEach(function(cb) { cb.addEventListener('change', applyFilter); });
-
-  if (selectAll) {
-    selectAll.addEventListener('click', function() {
-      checkboxes.forEach(function(cb) {
-        if (!cb.closest('.horarios-dropdown__item').classList.contains('is-filtered')) cb.checked = true;
-      });
-      applyFilter();
+      // Small delay for mobile layout to settle
+      setTimeout(function() {
+        html2canvas(target, {
+          backgroundColor: '#ffffff',
+          scale: 2,
+          useCORS: true,
+          logging: false
+        }).then(function(canvas) {
+          if (mobile) {
+            // Show in modal as <img> — user long-presses to save
+            imgPreview.src = canvas.toDataURL('image/png');
+            imgModal.classList.add('is-open');
+          } else {
+            // Desktop: direct download
+            var link = document.createElement('a');
+            link.download = 'horarios-' + currentSection + '.png';
+            link.href = canvas.toDataURL('image/png');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        }).catch(function() {
+          // silent fail
+        }).finally(function() {
+          if (mobile) gridWrapper.style.cssText = '';
+          downloadBtn.disabled = false;
+          downloadBtn.innerHTML = DL_SVG;
+        });
+      }, mobile ? 300 : 0);
     });
   }
 
-  if (deselectAll) {
-    deselectAll.addEventListener('click', function() {
-      checkboxes.forEach(function(cb) {
-        if (!cb.closest('.horarios-dropdown__item').classList.contains('is-filtered')) cb.checked = false;
-      });
-      applyFilter();
+  // Wire picker cards
+  picker.querySelectorAll('.horarios-picker__card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      showSection(this.dataset.section);
     });
+  });
+
+  // Wire back button
+  if (backBtn) {
+    backBtn.addEventListener('click', showPicker);
   }
 
-  restoreState();
-  applyFilter();
+  // Start on picker
+  showPicker();
 }
 
 // ============================================================
@@ -921,6 +1061,516 @@ function initConveniosPage() {
 }
 
 // ============================================================
+// INSTALACIONES ACCORDION (Parque Social)
+// ============================================================
+function initInstAccordion() {
+  var cards = document.querySelectorAll('.inst-card');
+  if (!cards.length) return;
+
+  // Accordion toggle
+  cards.forEach(function(card) {
+    var header = card.querySelector('.inst-card__header');
+    if (!header) return;
+
+    header.addEventListener('click', function() {
+      var wasActive = card.classList.contains('is-active');
+      // Close all
+      cards.forEach(function(c) {
+        c.classList.remove('is-active');
+        var h = c.querySelector('.inst-card__header');
+        if (h) h.setAttribute('aria-expanded', 'false');
+      });
+      // Open clicked (if wasn't already open)
+      if (!wasActive) {
+        card.classList.add('is-active');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Thumbnail gallery
+    var thumbs = card.querySelectorAll('.inst-card__gallery-thumbs img');
+    var mainImg = card.querySelector('.inst-card__gallery-main img');
+    if (mainImg && thumbs.length) {
+      thumbs.forEach(function(thumb) {
+        thumb.addEventListener('click', function() {
+          thumbs.forEach(function(t) { t.classList.remove('is-active'); });
+          thumb.classList.add('is-active');
+          mainImg.src = thumb.src;
+          mainImg.alt = thumb.alt;
+        });
+      });
+    }
+  });
+
+  // Lightbox with navigation
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxPrev = document.getElementById('lightbox-prev');
+  var lightboxNext = document.getElementById('lightbox-next');
+  var lightboxCounter = document.getElementById('lightbox-counter');
+  if (lightbox && lightboxImg) {
+    var lbImages = [];
+    var lbIndex = 0;
+
+    function lbShow(index) {
+      lbIndex = (index + lbImages.length) % lbImages.length;
+      lightboxImg.src = lbImages[lbIndex].src;
+      lightboxImg.alt = lbImages[lbIndex].alt;
+      lightboxCounter.textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+    }
+
+    function openLightbox(card, startSrc) {
+      var thumbs = card.querySelectorAll('.inst-card__gallery-thumbs img');
+      lbImages = [];
+      thumbs.forEach(function(t) {
+        lbImages.push({ src: t.src, alt: t.alt });
+      });
+      // Find starting index
+      lbIndex = 0;
+      for (var i = 0; i < lbImages.length; i++) {
+        if (lbImages[i].src === startSrc) { lbIndex = i; break; }
+      }
+      lbShow(lbIndex);
+      lightbox.classList.add('is-active');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-active');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+
+    // Click on main gallery image to open
+    document.querySelectorAll('.inst-card__gallery-main img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        var card = img.closest('.inst-card');
+        if (card) openLightbox(card, img.src);
+      });
+    });
+
+    // Also allow clicking thumbnails to open lightbox
+    document.querySelectorAll('.inst-card__gallery-thumbs img').forEach(function(thumb) {
+      thumb.addEventListener('click', function() {
+        var card = thumb.closest('.inst-card');
+        if (card) openLightbox(card, thumb.src);
+      });
+    });
+
+    lightboxPrev.addEventListener('click', function(e) { e.stopPropagation(); lbShow(lbIndex - 1); });
+    lightboxNext.addEventListener('click', function(e) { e.stopPropagation(); lbShow(lbIndex + 1); });
+
+    lightbox.querySelector('.lightbox__close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('is-active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lbShow(lbIndex - 1);
+      if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+    });
+
+    // Swipe support
+    var touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) {
+      var diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        lbShow(diff > 0 ? lbIndex + 1 : lbIndex - 1);
+      }
+    });
+  }
+
+  // Pre-reservar buttons: scroll to form and set select value
+  document.querySelectorAll('.inst-card__reserva-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var instalacion = btn.getAttribute('data-instalacion');
+      var select = document.getElementById('pr-instalacion');
+      if (select && instalacion) {
+        for (var i = 0; i < select.options.length; i++) {
+          if (select.options[i].value === instalacion) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      var target = document.getElementById('prereserva');
+      if (target) {
+        target.style.display = '';
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+
+// ============================================================
+// PRE-RESERVA FORM
+// ============================================================
+function initPreReservaForm() {
+  var form = document.getElementById('prereserva-form');
+  if (!form) return;
+
+  // Set min date to today
+  var fechaInput = document.getElementById('pr-fecha');
+  if (fechaInput) {
+    var today = new Date().toISOString().split('T')[0];
+    fechaInput.setAttribute('min', today);
+  }
+
+  // Show success message if redirected back after submission
+  var section = document.getElementById('prereserva');
+  if (window.location.search.indexOf('prereserva=ok') !== -1) {
+    if (section) section.style.display = '';
+    form.style.display = 'none';
+    var success = document.createElement('div');
+    success.className = 'prereserva-success is-visible';
+    success.innerHTML = '<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+      + '<h3>Solicitud enviada</h3>'
+      + '<p>Tu solicitud de pre-reserva fue recibida correctamente. El equipo del Parque Social la revisará y se comunicará contigo para confirmar la disponibilidad y coordinar el pago.</p>'
+      + '<p><strong>Recordá que la reserva no está confirmada hasta recibir la aprobación y realizar el pago.</strong></p>';
+    form.parentNode.insertBefore(success, form);
+    // Scroll to success message
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Show "Enviando..." on submit
+  form.addEventListener('submit', function() {
+    var btn = form.querySelector('[type="submit"]');
+    btn.textContent = 'Enviando solicitud...';
+    btn.disabled = true;
+  });
+}
+
+// ============================================================
+// FACILITY GALLERIES (complejo-deportivo)
+// ============================================================
+function initFacilityGalleries() {
+  var sliders = document.querySelectorAll('[data-facility-gallery]');
+  if (!sliders.length) return;
+
+  var ARROW_L = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
+  var ARROW_R = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>';
+
+  // ── Pixel-based centering helper ──
+  // Measures the real DOM to compute exact translateX so slide[idx] is centered
+  function centerOffset(container, track, slides, idx) {
+    var cW = container.offsetWidth;
+    var slide = slides[idx];
+    // slide's left edge relative to track start
+    var sLeft = slide.offsetLeft;
+    var sW = slide.offsetWidth;
+    // We want the slide center at the container center
+    return (cW / 2) - sLeft - (sW / 2);
+  }
+
+  function makeSlider(container, track, slides, opts) {
+    var total = slides.length;
+    var current = 0;
+
+    function goTo(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= total) idx = total - 1;
+      current = idx;
+      var px = centerOffset(container, track, slides, idx);
+      track.style.transform = 'translateX(' + px + 'px)';
+      for (var i = 0; i < total; i++) slides[i].classList.toggle('is-active', i === idx);
+      if (opts.onSlide) opts.onSlide(idx, total);
+    }
+
+    if (opts.prev) opts.prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+    if (opts.next) opts.next.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+
+    // Swipe
+    var swEl = opts.swipeEl || container;
+    var tx = 0, ty = 0, tt = 0, dragging = false, locked = false;
+    swEl.addEventListener('touchstart', function(e) {
+      tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+      tt = Date.now(); dragging = true; locked = false;
+      track.style.transition = 'none';
+    }, { passive: true });
+    swEl.addEventListener('touchmove', function(e) {
+      if (!dragging) return;
+      var dx = Math.abs(e.touches[0].clientX - tx);
+      var dy = Math.abs(e.touches[0].clientY - ty);
+      // Once we know the direction, lock it
+      if (!locked && (dx > 8 || dy > 8)) {
+        locked = true;
+        if (dy > dx) { dragging = false; return; } // vertical scroll, bail out
+      }
+      if (!locked) return;
+      e.preventDefault(); // block page scroll during horizontal swipe
+      var diff = tx - e.touches[0].clientX;
+      var base = centerOffset(container, track, slides, current);
+      track.style.transform = 'translateX(' + (base - diff) + 'px)';
+    }, { passive: false });
+    swEl.addEventListener('touchend', function(e) {
+      if (!dragging) return;
+      dragging = false;
+      track.style.transition = '';
+      var diff = tx - e.changedTouches[0].clientX;
+      var fast = Date.now() - tt < 300;
+      if (Math.abs(diff) > 35 || (Math.abs(diff) > 20 && fast)) {
+        goTo(diff > 0 ? current + 1 : current - 1);
+      } else {
+        goTo(current);
+      }
+    }, { passive: true });
+
+    // Recenter on resize
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() { goTo(current); }, 100);
+    });
+
+    // Auto-advance every 5s (loops back to first)
+    var autoTimer = null;
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(function() {
+        goTo(current + 1 >= total ? 0 : current + 1);
+      }, 5000);
+    }
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    // Pause on hover, restart on leave
+    var visible = false;
+    container.addEventListener('mouseenter', stopAuto);
+    container.addEventListener('mouseleave', function() { if (visible) startAuto(); });
+
+    // Only auto-advance when visible in viewport
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        visible = entries[0].isIntersecting;
+        if (visible) startAuto(); else stopAuto();
+      }, { threshold: 0.4 });
+      obs.observe(container);
+    }
+
+    // Restart after any interaction
+    var origGoTo = goTo;
+    goTo = function(idx) { origGoTo(idx); if (visible) startAuto(); };
+
+    goTo(0);
+    return { goTo: goTo, getCurrent: function() { return current; }, stopAuto: stopAuto, startAuto: startAuto };
+  }
+
+  // ── Fullscreen viewer (created once, shared) ──
+  var viewer = document.createElement('div');
+  viewer.className = 'fviewer';
+  viewer.innerHTML =
+    '<button class="fviewer__close" aria-label="Cerrar">&times;</button>' +
+    '<div class="fviewer__stage">' +
+      '<div class="fviewer__track"></div>' +
+      '<button class="fviewer__arrow fviewer__arrow--prev" aria-label="Anterior">' + ARROW_L + '</button>' +
+      '<button class="fviewer__arrow fviewer__arrow--next" aria-label="Siguiente">' + ARROW_R + '</button>' +
+    '</div>' +
+    '<div class="fviewer__hud"></div>';
+  document.body.appendChild(viewer);
+
+  var vStage = viewer.querySelector('.fviewer__stage');
+  var vTrack = viewer.querySelector('.fviewer__track');
+  var vHud   = viewer.querySelector('.fviewer__hud');
+  var vPrev  = viewer.querySelector('.fviewer__arrow--prev');
+  var vNext  = viewer.querySelector('.fviewer__arrow--next');
+  var vClose = viewer.querySelector('.fviewer__close');
+  var vCtrl  = null;
+
+  function openViewer(images, startIdx) {
+    vTrack.innerHTML = '';
+    vHud.innerHTML = '';
+    images.forEach(function(img) {
+      var s = document.createElement('div');
+      s.className = 'fviewer__slide';
+      s.innerHTML = '<img src="' + img.src + '" alt="' + (img.alt || '') + '">';
+      vTrack.appendChild(s);
+      var t = document.createElement('img');
+      t.className = 'fviewer__thumb';
+      t.src = img.src;
+      t.alt = img.alt || '';
+      vHud.appendChild(t);
+    });
+
+    viewer.classList.add('is-active');
+    viewer._scrollY = window.scrollY;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + viewer._scrollY + 'px';
+    document.body.style.width = '100%';
+
+    // Wait one frame so DOM is laid out, then init slider
+    requestAnimationFrame(function() {
+      var vSlides = Array.prototype.slice.call(vTrack.querySelectorAll('.fviewer__slide'));
+      var vThumbs = Array.prototype.slice.call(vHud.querySelectorAll('.fviewer__thumb'));
+
+      vCtrl = makeSlider(vStage, vTrack, vSlides, {
+        prev: vPrev, next: vNext, swipeEl: vStage,
+        onSlide: function(idx, total) {
+          for (var i = 0; i < vThumbs.length; i++) vThumbs[i].classList.toggle('is-active', i === idx);
+          vPrev.disabled = (idx === 0);
+          vNext.disabled = (idx === total - 1);
+        }
+      });
+
+      vThumbs.forEach(function(t, i) {
+        t.addEventListener('click', function() { vCtrl.goTo(i); });
+      });
+
+      vCtrl.goTo(startIdx || 0);
+      vCtrl.stopAuto(); // no auto-advance in fullscreen
+    });
+  }
+
+  function closeViewer() {
+    viewer.classList.remove('is-active');
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, viewer._scrollY || 0);
+    vCtrl = null;
+  }
+
+  vClose.addEventListener('click', closeViewer);
+  viewer.addEventListener('click', function(e) {
+    if (e.target === viewer || e.target === vStage) closeViewer();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (!viewer.classList.contains('is-active')) return;
+    if (e.key === 'Escape') closeViewer();
+    if (vCtrl) {
+      if (e.key === 'ArrowLeft')  vCtrl.goTo(vCtrl.getCurrent() - 1);
+      if (e.key === 'ArrowRight') vCtrl.goTo(vCtrl.getCurrent() + 1);
+    }
+  });
+
+  // ── Init each in-page slider ──
+  sliders.forEach(function(slider) {
+    var track   = slider.querySelector('.fslider__track');
+    var slides  = Array.prototype.slice.call(slider.querySelectorAll('.fslider__slide'));
+    var prevBtn = slider.querySelector('.fslider__arrow--prev');
+    var nextBtn = slider.querySelector('.fslider__arrow--next');
+    var counter = slider.querySelector('.fslider__counter');
+    if (!track || slides.length < 1) return;
+
+    var total = slides.length;
+    var images = [];
+    slides.forEach(function(s) {
+      var img = s.querySelector('img');
+      if (img) images.push({ src: img.src, alt: img.alt });
+    });
+
+    var ctrl = makeSlider(slider, track, slides, {
+      prev: prevBtn, next: nextBtn, swipeEl: slider,
+      onSlide: function(idx) {
+        if (counter) counter.textContent = (idx + 1) + ' / ' + total;
+        if (prevBtn) prevBtn.disabled = (idx === 0);
+        if (nextBtn) nextBtn.disabled = (idx === total - 1);
+      }
+    });
+
+    // Click active slide → open viewer
+    slides.forEach(function(slide, i) {
+      slide.addEventListener('click', function() {
+        if (i !== ctrl.getCurrent()) { ctrl.goTo(i); return; }
+        openViewer(images, i);
+      });
+    });
+  });
+}
+
+// ============================================================
+// CANVAS HEX DIVIDERS
+// ============================================================
+function initHexDividers() {
+  var dividers = document.querySelectorAll('.hex-divider');
+  if (!dividers.length) return;
+
+  var SIZE = 52;
+  var STROKE = 3;
+
+  function drawHexDivider(canvas, bg, fill, stroke) {
+    var parent = canvas.parentElement;
+    var W = parent.offsetWidth || 800;
+    var H = 160;
+    canvas.width = W;
+    canvas.height = H;
+    var ctx = canvas.getContext('2d');
+
+    var hexHalfH = (Math.sqrt(3) / 2) * SIZE;
+    var fullY = H - hexHalfH;
+    var halfY = H;
+    var clipY = halfY - hexHalfH;
+
+    function drawHex(cx, cy) {
+      ctx.beginPath();
+      for (var i = 0; i < 6; i++) {
+        var angle = (Math.PI / 180) * (60 * i);
+        var x = cx + SIZE * Math.cos(angle);
+        var y = cy + SIZE * Math.sin(angle);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.fill();
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = STROKE;
+      ctx.stroke();
+    }
+
+    var spacingX = SIZE * 1.6;
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    var cols = Math.ceil(W / spacingX) + 2;
+
+    for (var i = -1; i < cols; i++) {
+      if (i % 2 !== 0) drawHex(i * spacingX, halfY);
+    }
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, clipY, W, H - clipY);
+    ctx.clip();
+    for (var i = -1; i < cols; i++) {
+      if (i % 2 === 0) drawHex(i * spacingX, fullY);
+    }
+    ctx.restore();
+  }
+
+  function renderAll() {
+    dividers.forEach(function(div) {
+      var canvas = div.querySelector('canvas');
+      if (!canvas) return;
+      drawHexDivider(
+        canvas,
+        div.dataset.bg || '#ffffff',
+        div.dataset.fill || '#1E3A5F',
+        div.dataset.stroke || '#ffffff'
+      );
+    });
+  }
+
+  renderAll();
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderAll, 150);
+  }, { passive: true });
+}
+
+// ============================================================
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -934,6 +1584,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initTimeline();
   initConveniosMarquee();
+  initHexDividers();
   initHorarios();
   initConveniosPage();
+  initInstAccordion();
+  initPreReservaForm();
+  initFacilityGalleries();
 });
