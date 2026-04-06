@@ -255,43 +255,7 @@
             });
           }
 
-          selector.addEventListener('change', function() {
-            cuota.style.display = 'none';
-            deportivo.style.display = 'none';
-            btnEnviar.style.display = 'none';
-            toggleRequired(cuota, false);
-            toggleRequired(deportivo, false);
-
-            if (this.value === 'cuota_social') {
-              cuota.style.display = 'block';
-              btnEnviar.style.display = '';
-              toggleRequired(cuota, true);
-              subjectField.value = 'Nueva Solicitud - Cuota Social';
-            } else if (this.value === 'complejo_deportivo') {
-              deportivo.style.display = 'block';
-              btnEnviar.style.display = '';
-              toggleRequired(deportivo, true);
-              subjectField.value = 'Nueva Solicitud - Complejo Deportivo';
-            }
-          });
-
-          form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            btnEnviar.textContent = 'Enviando\u2026';
-            btnEnviar.disabled = true;
-
-            // Disable inputs from the hidden section so they don't appear in the email
-            var hiddenSection = selector.value === 'cuota_social' ? deportivo : cuota;
-            var hiddenInputs = hiddenSection.querySelectorAll('input, select, textarea');
-            hiddenInputs.forEach(function(el) { el.disabled = true; });
-
-            // Build descriptive subject
-            var nombre = (document.getElementById('nombre-completo').value || '').trim();
-            var cedula = (document.getElementById('cedula').value || '').trim();
-            var tipo = selector.value === 'cuota_social' ? 'Cuota Social' : 'Complejo Deportivo';
-            subjectField.value = 'Pre Asociaci\u00f3n \u2013 ' + nombre + ' \u2013 CI ' + cedula + ' \u2013 ' + tipo;
-
-            function playSuccessSound() {
+          function playSuccessSound() {
               try {
                 var ctx = new (window.AudioContext || window.webkitAudioContext)();
                 var t = ctx.currentTime;
@@ -340,20 +304,54 @@
                 noise.start(shStart);
                 noise.stop(shStart + 0.8);
               } catch(e) {}
-            }
+          }
 
-            var successHTML =
-              '<div class="form-success">' +
-                '<div class="form-success__icon">' +
-                  '<svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
-                    '<circle class="fs-circle" cx="12" cy="12" r="10.5" fill="none"/>' +
-                    '<polyline class="fs-check" points="7 12.5 10.5 16 17 9" fill="none"/>' +
-                  '</svg>' +
-                '</div>' +
-                '<h2>&#161;Solicitud enviada correctamente!</h2>' +
-                '<p>Su solicitud de pre asociaci\u00f3n fue recibida. El personal administrativo la revisar\u00e1 y se comunicar\u00e1 con usted a la brevedad.</p>' +
-                '<a href="/pc/" class="btn btn--primary" style="margin-top:1.5rem;">Volver al inicio</a>' +
-              '</div>';
+          var successHTML =
+            '<div class="form-success">' +
+              '<div class="form-success__icon">' +
+                '<svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
+                  '<circle class="fs-circle" cx="12" cy="12" r="10.5" fill="none"/>' +
+                  '<polyline class="fs-check" points="7 12.5 10.5 16 17 9" fill="none"/>' +
+                '</svg>' +
+              '</div>' +
+              '<h2>&#161;Solicitud enviada correctamente!</h2>' +
+              '<p>Su solicitud de pre asociaci\u00f3n fue recibida. El personal administrativo la revisar\u00e1 y se comunicar\u00e1 con usted a la brevedad.</p>' +
+              '<a href="/pc/" class="btn btn--primary" style="margin-top:1.5rem;">Volver al inicio</a>' +
+            '</div>';
+
+          selector.addEventListener('change', function() {
+            cuota.style.display = 'none';
+            deportivo.style.display = 'none';
+            btnEnviar.style.display = 'none';
+            toggleRequired(cuota, false);
+            toggleRequired(deportivo, false);
+
+            if (this.value === 'cuota_social') {
+              cuota.style.display = 'block';
+              btnEnviar.style.display = '';
+              toggleRequired(cuota, true);
+              subjectField.value = 'Nueva Solicitud - Cuota Social';
+            } else if (this.value === 'complejo_deportivo') {
+              deportivo.style.display = 'block';
+              btnEnviar.style.display = '';
+              toggleRequired(deportivo, true);
+              subjectField.value = 'Nueva Solicitud - Complejo Deportivo';
+            }
+          });
+
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            btnEnviar.textContent = 'Enviando\u2026';
+            btnEnviar.disabled = true;
+
+            var hiddenSection = selector.value === 'cuota_social' ? deportivo : cuota;
+            var hiddenInputs = hiddenSection.querySelectorAll('input, select, textarea');
+            hiddenInputs.forEach(function(el) { el.disabled = true; });
+
+            var nombre = (document.getElementById('nombre-completo').value || '').trim();
+            var cedula = (document.getElementById('cedula').value || '').trim();
+            var tipo = selector.value === 'cuota_social' ? 'Cuota Social' : 'Complejo Deportivo';
+            subjectField.value = 'Pre Asociaci\u00f3n \u2013 ' + nombre + ' \u2013 CI ' + cedula + ' \u2013 ' + tipo;
 
             fetch(form.action, {
               method: 'POST',
@@ -372,6 +370,12 @@
               alert('Hubo un error al enviar el formulario. Por favor intente nuevamente o cont\u00e1ctenos por tel\u00e9fono.');
             });
           });
+
+          // Test: navigate to asociarse.html?test=1 to preview the success state
+          if (window.location.search.indexOf('test=1') !== -1) {
+            formSection.innerHTML = successHTML;
+            playSuccessSound();
+          }
         })();
       </script>
       <section class="reveal">
