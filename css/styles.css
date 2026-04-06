@@ -2393,6 +2393,25 @@ counter-increment: decalogo-counter;
 .inner-form .form-field textarea::placeholder { color: #aaa; }
 
 /* Form success state */
+@keyframes fs-pop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  80%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+@keyframes fs-circle {
+  from { stroke-dashoffset: 66; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes fs-check {
+  from { stroke-dashoffset: 26; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes fs-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .form-success {
   display: flex;
   flex-direction: column;
@@ -2401,21 +2420,40 @@ counter-increment: decalogo-counter;
   padding: clamp(2.5rem, 6vw, 4rem) 2rem;
   background: var(--clr-off-white);
   border-radius: var(--radius-md);
-  border-top: 4px solid var(--clr-primary);
+  border-top: 4px solid #22c55e;
 }
 .form-success__icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: var(--clr-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  color: #fff;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 1.75rem;
+  animation: fs-pop 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
-.form-success h2 { color: var(--clr-text-dark); margin-bottom: 0.75rem; }
-.form-success p  { color: var(--clr-text); max-width: 480px; line-height: 1.7; }
+.form-success__icon .fs-circle {
+  stroke: #22c55e;
+  stroke-dasharray: 66;
+  stroke-dashoffset: 66;
+  animation: fs-circle 0.5s ease-out 0.1s forwards;
+}
+.form-success__icon .fs-check {
+  stroke: #22c55e;
+  stroke-dasharray: 26;
+  stroke-dashoffset: 26;
+  animation: fs-check 0.35s ease-out 0.5s forwards;
+}
+.form-success h2 {
+  color: var(--clr-text-dark);
+  margin-bottom: 0.75rem;
+  animation: fs-fade-up 0.5s ease 0.55s both;
+}
+.form-success p {
+  color: var(--clr-text);
+  max-width: 480px;
+  line-height: 1.7;
+  animation: fs-fade-up 0.5s ease 0.65s both;
+}
+.form-success .btn {
+  animation: fs-fade-up 0.5s ease 0.75s both;
+}
 
 /* Links page */
 .links-grid {

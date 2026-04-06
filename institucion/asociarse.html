@@ -291,10 +291,36 @@
             var tipo = selector.value === 'cuota_social' ? 'Cuota Social' : 'Complejo Deportivo';
             subjectField.value = 'Pre Asociaci\u00f3n \u2013 ' + nombre + ' \u2013 CI ' + cedula + ' \u2013 ' + tipo;
 
+            function playSuccessSound() {
+              try {
+                var ctx = new (window.AudioContext || window.webkitAudioContext)();
+                function note(freq, start, dur) {
+                  var osc = ctx.createOscillator();
+                  var gain = ctx.createGain();
+                  osc.connect(gain);
+                  gain.connect(ctx.destination);
+                  osc.type = 'sine';
+                  osc.frequency.value = freq;
+                  gain.gain.setValueAtTime(0, start);
+                  gain.gain.linearRampToValueAtTime(0.25, start + 0.02);
+                  gain.gain.exponentialRampToValueAtTime(0.001, start + dur);
+                  osc.start(start);
+                  osc.stop(start + dur);
+                }
+                var t = ctx.currentTime;
+                note(523, t,        0.35);
+                note(659, t + 0.18, 0.35);
+                note(784, t + 0.36, 0.55);
+              } catch(e) {}
+            }
+
             var successHTML =
               '<div class="form-success">' +
                 '<div class="form-success__icon">' +
-                  '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>' +
+                  '<svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
+                    '<circle class="fs-circle" cx="12" cy="12" r="10.5" fill="none"/>' +
+                    '<polyline class="fs-check" points="7 12.5 10.5 16 17 9" fill="none"/>' +
+                  '</svg>' +
                 '</div>' +
                 '<h2>&#161;Solicitud enviada correctamente!</h2>' +
                 '<p>Su solicitud de pre asociaci\u00f3n fue recibida. El personal administrativo la revisar\u00e1 y se comunicar\u00e1 con usted a la brevedad.</p>' +
@@ -309,6 +335,7 @@
             .then(function() {
               hiddenInputs.forEach(function(el) { el.disabled = false; });
               formSection.innerHTML = successHTML;
+              playSuccessSound();
             })
             .catch(function() {
               hiddenInputs.forEach(function(el) { el.disabled = false; });
