@@ -215,7 +215,7 @@
 
         <article class="service-card">
           <img class="service-card__img"
-            src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?w=600&q=75"
+            src="images/fotocolonia.jpg"
             alt="Colonia de Verano" loading="lazy">
           <div class="service-card__body">
             <h3 class="service-card__title">Colonia de Verano</h3>
@@ -462,7 +462,10 @@
           </div>
         </div>
 
-        <form class="contact-form reveal reveal--right" id="contact-form" novalidate>
+        <form class="contact-form reveal reveal--right" id="contact-form" action="https://formsubmit.co/info@proteccionchoferes.org.uy" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Nuevo mensaje de contacto — CPCH">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
           <div class="form-row">
             <div class="form-field">
               <label for="nombre">Nombre</label>

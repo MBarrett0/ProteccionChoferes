@@ -460,18 +460,25 @@ function initContactForm() {
     btn.textContent = 'Enviando...';
     btn.disabled    = true;
 
-    await new Promise(r => setTimeout(r, 1200));
-
-    btn.textContent       = 'Mensaje enviado';
-    btn.style.background  = '#1E3A5F';
-    btn.style.color       = '#fff';
+    try {
+      await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      btn.textContent      = 'Mensaje enviado';
+      btn.style.background = '#1E3A5F';
+      btn.style.color      = '#fff';
+      form.reset();
+    } catch (_) {
+      btn.textContent = 'Error al enviar';
+    }
 
     setTimeout(() => {
       btn.textContent      = original;
       btn.disabled         = false;
       btn.style.background = '';
       btn.style.color      = '';
-      form.reset();
     }, 3000);
   });
 }
@@ -614,15 +621,36 @@ function initHorarios() {
     'voleibol': 'Voleibol Social y Deportivo'
   };
 
+  var NO_WA = ['sala-entrenamiento', 'nado-libre'];
+
+  window._cpchWaToggle = function(el) {
+    var entry = el.closest ? el.closest('.horarios-grid__entry--expandable') : el.parentNode;
+    if (!entry) return;
+    var isOpen = entry.classList.contains('is-expanded');
+    document.querySelectorAll('.horarios-grid__entry.is-expanded').forEach(function(e) { e.classList.remove('is-expanded'); });
+    if (!isOpen) entry.classList.add('is-expanded');
+  };
+
   function entryHtml(e) {
     var timeStr, endTime;
     if (e.e) { endTime = e.e; timeStr = e.t + ' - ' + endTime; }
     else if (DUR[e.s]) { endTime = addMin(e.t, DUR[e.s]); timeStr = e.t + ' - ' + endTime; }
     else { timeStr = e.t; endTime = e.t; }
-    var h = '<div class="horarios-grid__entry horarios-grid__entry--' + e.c + '" data-activity="' + e.s + '">';
+    var hasWa = NO_WA.indexOf(e.s) === -1;
+    var cls = 'horarios-grid__entry horarios-grid__entry--' + e.c + (hasWa ? ' horarios-grid__entry--expandable' : '');
+    var onclick = hasWa ? ' onclick="window._cpchWaToggle(this)"' : '';
+    var h = '<div class="' + cls + '" data-activity="' + e.s + '"' + onclick + '>';
     h += '<span class="horarios-grid__time">' + timeStr + '</span>';
     h += '<span class="horarios-grid__name">' + e.n + '</span>';
     h += noProfeHtml(e, endTime);
+    if (hasWa) {
+      var msg = encodeURIComponent('Hola, me comunico para consultar disponibilidad para "' + e.n + '" a las ' + e.t);
+      var waUrl = 'https://wa.me/59898514097?text=' + msg;
+      h += '<div class="horarios-grid__wa">';
+      h += '<a class="horarios-grid__wa-btn" href="' + waUrl + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">';
+      h += '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 2C6.495 2 2 6.495 2 12.05c0 1.888.516 3.657 1.413 5.181L2 22l4.878-1.383A10.014 10.014 0 0 0 12.05 22C17.605 22 22 17.505 22 11.95 22 6.495 17.505 2 11.95 2h.1zm0 1.8c4.86 0 8.8 3.94 8.8 8.8 0 4.86-3.94 8.8-8.8 8.8-1.695 0-3.278-.476-4.625-1.301l-.33-.198-3.422.97.984-3.354-.215-.346A8.747 8.747 0 0 1 3.25 11.95c0-4.86 3.94-8.8 8.8-8.8z"/></svg>';
+      h += 'Consultar disponibilidad</a></div>';
+    }
     h += '</div>';
     return h;
   }
