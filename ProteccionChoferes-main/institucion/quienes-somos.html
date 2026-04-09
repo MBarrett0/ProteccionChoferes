@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <base href="/pc/">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_UY">
+  <meta property="og:site_name" content="Centro Protección Choferes de Montevideo">
+  <meta property="og:title" content="Quiénes Somos | Centro Protección Choferes de Montevideo">
+  <meta property="og:description" content="Conoce quienes somos: institución mutualista sin fines de lucro fundada en 1909 al servicio de los conductores de Montevideo.">
+  <meta property="og:url" content="https://proteccionchoferes.org.uy/quienes-somos.html">
+  <meta property="og:image" content="https://proteccionchoferes.org.uy/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Quiénes Somos | Centro Protección Choferes de Montevideo">
+  <meta name="twitter:description" content="Conoce quienes somos: institución mutualista sin fines de lucro fundada en 1909 al servicio de los conductores de Montevideo.">
+  <link rel="canonical" href="https://proteccionchoferes.org.uy/quienes-somos.html">
+  <meta name="description" content="Conoce quienes somos: institución mutualista sin fines de lucro fundada en 1909 al servicio de los conductores de Montevideo.">
+  <title>Quiénes Somos | Centro Protección Choferes de Montevideo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ---------- Quiénes Somos page-scoped styles ---------- */
+    .qs-intro {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    .qs-intro__text { font-size: 1.1rem; line-height: 1.75; color: var(--clr-text); }
+    .qs-intro__year {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .qs-intro__year-num {
+      font-size: 2.6rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .qs-intro__year-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 0.3rem;
+      opacity: 0.85;
+    }
+
+    .qs-mission {
+      background: var(--clr-off-white);
+      border-left: 5px solid var(--clr-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 2rem 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .qs-mission h2 {
+      font-size: 1.5rem;
+      margin: 0 0 1rem;
+      color: var(--clr-primary-dark);
+    }
+    .qs-mission p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--clr-text);
+      margin-bottom: 0.8rem;
+    }
+    .qs-mission p:last-child { margin-bottom: 0; }
+    .qs-mission .qs-quote {
+      font-style: italic;
+      color: var(--clr-text-dark);
+      font-size: 1.05rem;
+    }
+
+    .qs-values { margin-bottom: 3.5rem; }
+    .qs-values h2 { text-align: center; margin-bottom: 2rem; }
+    .qs-values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .qs-value {
+      text-align: center;
+      padding: 2rem 1.25rem 1.75rem;
+      background: var(--clr-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .qs-value:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .qs-value__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+    }
+    .qs-value__icon--sol { background: var(--clr-primary); }
+    .qs-value__icon--com { background: var(--clr-teal); }
+    .qs-value__icon--exc { background: var(--clr-amber); }
+    .qs-value__icon--cmp { background: var(--clr-primary-dark); }
+    .qs-value h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: var(--clr-text-dark);
+    }
+    .qs-value p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--clr-text);
+    }
+
+    .qs-stats-band {
+      background: var(--clr-primary-dark);
+      margin: 0 calc(-1 * clamp(1rem, 4vw, 3rem));
+      padding: 3rem clamp(1rem, 4vw, 3rem);
+      margin-bottom: 3.5rem;
+      border-radius: var(--radius-md);
+    }
+    .qs-stats-band h2 {
+      text-align: center;
+      color: #fff;
+      margin: 0 0 2rem;
+    }
+    .qs-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .qs-stat {
+      padding: 1rem;
+    }
+    .qs-stat__value {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .qs-stat__label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .qs-socios { margin-bottom: 3.5rem; }
+    .qs-socios h2 { margin-bottom: 1.25rem; }
+
+    .qs-cta {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+    }
+    .qs-cta p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .qs-cta .btn { margin: 0 0.5rem; }
+    .qs-cta .btn--white {
+      background: #fff;
+      color: var(--clr-primary-dark);
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .qs-cta .btn--white:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .qs-cta .btn--ghost {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.6);
+      padding: 0.7rem 2rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .qs-cta .btn--ghost:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+
+    @media (max-width: 768px) {
+      .qs-intro { grid-template-columns: 1fr; text-align: center; }
+      .qs-intro__year { margin: 0 auto 1rem; width: 130px; height: 130px; }
+      .qs-intro__year-num { font-size: 2.2rem; }
+      .qs-values-grid { grid-template-columns: repeat(2, 1fr); }
+      .qs-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .qs-mission { padding: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .qs-values-grid { grid-template-columns: 1fr; }
+      .qs-stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .qs-cta .btn--white, .qs-cta .btn--ghost { display: block; width: 100%; margin: 0 0 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" id="site-nav">
+    <div class="nav__container">
+      <a class="nav__logo" href="/pc/" aria-label="Inicio">
+        <img src="images/logo.png" alt="Centro Protección Choferes" onerror="this.style.display='none'">
+      </a>
+      <div class="nav__brand">
+        <span class="nav__brand-name">Centro Protección Choferes</span>
+        <span class="nav__brand-sub">de Montevideo</span>
+      </div>
+            <ul class="nav__menu" role="menubar">
+        <li class="nav__item" role="none">
+          <a class="nav__link" href="/pc/" role="menuitem">Inicio</a>
+        </li>
+        <li class="nav__item" role="none">
+          <a class="nav__link active" href="institucion/quienes-somos.html" role="menuitem">
+            Institución <span class="nav__arrow">&#9660;</span>
+          </a>
+          <ul class="nav__dropdown" role="menu">
+            <li><a class="nav__dropdown-link" href="institucion/quienes-somos.html" role="menuitem">Quiénes Somos</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/autoridades.html" role="menuitem">Autoridades</a></li>
+            <li><a class="nav__dropdown-link" href="institucion/asociarse.html" role="menuitem">Asociarse</a></li>
+          </ul>
+        </li>
+        <li class="nav__item" role="none">
+          <a class="nav__link" href="beneficios/complejo-deportivo.html" role="menuitem">Complejo Deportivo</a>
+        </li>
+        <li class="nav__item" role="none">
+          <a class="nav__link" href="beneficios/parque-social.html" role="menuitem">Parque Social</a>
+        </li>
+        <li class="nav__item" role="none">
+          <a class="nav__link" href="beneficios/convenios.html" role="menuitem">
+            Beneficios <span class="nav__arrow">&#9660;</span>
+          </a>
+          <ul class="nav__dropdown" role="menu">
+            <li><a class="nav__dropdown-link" href="beneficios/juridico.html" role="menuitem">Departamento Jurídico</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/convenios.html" role="menuitem">Convenios</a></li>
+            <li><a class="nav__dropdown-link" href="beneficios/secretaria.html" role="menuitem">Secretaría Administrativa</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a class="nav__cta" href="horarios.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Horarios
+      </a>
+      <button class="nav__hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <!-- MOBILE MENU -->
+    <div class="nav__mobile" id="nav-mobile" role="dialog" aria-label="Menu de navegacion">
+    <a class="nav__mobile-cta" href="horarios.html">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Horarios
+    </a>
+    <a class="nav__mobile-link" href="/pc/">Inicio</a>
+    <a class="nav__mobile-link" href="institucion/quienes-somos.html" data-toggle="sub-institucion">
+      Institución <span>+</span>
+    </a>
+    <div class="nav__mobile-sub" id="sub-institucion">
+      <a class="nav__mobile-sublink" href="institucion/quienes-somos.html">Quiénes Somos</a>
+      <a class="nav__mobile-sublink" href="institucion/autoridades.html">Autoridades</a>
+      <a class="nav__mobile-sublink" href="institucion/asociarse.html">Pre Asociarse</a>
+    </div>
+    <a class="nav__mobile-link" href="beneficios/complejo-deportivo.html">Complejo Deportivo</a>
+    <a class="nav__mobile-link" href="beneficios/parque-social.html">Parque Social</a>
+    <a class="nav__mobile-link" href="beneficios/convenios.html" data-toggle="sub-beneficios">
+      Beneficios <span>+</span>
+    </a>
+    <div class="nav__mobile-sub" id="sub-beneficios">
+      <a class="nav__mobile-sublink" href="beneficios/juridico.html">Departamento Jurídico</a>
+      <a class="nav__mobile-sublink" href="beneficios/convenios.html">Convenios</a>
+      <a class="nav__mobile-sublink" href="beneficios/secretaria.html">Secretaría Administrativa</a>
+    </div>
+  </div>
+
+  <section class="page-hero page-hero--bus">
+    <div class="page-hero__content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/pc/">Inicio</a>
+        <span>/</span>
+        <a href="institucion/quienes-somos.html">Institución</a>
+        <span>/</span>
+        <span class="current">Quiénes Somos</span>
+      </nav>
+      <h1>Quiénes Somos</h1>
+    </div>
+  </section>
+
+  <main class="page-content">
+    <div class="container">
+
+      <!-- Intro with year badge -->
+      <div class="qs-intro reveal">
+        <p class="qs-intro__text">El Centro Protección Choferes de Montevideo es una <strong>institución mutualista sin fines de lucro</strong>, fundada el 20 de octubre de 1909. Agrupa a conductores de vehículos motorizados y afines, ofreciendo beneficios sociales, culturales, deportivos y de seguridad vial a sus asociados y familias.</p>
+        <div class="qs-intro__year">
+          <span class="qs-intro__year-num">1909</span>
+          <span class="qs-intro__year-label">Fundación</span>
+        </div>
+      </div>
+
+      <!-- Mission -->
+      <div class="qs-mission reveal">
+        <h2>Nuestra Misión</h2>
+        <p class="qs-quote">"Nacimos de la necesidad de brindar solidaridad y ayuda mutua a quienes, en los albores del siglo XX, ejercían la difícil tarea de conducir vehículos en un Montevideo en plena transformación urbana. Más de 116 años después, seguimos fieles a ese propósito: proteger, acompañar y servir a cada uno de nuestros socios."</p>
+        <p>Somos una institución que trabaja día a día para garantizar el bienestar de los conductores y sus familias, brindando servicios de salud, asistencia jurídica, recreación, cultura y seguridad vial.</p>
+      </div>
+
+      <!-- Values -->
+      <section class="qs-values reveal">
+        <h2>Nuestros Valores</h2>
+        <div class="qs-values-grid">
+          <div class="qs-value" style="transition-delay: 0s">
+            <div class="qs-value__icon qs-value__icon--sol">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Solidaridad</h3>
+            <p>Protección mutualista entre conductores y sus familias, desde 1909 hasta hoy. Nos cuidamos entre todos porque sabemos que la unión hace la fuerza.</p>
+          </div>
+          <div class="qs-value" style="transition-delay: 0.1s">
+            <div class="qs-value__icon qs-value__icon--com">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3>Comunidad</h3>
+            <p>Una gran familia de conductores montevideanos unidos por los mismos valores y objetivos. Más de un siglo construyendo vínculos genuinos.</p>
+          </div>
+          <div class="qs-value" style="transition-delay: 0.2s">
+            <div class="qs-value__icon qs-value__icon--exc">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3>Excelencia</h3>
+            <p>Más de un siglo de trayectoria nos respalda en cada servicio que brindamos. La calidad no es un objetivo, es un estándar.</p>
+          </div>
+          <div class="qs-value" style="transition-delay: 0.3s">
+            <div class="qs-value__icon qs-value__icon--cmp">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Compromiso</h3>
+            <p>Presencia ininterrumpida en la sociedad uruguaya, evento por evento, año por año. Nuestro compromiso con el conductor nunca se detiene.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Band -->
+      <div class="qs-stats-band reveal">
+        <h2>Datos Institucionales</h2>
+        <div class="qs-stats-grid">
+          <div class="qs-stat">
+            <div class="qs-stat__value">20/10/1909</div>
+            <div class="qs-stat__label">Fecha de Fundación</div>
+          </div>
+          <div class="qs-stat">
+            <div class="qs-stat__value">Mutualista</div>
+            <div class="qs-stat__label">Sin fines de lucro</div>
+          </div>
+          <div class="qs-stat">
+            <div class="qs-stat__value">Soriano 1227</div>
+            <div class="qs-stat__label">Sede Social, Montevideo</div>
+          </div>
+          <div class="qs-stat">
+            <div class="qs-stat__value">2908 1207</div>
+            <div class="qs-stat__label">Teléfono de contacto</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Member Categories -->
+      <section class="qs-socios reveal">
+        <h2>Categorías de Socios</h2>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Categoría</th>
+                <th>Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Activos</strong></td>
+                <td>Conductores profesionales en actividad</td>
+              </tr>
+              <tr>
+                <td><strong>Adjuntos</strong></td>
+                <td>Familiares directos de socios activos</td>
+              </tr>
+              <tr>
+                <td><strong>Suscriptores</strong></td>
+                <td>Afiliados con cuota de suscripción</td>
+              </tr>
+              <tr>
+                <td><strong>Suscriptor Cadete</strong></td>
+                <td>Jóvenes en proceso de afiliación</td>
+              </tr>
+              <tr>
+                <td><strong>Protector</strong></td>
+                <td>Socios honorarios o benefactores</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="qs-cta reveal">
+        <p>Sumate a la comunidad de conductores más grande de Uruguay</p>
+        <a href="institucion/asociarse.html" class="btn--white">Asociarse</a>
+        <a href="institucion/autoridades.html" class="btn--ghost">Ver Autoridades</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <img src="images/logo.png" alt="CPCH" style="height:56px;width:auto;margin-bottom:1rem;" onerror="this.style.display='none'">
+            <p class="footer__desc">Institución mutualista sin fines de lucro al servicio de los conductores de Montevideo desde 1909. De todos y para todos.</p>
+            <div class="footer__socials">
+              <a class="footer__social-link" href="https://www.instagram.com/cpchmontevideo/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a class="footer__social-link" href="https://www.facebook.com/proteccionchoferes/" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__col-title">Institución</h4>
+            <nav class="footer__links">
+              <a class="footer__link" href="institucion/quienes-somos.html">Quiénes Somos</a>
+              <a class="footer__link" href="institucion/autoridades.html">Autoridades</a>
+              <a class="footer__link" href="institucion/asociarse.html">Pre Asociarse</a>
+            </nav>
+          </div>
+          <div>
+            <h4 class="footer__col-title">Beneficios</h4>
+            <nav class="footer__links">
+              <a class="footer__link" href="beneficios/area-salud.html">Área Salud</a>
+              <a class="footer__link" href="beneficios/complejo-deportivo.html">Complejo Deportivo</a>
+              <a class="footer__link" href="beneficios/parque-social.html">Parque Social</a>
+              <a class="footer__link" href="beneficios/convenios.html">Convenios</a>
+            </nav>
+          </div>
+          <div>
+            <h4 class="footer__col-title">Contacto</h4>
+            <div class="footer__contact-item"><strong>Tel:</strong> <span>2908 1207</span></div>
+            <div class="footer__contact-item"><strong>WA:</strong> <span>098 514 097</span></div>
+            <div class="footer__contact-item"><strong>Email:</strong> <span>info@proteccionchoferes.org.uy</span></div>
+            <div class="footer__contact-item"><strong>Sede:</strong> <span>Soriano 1227</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2025 Centro Protección Choferes de Montevideo. Todos los derechos reservados.</p>
+      <p class="footer__credit">Departamento de Informática</p>
+    </div>
+  </footer>
+  <button class="scroll-top" id="scroll-top" aria-label="Volver arriba">&#8593;</button>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

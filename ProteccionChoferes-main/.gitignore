@@ -1,0 +1,25 @@
+# Python scripts (temporary)
+fix_accents.py
+fix_overreplacements.py
+gen_pages.py
+gen_pages2.py
+
+# Playwright / development screenshots
+.playwright-mcp/
+*.png
+!docs/*.png
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+*.swp
+
+# Claude Code internal
+.claude/
