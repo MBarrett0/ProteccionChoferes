@@ -2613,8 +2613,10 @@ counter-increment: decalogo-counter;
 
 /* Mobile */
 @media (max-width: 480px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  .stat-number { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  .stat-number { font-size: clamp(1.4rem, 6vw, 2rem); }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.05em; }
+  .stat-item { padding: 0.75rem 0.25rem; }
   .convenios-grid { grid-template-columns: repeat(2, 1fr); }
   .info-cards { grid-template-columns: 1fr; }
   .person-cards, .person-cards--4col { grid-template-columns: repeat(2, 1fr); }
