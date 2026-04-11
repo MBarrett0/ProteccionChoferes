@@ -1609,8 +1609,9 @@ function getHeroLogoMetrics() {
   const navEl   = document.getElementById('site-nav');
   const navCont = navEl ? navEl.querySelector('.nav__container') : null;
   const navPad  = navCont ? parseFloat(getComputedStyle(navCont).paddingLeft) : 16;
+  const navContLeft = navCont ? navCont.getBoundingClientRect().left : 0;
   const navH    = navEl ? navEl.offsetHeight : 80;
-  return { start, end, navPad, navH };
+  return { start, end, navPad, navContLeft, navH };
 }
 
 function initHeroScrollAnimation() {
@@ -1634,13 +1635,13 @@ function initHeroScrollAnimation() {
 
   function applyLogoPosition(p) {
     const ep = ease(p);
-    const { start, end, navPad, navH } = metrics;
+    const { start, end, navPad, navContLeft, navH } = metrics;
     const size = lerp(start, end, ep);
 
     const startX = (window.innerWidth  - start) / 2;
     const startY = (window.innerHeight * 0.42) - (start / 2);
-    // Straight up — X stays centered, only Y changes
-    const endX   = (window.innerWidth - end) / 2;
+    // Logo lands at the nav logo slot (left edge of nav container + padding)
+    const endX   = navContLeft + navPad;
     const endY   = (navH - end) / 2;
 
     flyLogo.style.left   = lerp(startX, endX, ep) + 'px';

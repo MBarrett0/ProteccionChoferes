@@ -628,9 +628,13 @@ body.is-home { padding-top: 0; }
 .is-home .nav__brand {
   display: none;
 }
-/* Links push to right; flying logo appears centered above */
+/* Flying logo occupies the left slot; push links to the right */
 .is-home .nav__container {
   justify-content: flex-end;
+}
+/* Remove auto-margin so items don't drift into the logo's landing zone */
+.is-home .nav__menu {
+  margin-left: 0;
 }
 
 /* === HERO CENTER TEXT === */
