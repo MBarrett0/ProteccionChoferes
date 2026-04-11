@@ -1640,8 +1640,8 @@ function initHeroScrollAnimation() {
 
     const startX = (window.innerWidth  - start) / 2;
     const startY = (window.innerHeight * 0.42) - (start / 2);
-    // Logo lands at the nav logo slot (left edge of nav container + padding)
-    const endX   = navContLeft + navPad;
+    // Logo goes straight up, stays horizontally centered
+    const endX   = (window.innerWidth - end) / 2;
     const endY   = (navH - end) / 2;
 
     flyLogo.style.left   = lerp(startX, endX, ep) + 'px';
