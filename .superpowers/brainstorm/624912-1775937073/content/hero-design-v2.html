@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diseño Hero CPCH v2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #f1f5f9; }
+  h2 { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.82rem; color: #94a3b8; margin-bottom: 1.5rem; }
+  .section-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #64748b; margin-bottom: 0.6rem; }
+  .demo-wrap { padding: 1.5rem; max-width: 860px; margin: 0 auto; }
+
+  /* === DEMO CONTAINER === */
+  .demo-container {
+    position: relative;
+    height: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(160deg, rgba(0,31,107,0.95) 0%, rgba(0,13,61,0.9) 100%);
+  }
+  /* dot texture */
+  .demo-container::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+  }
+
+  /* === SIMULATED NAV === */
+  .sim-nav {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 56px;
+    display: flex; align-items: center;
+    padding: 0 20px;
+    z-index: 10;
+    background: transparent;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .sim-nav.solid {
+    background: #0047FF;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+
+  /* Nav brand — starts invisible, appears as logo arrives */
+  .sim-nav-brand {
+    display: flex; flex-direction: column; line-height: 1.2;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    margin-left: 0.5rem;
+  }
+  .sim-nav.solid .sim-nav-brand { opacity: 1; transform: translateX(0); }
+  .sim-nav-brand-main { font-size: 0.62rem; font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 0.04em; }
+  .sim-nav-brand-sub { font-size: 0.52rem; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .sim-nav-links {
+    margin-left: auto; font-size: 0.6rem;
+    color: rgba(255,255,255,0.5); display: flex; gap: 1rem; align-items: center;
+  }
+  .sim-nav-cta {
+    background: rgba(255,255,255,0.15); color: white;
+    font-size: 0.55rem; font-weight: 700; padding: 0.25rem 0.7rem;
+    border-radius: 3px; text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .sim-nav.solid .sim-nav-cta { background: #F2AC2C; color: #333; border-color: transparent; }
+
+  /* === FLYING LOGO (the single element that moves) === */
+  .flying-logo {
+    position: absolute;
+    /* starts centered */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center center;
+    z-index: 20;
+    will-change: transform, left, top;
+    transition: none; /* controlled by JS */
+  }
+  .flying-logo__img {
+    width: 80px; height: 80px;
+    background: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  /* === HERO TEXT (stays centered, fades out) === */
+  .hero-text {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    margin-top: 56px; /* below the flying logo */
+    pointer-events: none;
+    z-index: 5;
+  }
+  .hero-name {
+    color: white; font-weight: 800; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  }
+  .hero-sub {
+    color: rgba(255,255,255,0.6); font-size: 0.68rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+  }
+  .hero-btn {
+    background: #F2AC2C; color: #333; font-size: 0.65rem; font-weight: 700;
+    padding: 0.4rem 1.2rem; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-top: 0.25rem; display: inline-block;
+    cursor: pointer;
+  }
+  .hero-year {
+    color: rgba(255,255,255,0.35); font-size: 0.58rem;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-top: -0.1rem;
+  }
+
+  /* === SLIDER === */
+  .slider-wrap { margin-bottom: 1.5rem; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: #64748b; margin-bottom: 0.5rem; }
+  .slider-track { display: flex; align-items: center; gap: 0.75rem; }
+  .slider-track span { font-size: 0.75rem; color: #94a3b8; min-width: 2.5rem; text-align: center; font-weight: 600; }
+  input[type=range] { flex: 1; accent-color: #0047FF; cursor: pointer; }
+
+  /* === INFO === */
+  .info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.25rem; }
+  .info-box { background: rgba(255,255,255,0.04); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255,255,255,0.07); }
+  .info-box h4 { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 0.5rem; }
+  .info-box p { font-size: 0.78rem; color: #94a3b8; line-height: 1.55; }
+  .highlight { color: #93c5fd; font-weight: 600; }
+
+  .approve-btn {
+    display: block; width: 100%; margin-top: 1.5rem;
+    background: #0047FF; color: white; border: none; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 700; padding: 0.9rem;
+    cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .approve-btn:hover { background: #001F6B; }
+  .approve-btn.selected { background: #16a34a; }
+</style>
+</head>
+<body>
+<div class="demo-wrap">
+
+  <h2>Hero scroll-driven — movimiento diagonal</h2>
+  <p class="subtitle">El logo parte del centro y viaja en diagonal hacia su posición en el navbar (arriba-izquierda)</p>
+
+  <div class="section-label">Demo interactivo — arrastrá el slider</div>
+  <div class="demo-container" id="demoContainer">
+
+    <!-- Nav -->
+    <nav class="sim-nav" id="simNav">
+      <div style="width:0px;height:32px;display:flex;align-items:center;" id="navLogoSlot">
+        <!-- logo llega acá -->
+      </div>
+      <div class="sim-nav-brand" id="simBrand">
+        <div class="sim-nav-brand-main">Centro Protección Choferes</div>
+        <div class="sim-nav-brand-sub">de Montevideo</div>
+      </div>
+      <div class="sim-nav-links">
+        <span>Institución</span><span>Beneficios</span>
+        <span class="sim-nav-cta">Horarios</span>
+      </div>
+    </nav>
+
+    <!-- Flying logo (el único elemento que se mueve) -->
+    <div class="flying-logo" id="flyingLogo">
+      <div class="flying-logo__img" id="logoImg">🛡️</div>
+    </div>
+
+    <!-- Hero text (fades out, no se mueve) -->
+    <div class="hero-text" id="heroText">
+      <div class="hero-name" id="heroName">Centro Protección Choferes</div>
+      <div class="hero-sub" id="heroSub">de Montevideo</div>
+      <div class="hero-btn" id="heroBtn">Pre-asociate →</div>
+      <div class="hero-year" id="heroYear">1909 – 2026</div>
+    </div>
+
+  </div>
+
+  <div class="slider-wrap">
+    <div class="slider-label">
+      <span>🔝 Inicio de página</span>
+      <span>Final del hero ⬇</span>
+    </div>
+    <div class="slider-track">
+      <span id="pctLabel">0%</span>
+      <input type="range" id="scrollSlider" min="0" max="100" value="0">
+    </div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-box">
+      <h4>Trayectoria del logo</h4>
+      <p>
+        Parte del <span class="highlight">centro exacto</span> del hero.<br>
+        Viaja en diagonal hacia la <span class="highlight">esquina superior-izquierda</span> (posición del logo en el navbar).<br>
+        Simultáneamente achica de <span class="highlight">80px → 32px</span>.<br>
+        El texto brand del navbar aparece cuando llega.
+      </p>
+    </div>
+    <div class="info-box">
+      <h4>Texto del hero</h4>
+      <p>
+        "Centro Protección Choferes" y "de Montevideo" <span class="highlight">se quedan centrados</span> y se desvanecen — no acompañan al logo en su viaje.<br>
+        El botón Pre-asociate desaparece antes (al 40% del scroll).<br>
+        "117 años..." va a la tagline bar debajo del hero.
+      </p>
+    </div>
+  </div>
+
+  <button class="approve-btn" id="approveBtn" onclick="this.textContent='✓ Aprobado'; this.classList.add('selected'); window.__choice='approved';">
+    Aprobar diseño
+  </button>
+
+</div>
+
+<script>
+const slider = document.getElementById('scrollSlider');
+const pctLabel = document.getElementById('pctLabel');
+const simNav = document.getElementById('simNav');
+const flyingLogo = document.getElementById('flyingLogo');
+const logoImg = document.getElementById('logoImg');
+const heroText = document.getElementById('heroText');
+const heroName = document.getElementById('heroName');
+const heroSub = document.getElementById('heroSub');
+const heroBtn = document.getElementById('heroBtn');
+const heroYear = document.getElementById('heroYear');
+const demoContainer = document.getElementById('demoContainer');
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+function update() {
+  const p = slider.value / 100;
+  const ep = easeInOut(p);
+  pctLabel.textContent = Math.round(p * 100) + '%';
+
+  const containerRect = demoContainer.getBoundingClientRect();
+  const W = containerRect.width;
+  const H = containerRect.height;
+
+  // Logo start: center of container
+  const startX = W / 2;
+  const startY = H / 2;
+
+  // Logo end: nav position (left padding 20px + half logo size 16px = 36px from left, 28px from top = nav height/2)
+  const endLogoSize = 32;
+  const endX = 20 + endLogoSize / 2;  // left: 20px padding + center of 32px logo
+  const endY = 28;                     // center of 56px nav
+
+  // Current logo position (center of element)
+  const curX = lerp(startX, endX, ep);
+  const curY = lerp(startY, endY, ep);
+
+  // Logo size
+  const startSize = 80;
+  const curSize = lerp(startSize, endLogoSize, ep);
+
+  // Position the flying logo (top-left corner = center - half size)
+  flyingLogo.style.left = (curX - curSize/2) + 'px';
+  flyingLogo.style.top = (curY - curSize/2) + 'px';
+  flyingLogo.style.transform = 'none';
+  logoImg.style.width = curSize + 'px';
+  logoImg.style.height = curSize + 'px';
+  logoImg.style.fontSize = (curSize * 0.45) + 'px';
+  logoImg.style.boxShadow = `0 ${lerp(8,2,ep)}px ${lerp(32,8,ep)}px rgba(0,0,0,${lerp(0.4,0.15,ep)})`;
+
+  // Nav solid state
+  if (p > 0.35) { simNav.classList.add('solid'); } else { simNav.classList.remove('solid'); }
+
+  // Reserve space for logo in nav (so brand text doesn't overlap)
+  document.getElementById('navLogoSlot').style.width = (p > 0.35 ? endLogoSize + 4 : 0) + 'px';
+
+  // Hero text fades — stays in place
+  heroName.style.opacity = Math.max(0, 1 - ep * 1.6);
+  heroSub.style.opacity  = Math.max(0, 1 - ep * 2.2);
+  heroBtn.style.opacity  = Math.max(0, 1 - ep * 2.5);
+  heroBtn.style.transform = `translateY(${ep * 12}px)`;
+  heroYear.style.opacity  = Math.max(0, 1 - ep * 2.0);
+
+  // Hero text block slight upward drift
+  heroText.style.transform = `translate(-50%, calc(-50% + ${lerp(56, 56 + 20, ep)}px))`;
+}
+
+slider.addEventListener('input', update);
+update();
+</script>
+</body>
+</html>

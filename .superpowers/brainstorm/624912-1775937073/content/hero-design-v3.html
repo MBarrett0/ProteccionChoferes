@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero CPCH v3</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #f1f5f9; }
+  .wrap { padding: 1.5rem; max-width: 960px; margin: 0 auto; }
+  h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.82rem; color: #94a3b8; margin-bottom: 1.25rem; }
+  .section-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #64748b; margin-bottom: 0.6rem; }
+
+  /* === LAYOUT: dos demos en paralelo === */
+  .demos-row {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1.25rem;
+    align-items: start;
+    margin-bottom: 1.25rem;
+  }
+
+  /* === SHARED HERO BACKGROUND STYLE === */
+  .demo-hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(0,31,107,0.95) 0%, rgba(0,13,61,0.92) 100%);
+  }
+  .demo-hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* =========================================
+     DESKTOP DEMO
+  ========================================= */
+  .desktop-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+  .desktop-label::before { content: '🖥'; font-size: 0.75rem; }
+
+  .demo-d {
+    position: relative;
+    height: 440px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* Desktop nav */
+  .d-nav {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 60px;
+    display: flex; align-items: center; padding: 0 24px;
+    z-index: 10;
+    background: transparent;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .d-nav.solid { background: #0047FF; box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+  .d-nav-logo-slot { height: 40px; display: flex; align-items: center; width: 0; overflow: visible; }
+  .d-nav-brand {
+    display: flex; flex-direction: column; line-height: 1.2;
+    margin-left: 0.5rem; opacity: 0;
+    transition: opacity 0.25s, transform 0.25s;
+    transform: translateX(-6px);
+  }
+  .d-nav.solid .d-nav-brand { opacity: 1; transform: translateX(0); }
+  .d-nav-brand-main { font-size: 0.65rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.04em; }
+  .d-nav-brand-sub  { font-size: 0.52rem; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; }
+  .d-nav-links { margin-left: auto; display: flex; align-items: center; gap: 1rem; font-size: 0.6rem; color: rgba(255,255,255,0.5); }
+  .d-nav-cta {
+    padding: 0.25rem 0.7rem; border-radius: 3px; font-size: 0.55rem; font-weight: 700;
+    text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8);
+  }
+  .d-nav.solid .d-nav-cta { background: #F2AC2C; color: #333; border-color: transparent; }
+
+  /* Desktop flying logo */
+  .d-flying {
+    position: absolute; z-index: 20;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .d-flying-img {
+    background: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.8rem;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  /* Desktop hero text */
+  .d-hero-text {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, calc(-50% + 90px));
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 0.55rem;
+    z-index: 5; width: 85%;
+  }
+  .d-name { color: #fff; font-weight: 800; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.05em; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+  .d-sub  { color: rgba(255,255,255,0.6); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; }
+  .d-btn  { background: #F2AC2C; color: #333; font-size: 0.68rem; font-weight: 700; padding: 0.45rem 1.3rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.15rem; }
+  .d-year { color: rgba(255,255,255,0.3); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* =========================================
+     MOBILE DEMO
+  ========================================= */
+  .mobile-col { display: flex; flex-direction: column; }
+  .mobile-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+  .mobile-label::before { content: '📱'; font-size: 0.75rem; }
+
+  /* Phone shell */
+  .phone-shell {
+    background: #1e293b;
+    border-radius: 28px;
+    border: 2px solid rgba(255,255,255,0.12);
+    padding: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .phone-notch {
+    width: 60px; height: 10px; background: #1e293b;
+    border-radius: 0 0 8px 8px; margin: 0 auto 6px;
+    border: 2px solid rgba(255,255,255,0.08); border-top: none;
+  }
+  .phone-screen {
+    position: relative;
+    height: 380px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  /* Mobile nav */
+  .m-nav {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 44px;
+    display: flex; align-items: center; padding: 0 14px;
+    z-index: 10;
+    background: transparent;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  .m-nav.solid { background: #0047FF; box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+  .m-nav-logo-slot { height: 28px; display: flex; align-items: center; width: 0; overflow: visible; }
+  .m-nav-hamburger { margin-left: auto; display: flex; flex-direction: column; gap: 3px; cursor: pointer; }
+  .m-nav-hamburger span { display: block; width: 18px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 1px; }
+
+  /* Mobile flying logo */
+  .m-flying {
+    position: absolute; z-index: 20;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .m-flying-img {
+    background: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.6rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+  }
+
+  /* Mobile hero text */
+  .m-hero-text {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, calc(-50% + 68px));
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+    z-index: 5; width: 88%;
+  }
+  .m-name { color: #fff; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+  .m-sub  { color: rgba(255,255,255,0.6); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; }
+  .m-btn  { background: #F2AC2C; color: #333; font-size: 0.58rem; font-weight: 700; padding: 0.38rem 0.9rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.03em; margin-top: 0.1rem; }
+  .m-year { color: rgba(255,255,255,0.28); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* === SLIDER === */
+  .slider-section { margin-bottom: 1.5rem; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: #64748b; margin-bottom: 0.45rem; }
+  .slider-track { display: flex; align-items: center; gap: 0.75rem; }
+  .slider-track em { font-size: 0.75rem; color: #93c5fd; min-width: 2.5rem; text-align: center; font-weight: 700; font-style: normal; }
+  input[type=range] { flex: 1; accent-color: #0047FF; cursor: pointer; }
+
+  /* approve */
+  .approve-btn {
+    display: block; width: 100%; margin-top: 1.25rem;
+    background: #0047FF; color: white; border: none; border-radius: 8px;
+    font-size: 0.9rem; font-weight: 700; padding: 0.85rem;
+    cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .approve-btn:hover { background: #001F6B; }
+  .approve-btn.ok { background: #16a34a; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h2>Hero animado — logo grande · movimiento diagonal</h2>
+  <p class="subtitle">Desktop y mobile en paralelo. Arrastrá el slider para simular el scroll.</p>
+
+  <!-- SLIDER (global, controla ambos) -->
+  <div class="slider-section">
+    <div class="slider-label"><span>⬆ Inicio de página</span><span>Final del hero ⬇</span></div>
+    <div class="slider-track">
+      <em id="pctLabel">0%</em>
+      <input type="range" id="slider" min="0" max="100" value="0">
+    </div>
+  </div>
+
+  <div class="demos-row">
+
+    <!-- ===== DESKTOP ===== -->
+    <div>
+      <div class="desktop-label">Desktop</div>
+      <div class="demo-d" id="demoD">
+        <div class="demo-hero-bg"></div>
+
+        <nav class="d-nav" id="dNav">
+          <div class="d-nav-logo-slot" id="dNavSlot"></div>
+          <div class="d-nav-brand" id="dBrand">
+            <div class="d-nav-brand-main">Centro Protección Choferes</div>
+            <div class="d-nav-brand-sub">de Montevideo</div>
+          </div>
+          <div class="d-nav-links">
+            <span>Institución</span><span>Beneficios</span><span>Eventos</span>
+            <span class="d-nav-cta">Horarios</span>
+          </div>
+        </nav>
+
+        <div class="d-flying" id="dFlying">
+          <div class="d-flying-img" id="dLogoImg">🛡️</div>
+        </div>
+
+        <div class="d-hero-text" id="dHeroText">
+          <div class="d-name" id="dName">Centro Protección Choferes</div>
+          <div class="d-sub" id="dSub">de Montevideo</div>
+          <div class="d-btn" id="dBtn">Pre-asociate →</div>
+          <div class="d-year" id="dYear">1909 – 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MOBILE ===== -->
+    <div class="mobile-col">
+      <div class="mobile-label">Mobile</div>
+      <div class="phone-shell">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" id="demoM">
+          <div class="demo-hero-bg"></div>
+
+          <nav class="m-nav" id="mNav">
+            <div class="m-nav-logo-slot" id="mNavSlot"></div>
+            <div class="m-nav-hamburger">
+              <span></span><span></span><span></span>
+            </div>
+          </nav>
+
+          <div class="m-flying" id="mFlying">
+            <div class="m-flying-img" id="mLogoImg">🛡️</div>
+          </div>
+
+          <div class="m-hero-text" id="mHeroText">
+            <div class="m-name" id="mName">Centro Protección Choferes</div>
+            <div class="m-sub" id="mSub">de Montevideo</div>
+            <div class="m-btn" id="mBtn">Pre-asociate →</div>
+            <div class="m-year" id="mYear">1909 – 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /demos-row -->
+
+  <button class="approve-btn" id="approveBtn"
+    onclick="this.textContent='✓ Aprobado — continuamos'; this.classList.add('ok');">
+    Aprobar diseño
+  </button>
+
+</div>
+
+<script>
+const slider = document.getElementById('slider');
+const pctLabel = document.getElementById('pctLabel');
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+
+// ---- DESKTOP config ----
+const D = {
+  container: document.getElementById('demoD'),
+  nav:       document.getElementById('dNav'),
+  flying:    document.getElementById('dFlying'),
+  logoImg:   document.getElementById('dLogoImg'),
+  heroText:  document.getElementById('dHeroText'),
+  name:      document.getElementById('dName'),
+  sub:       document.getElementById('dSub'),
+  btn:       document.getElementById('dBtn'),
+  year:      document.getElementById('dYear'),
+  navSlot:   document.getElementById('dNavSlot'),
+  NAV_H:     60,
+  START_SIZE: 140,  // logo starts big
+  END_SIZE:   36,
+  END_LOGO_LEFT_PAD: 24,
+};
+
+// ---- MOBILE config ----
+const M = {
+  container: document.getElementById('demoM'),
+  nav:       document.getElementById('mNav'),
+  flying:    document.getElementById('mFlying'),
+  logoImg:   document.getElementById('mLogoImg'),
+  heroText:  document.getElementById('mHeroText'),
+  name:      document.getElementById('mName'),
+  sub:       document.getElementById('mSub'),
+  btn:       document.getElementById('mBtn'),
+  year:      document.getElementById('mYear'),
+  navSlot:   document.getElementById('mNavSlot'),
+  NAV_H:     44,
+  START_SIZE: 100,
+  END_SIZE:   28,
+  END_LOGO_LEFT_PAD: 14,
+};
+
+function updateDevice(cfg, p) {
+  const ep = ease(p);
+  const rect = cfg.container.getBoundingClientRect();
+  const W = rect.width;
+  const H = rect.height;
+
+  // Logo start: centered horizontally, vertically at ~40% of container
+  const startX = W / 2;
+  const startY = H * 0.42;
+
+  // Logo end: left padding + half logo size, vertically at nav center
+  const endSize = cfg.END_SIZE;
+  const endX = cfg.END_LOGO_LEFT_PAD + endSize / 2;
+  const endY = cfg.NAV_H / 2;
+
+  const curSize = lerp(cfg.START_SIZE, endSize, ep);
+  const curX    = lerp(startX, endX, ep);
+  const curY    = lerp(startY, endY, ep);
+
+  // Position flying logo
+  cfg.flying.style.left   = (curX - curSize/2) + 'px';
+  cfg.flying.style.top    = (curY - curSize/2) + 'px';
+  cfg.flying.style.width  = curSize + 'px';
+  cfg.flying.style.height = curSize + 'px';
+
+  cfg.logoImg.style.width    = curSize + 'px';
+  cfg.logoImg.style.height   = curSize + 'px';
+  cfg.logoImg.style.fontSize = (curSize * 0.48) + 'px';
+  cfg.logoImg.style.boxShadow = `0 ${lerp(12,2,ep)}px ${lerp(48,8,ep)}px rgba(0,0,0,${lerp(0.5,0.15,ep)})`;
+
+  // Nav
+  if (p > 0.35) {
+    cfg.nav.classList.add('solid');
+    cfg.navSlot.style.width = (endSize + 4) + 'px';
+  } else {
+    cfg.nav.classList.remove('solid');
+    cfg.navSlot.style.width = '0px';
+  }
+
+  // Hero text — stays centered, fades at different rates
+  const textOffsetY = lerp(0, 20, ep);
+  cfg.heroText.style.transform = `translate(-50%, calc(-50% + ${cfg.START_SIZE * 0.7 + textOffsetY}px))`;
+  cfg.name.style.opacity = Math.max(0, 1 - ep * 1.7);
+  cfg.sub.style.opacity  = Math.max(0, 1 - ep * 2.3);
+  cfg.btn.style.opacity  = Math.max(0, 1 - ep * 2.6);
+  cfg.btn.style.transform = `translateY(${ep * 10}px)`;
+  cfg.year.style.opacity  = Math.max(0, 1 - ep * 2.0);
+}
+
+function update() {
+  const p = slider.value / 100;
+  pctLabel.textContent = Math.round(p * 100) + '%';
+  updateDevice(D, p);
+  updateDevice(M, p);
+}
+
+slider.addEventListener('input', update);
+// init on load after layout
+requestAnimationFrame(() => { requestAnimationFrame(update); });
+window.addEventListener('resize', update);
+</script>
+</body>
+</html>

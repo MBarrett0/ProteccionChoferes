@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diseño Hero CPCH</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #f1f5f9; }
+
+  h2 { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.82rem; color: #94a3b8; margin-bottom: 1.5rem; }
+  .section-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #64748b; margin-bottom: 0.6rem; }
+
+  .demo-wrap { padding: 1.5rem; max-width: 800px; margin: 0 auto; }
+
+  /* === INTERACTIVE DEMO === */
+  .demo-container { position: relative; height: 380px; border-radius: 12px; overflow: hidden; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.08); }
+
+  /* Simulated nav */
+  .sim-nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 10;
+    transition: background 0.35s ease;
+    background: transparent;
+  }
+  .sim-nav.solid { background: #0047FF; box-shadow: 0 2px 16px rgba(0,0,0,0.3); }
+  .sim-nav-logo {
+    display: flex; align-items: center; gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .sim-nav.solid .sim-nav-logo { opacity: 1; }
+  .sim-nav-logo-img {
+    width: 28px; height: 28px; background: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0;
+  }
+  .sim-nav-brand { line-height: 1.2; }
+  .sim-nav-brand-main { font-size: 0.6rem; font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 0.04em; }
+  .sim-nav-brand-sub { font-size: 0.5rem; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; }
+  .sim-nav-links { margin-left: auto; font-size: 0.6rem; color: rgba(255,255,255,0.5); display: flex; gap: 1rem; }
+  .sim-nav-cta { background: #F2AC2C; color: #333; font-size: 0.55rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 3px; text-transform: uppercase; }
+
+  /* Hero background */
+  .sim-hero {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(0,31,107,0.92) 0%, rgba(0,13,61,0.88) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sim-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" fill="none"/><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.06)"/></svg>');
+    opacity: 0.5;
+  }
+
+  /* Hero centered content */
+  .sim-hero-content {
+    position: relative; z-index: 5;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    text-align: center;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform-origin: top center;
+  }
+  .sim-hero-logo {
+    width: 72px; height: 72px; background: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform-origin: top center;
+  }
+  .sim-hero-name {
+    color: white; font-weight: 800; font-size: 0.95rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+  }
+  .sim-hero-sub {
+    color: rgba(255,255,255,0.6); font-size: 0.65rem;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    transition: opacity 0.25s ease, transform 0.35s ease;
+  }
+  .sim-hero-btn {
+    background: #F2AC2C; color: #333; font-size: 0.65rem; font-weight: 700;
+    padding: 0.4rem 1.1rem; border-radius: 4px; text-transform: uppercase;
+    letter-spacing: 0.05em; text-decoration: none; margin-top: 0.2rem;
+    display: inline-block;
+    transition: opacity 0.2s ease, transform 0.3s ease;
+  }
+  .sim-hero-year {
+    color: rgba(255,255,255,0.4); font-size: 0.58rem; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-top: -0.2rem;
+    transition: opacity 0.2s ease;
+  }
+
+  /* Scrolled state */
+  .sim-hero-content.scrolled {
+    transform: scale(0.3) translateY(-280px);
+    opacity: 0;
+  }
+
+  /* Slider control */
+  .slider-wrap { margin-bottom: 1.5rem; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: #64748b; margin-bottom: 0.4rem; }
+  input[type=range] {
+    width: 100%; accent-color: #0047FF; cursor: pointer;
+    height: 4px; border-radius: 2px;
+  }
+
+  /* Entrance animation states */
+  .entrance-demo {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .entrance-step {
+    background: linear-gradient(160deg, rgba(0,31,107,0.9), rgba(0,13,61,0.85));
+    border-radius: 10px; padding: 1rem; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+  }
+  .entrance-step::after {
+    content: attr(data-label);
+    position: absolute; top: 0.4rem; left: 0.5rem;
+    font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+  }
+  .step-logo { width: 44px; height: 44px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+  .step-name { color: white; font-weight: 800; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .step-sub { color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .step-btn { background: #F2AC2C; color: #333; font-size: 0.55rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 3px; text-transform: uppercase; margin-top: 0.1rem; }
+
+  .faded { opacity: 0.15; }
+  .timing-bar { display: flex; gap: 0; margin-top: 0.5rem; width: 100%; height: 3px; border-radius: 2px; overflow: hidden; }
+  .t1 { background: #0047FF; flex: 1; }
+  .t2 { background: #00CFFF; flex: 1; }
+  .t3 { background: #A0BFFF; flex: 1; }
+  .t4 { background: #F2AC2C; flex: 1; }
+
+  /* Info box */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .info-box { background: rgba(255,255,255,0.04); border-radius: 8px; padding: 1rem; border: 1px solid rgba(255,255,255,0.07); }
+  .info-box h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 0.5rem; }
+  .info-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .info-box li { font-size: 0.78rem; color: #cbd5e1; padding-left: 1rem; position: relative; }
+  .info-box li::before { content: '→'; position: absolute; left: 0; color: #0047FF; font-size: 0.65rem; }
+
+  .note { background: rgba(242,172,44,0.08); border: 1px solid rgba(242,172,44,0.2); border-radius: 8px; padding: 0.9rem 1rem; font-size: 0.78rem; color: #fde68a; margin-top: 1rem; line-height: 1.5; }
+  .note strong { color: #F2AC2C; }
+</style>
+</head>
+<body>
+<div class="demo-wrap">
+
+  <h2>Diseño: Hero animado con scroll-driven</h2>
+  <p class="subtitle">Mové el slider para ver cómo se comporta la animación al scrollear</p>
+
+  <!-- INTERACTIVE SCROLL DEMO -->
+  <div class="section-label">Demo interactivo — scroll progress</div>
+  <div class="demo-container">
+    <nav class="sim-nav" id="simNav">
+      <div class="sim-nav-logo">
+        <div class="sim-nav-logo-img">🛡️</div>
+        <div class="sim-nav-brand">
+          <div class="sim-nav-brand-main">Centro Protección Choferes</div>
+          <div class="sim-nav-brand-sub">de Montevideo</div>
+        </div>
+      </div>
+      <div class="sim-nav-links">
+        <span>Institución</span><span>Beneficios</span>
+        <span class="sim-nav-cta">Horarios</span>
+      </div>
+    </nav>
+    <div class="sim-hero">
+      <div class="sim-hero-content" id="simContent">
+        <div class="sim-hero-logo" id="simLogo">🛡️</div>
+        <div class="sim-hero-name" id="simName">Centro Protección Choferes</div>
+        <div class="sim-hero-sub" id="simSub">de Montevideo</div>
+        <a class="sim-hero-btn" id="simBtn">Pre-asociate →</a>
+        <div class="sim-hero-year" id="simYear">1909 – 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-wrap">
+    <div class="slider-label"><span>⬆ Arriba de la página</span><span>Abajo ⬇</span></div>
+    <input type="range" id="scrollSlider" min="0" max="100" value="0">
+  </div>
+
+  <!-- ENTRANCE SEQUENCE -->
+  <div class="section-label" style="margin-top:0.5rem;">Secuencia de entrada al cargar (opción C)</div>
+  <div class="entrance-demo">
+    <div class="entrance-step" data-label="0ms">
+      <div class="step-logo">🛡️</div>
+      <div class="step-name faded">Centro Protección Choferes</div>
+      <div class="step-sub faded">de Montevideo</div>
+      <div class="step-btn faded" style="opacity:0.1;">Pre-asociate →</div>
+      <div class="timing-bar"><div class="t1"></div></div>
+    </div>
+    <div class="entrance-step" data-label="280ms">
+      <div class="step-logo">🛡️</div>
+      <div class="step-name">Centro Protección Choferes</div>
+      <div class="step-sub faded">de Montevideo</div>
+      <div class="step-btn faded" style="opacity:0.1;">Pre-asociate →</div>
+      <div class="timing-bar"><div class="t1"></div><div class="t2"></div></div>
+    </div>
+    <div class="entrance-step" data-label="500ms">
+      <div class="step-logo">🛡️</div>
+      <div class="step-name">Centro Protección Choferes</div>
+      <div class="step-sub">de Montevideo</div>
+      <div class="step-btn">Pre-asociate →</div>
+      <div class="timing-bar"><div class="t1"></div><div class="t2"></div><div class="t3"></div><div class="t4"></div></div>
+    </div>
+  </div>
+
+  <!-- SPECS -->
+  <div class="info-grid">
+    <div class="info-box">
+      <h4>Comportamiento scroll</h4>
+      <ul>
+        <li>Progress 0%: hero full, nav transparente</li>
+        <li>Progress 40%: botón Pre-asociate desaparece</li>
+        <li>Progress 70%: texto hero casi invisible</li>
+        <li>Progress 100%: nav sólido, brand visible</li>
+        <li>Tied to scroll con requestAnimationFrame</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h4>Dónde va el texto "117 años"</h4>
+      <ul>
+        <li>Pasa a la barra tagline que ya existe</li>
+        <li>O como primer párrafo en la sección servicios</li>
+        <li>El eyebrow "1909 – 2026" queda debajo del botón en el hero</li>
+        <li>Nada se pierde, solo se reposiciona</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h4>Responsive</h4>
+      <ul>
+        <li>Mobile: logo 80px → 40px en nav</li>
+        <li>Tablet: logo 96px → 50px en nav</li>
+        <li>Desktop: logo 120px → 65px en nav</li>
+        <li>Texto escala con clamp()</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h4>Técnica</h4>
+      <ul>
+        <li>CSS custom property --hero-p (0→1)</li>
+        <li>JS scroll listener + rAF</li>
+        <li>Entrance: @keyframes + animation-delay</li>
+        <li>Sin librerías externas</li>
+        <li>prefers-reduced-motion: skip entrance</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Nota responsive:</strong> En mobile el nav no muestra el texto brand (demasiado largo). Solo el logo img. El texto "Centro Protección Choferes / de Montevideo" aparece en mobile solo en el hero, no en el navbar.
+  </div>
+
+</div>
+
+<script>
+const slider = document.getElementById('scrollSlider');
+const nav = document.getElementById('simNav');
+const content = document.getElementById('simContent');
+const logo = document.getElementById('simLogo');
+const name = document.getElementById('simName');
+const sub = document.getElementById('simSub');
+const btn = document.getElementById('simBtn');
+const year = document.getElementById('simYear');
+
+slider.addEventListener('input', () => {
+  const p = slider.value / 100;
+
+  // Nav solid
+  if (p > 0.3) { nav.classList.add('solid'); } else { nav.classList.remove('solid'); }
+
+  // Hero content: scale + move up + fade
+  const scale = 1 - p * 0.7;
+  const ty = p * -160;
+  content.style.transform = `scale(${scale}) translateY(${ty}px)`;
+  content.style.opacity = Math.max(0, 1 - p * 1.1);
+
+  // Individual elements fade at different rates
+  btn.style.opacity = Math.max(0, 1 - p * 2.5);
+  sub.style.opacity = Math.max(0, 1 - p * 1.8);
+  year.style.opacity = Math.max(0, 1 - p * 2);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<h2>Animación hero → navbar: ¿qué enfoque preferís?</h2>
+<p class="subtitle">Todos muestran el logo grande centrado al cargar, y lo llevan al navbar al scrollear</p>
+
+<div class="cards" style="gap:2rem;display:flex;flex-direction:column;">
+
+  <!-- OPCIÓN A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)" style="overflow:hidden;">
+    <div class="card-body" style="padding:0;">
+      <div style="display:flex;gap:0;align-items:stretch;">
+
+        <!-- Estado inicial -->
+        <div style="flex:1;padding:1.5rem;border-right:1px solid #e2e8f0;background:#f8fafc;">
+          <div class="label" style="margin-bottom:0.75rem;">AL CARGAR</div>
+          <!-- Mock nav transparente -->
+          <div style="background:transparent;border:1px dashed rgba(255,255,255,0.3);border-radius:6px;padding:0.4rem 1rem;display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;color:#94a3b8;margin-bottom:0.25rem;">
+            <span style="opacity:0.4">☰</span><span style="opacity:0.4">nav links</span>
+          </div>
+          <!-- Hero con logo grande centrado -->
+          <div style="background:linear-gradient(160deg,rgba(0,31,107,0.9),rgba(0,13,61,0.85));border-radius:8px;padding:2rem 1rem;text-align:center;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;">
+            <div style="width:56px;height:56px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:0.25rem;">🛡️</div>
+            <div style="color:white;font-weight:800;font-size:1rem;letter-spacing:0.04em;text-transform:uppercase;">CENTRO PROTECCIÓN CHOFERES</div>
+            <div style="color:rgba(255,255,255,0.65);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;">de Montevideo</div>
+            <a style="background:#F2AC2C;color:#333;font-size:0.65rem;padding:0.35rem 1rem;border-radius:4px;text-decoration:none;font-weight:700;text-transform:uppercase;margin-top:0.5rem;">Pre-asociate →</a>
+          </div>
+        </div>
+
+        <!-- Flecha -->
+        <div style="display:flex;align-items:center;padding:0 0.75rem;font-size:1.2rem;color:#94a3b8;">→</div>
+
+        <!-- Estado scrolleado -->
+        <div style="flex:1;padding:1.5rem;background:#f8fafc;">
+          <div class="label" style="margin-bottom:0.75rem;">AL SCROLLEAR</div>
+          <!-- Nav sólido con logo y texto integrados -->
+          <div style="background:#0047FF;border-radius:8px;padding:0.6rem 1rem;display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:28px;height:28px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;">🛡️</div>
+            <div>
+              <div style="color:white;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;">Centro Protección Choferes</div>
+              <div style="color:rgba(255,255,255,0.6);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.06em;">de Montevideo</div>
+            </div>
+            <div style="flex:1;text-align:right;font-size:0.6rem;color:rgba(255,255,255,0.75);">nav links</div>
+          </div>
+          <!-- Contenido del sitio -->
+          <div style="background:#f1f5f9;border-radius:6px;padding:1rem;margin-top:0.5rem;min-height:80px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:0.7rem;">
+            contenido del sitio
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:1rem 1.5rem;border-top:1px solid #e2e8f0;background:white;">
+        <div style="display:flex;align-items:flex-start;gap:1rem;">
+          <div style="flex:1;">
+            <h3 style="margin:0 0 0.25rem;">A — Logo vuela al navbar</h3>
+            <p style="margin:0;font-size:0.82rem;color:#64748b;">El logo y el texto se animan suavemente desde el centro hacia el navbar al scrollear. El navbar empieza transparente y se vuelve azul sólido. El texto "de Montevideo" se mantiene debajo del nombre en el navbar.</p>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <span style="background:#dbeafe;color:#1e40af;padding:0.2rem 0.6rem;border-radius:12px;font-size:0.72rem;font-weight:600;">Recomendado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPCIÓN B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)" style="overflow:hidden;">
+    <div class="card-body" style="padding:0;">
+      <div style="display:flex;gap:0;align-items:stretch;">
+
+        <div style="flex:1;padding:1.5rem;border-right:1px solid #e2e8f0;background:#f8fafc;">
+          <div class="label" style="margin-bottom:0.75rem;">AL CARGAR</div>
+          <div style="background:linear-gradient(160deg,rgba(0,31,107,0.9),rgba(0,13,61,0.85));border-radius:8px;padding:2rem 1rem;text-align:center;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;">
+            <div style="width:56px;height:56px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:0.25rem;">🛡️</div>
+            <div style="color:white;font-weight:800;font-size:1rem;letter-spacing:0.04em;text-transform:uppercase;">CENTRO PROTECCIÓN CHOFERES</div>
+            <div style="color:rgba(255,255,255,0.65);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;">de Montevideo</div>
+            <a style="background:#F2AC2C;color:#333;font-size:0.65rem;padding:0.35rem 1rem;border-radius:4px;text-decoration:none;font-weight:700;text-transform:uppercase;margin-top:0.5rem;">Pre-asociate →</a>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;padding:0 0.75rem;font-size:1.2rem;color:#94a3b8;">→</div>
+
+        <div style="flex:1;padding:1.5rem;background:#f8fafc;">
+          <div class="label" style="margin-bottom:0.75rem;">AL SCROLLEAR</div>
+          <div style="background:#0047FF;border-radius:8px;padding:0.6rem 1rem;display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:28px;height:28px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;">🛡️</div>
+            <div style="color:white;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;">C.P. Choferes</div>
+            <div style="flex:1;text-align:right;font-size:0.6rem;color:rgba(255,255,255,0.75);">nav links</div>
+          </div>
+          <!-- Parte del hero todavía visible (parallax) -->
+          <div style="background:linear-gradient(160deg,rgba(0,31,107,0.7),rgba(0,13,61,0.6));border-radius:6px;padding:1rem;margin-top:0.5rem;min-height:60px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.7rem;">
+            hero image todavía visible (parallax)
+          </div>
+          <div style="background:#f1f5f9;border-radius:6px;padding:0.75rem;margin-top:0.5rem;min-height:40px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:0.7rem;">
+            contenido siguiente
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:1rem 1.5rem;border-top:1px solid #e2e8f0;background:white;">
+        <h3 style="margin:0 0 0.25rem;">B — Logo al navbar + hero con parallax</h3>
+        <p style="margin:0;font-size:0.82rem;color:#64748b;">Igual a la opción A pero el hero de fondo sigue visible con efecto parallax mientras scrolleás. El logo solo va al navbar, sin el texto "de Montevideo" (más limpio). El hero se "deja atrás".</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPCIÓN C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)" style="overflow:hidden;">
+    <div class="card-body" style="padding:0;">
+      <div style="display:flex;gap:0;align-items:stretch;">
+
+        <div style="flex:1;padding:1.5rem;border-right:1px solid #e2e8f0;background:#f8fafc;">
+          <div class="label" style="margin-bottom:0.75rem;">AL CARGAR (fase 1)</div>
+          <!-- Solo logo, sin texto, anima al entrar -->
+          <div style="background:linear-gradient(160deg,rgba(0,31,107,0.95),rgba(0,13,61,0.9));border-radius:8px;padding:2rem 1rem;text-align:center;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;">
+            <div style="width:70px;height:70px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;">🛡️</div>
+            <div style="color:white;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.7;">— aparece con fade —</div>
+            <div style="color:white;font-weight:800;font-size:0.9rem;letter-spacing:0.04em;text-transform:uppercase;">CENTRO PROTECCIÓN CHOFERES</div>
+            <div style="color:rgba(255,255,255,0.55);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;">de Montevideo</div>
+            <a style="background:#F2AC2C;color:#333;font-size:0.65rem;padding:0.35rem 1rem;border-radius:4px;text-decoration:none;font-weight:700;text-transform:uppercase;">Pre-asociate →</a>
+            <div style="color:rgba(255,255,255,0.4);font-size:0.65rem;margin-top:0.25rem;">↓ scrolleá</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;padding:0 0.75rem;font-size:1.2rem;color:#94a3b8;">→</div>
+
+        <div style="flex:1;padding:1.5rem;background:#f8fafc;">
+          <div class="label" style="margin-bottom:0.75rem;">AL SCROLLEAR</div>
+          <div style="background:#0047FF;border-radius:8px;padding:0.6rem 1rem;display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:28px;height:28px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;">🛡️</div>
+            <div>
+              <div style="color:white;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;">Centro Protección Choferes</div>
+              <div style="color:rgba(255,255,255,0.6);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.06em;">de Montevideo</div>
+            </div>
+            <div style="flex:1;text-align:right;font-size:0.6rem;color:rgba(255,255,255,0.75);">nav links</div>
+          </div>
+          <div style="background:#f1f5f9;border-radius:6px;padding:1rem;margin-top:0.5rem;min-height:80px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:0.7rem;">
+            contenido del sitio
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:1rem 1.5rem;border-top:1px solid #e2e8f0;background:white;">
+        <h3 style="margin:0 0 0.25rem;">C — Secuencia de entrada animada</h3>
+        <p style="margin:0;font-size:0.82rem;color:#64748b;">Logo aparece primero con scale+fade, luego el nombre aparece con un pequeño delay, luego "de Montevideo" y el botón. Crea sensación de "bienvenida". Al scrollear igual que A — todo vuela al navbar.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:1.5rem;padding:1rem;background:#f0f9ff;border-radius:8px;border-left:3px solid #0ea5e9;">
+  <p style="margin:0;font-size:0.85rem;color:#0c4a6e;"><strong>Nota:</strong> En todos los casos, el navbar empieza transparente (sobre el hero) y se vuelve azul sólido al scrollear. El logo en el navbar ya tenía un efecto de shrink — esto lo expande para incluir el texto también.</p>
+</div>
