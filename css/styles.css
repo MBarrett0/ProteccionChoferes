@@ -42,9 +42,9 @@
   --radius-lg: 16px;
 
   /* Hero logo fly sizes (updated by JS per breakpoint) */
-  --hero-logo-start: 200px;
+  --hero-logo-start: 260px;
   --hero-logo-end:    65px;
-  --hero-logo-half:   100px;
+  --hero-logo-half:   130px;
 }
 
 /* === GLOBAL RESET & OVERFLOW SAFEGUARDS === */
@@ -621,10 +621,16 @@ body.is-home { padding-top: 0; }
   display: block;
 }
 
-/* On homepage: hide nav's own logo and brand text — flying logo takes over */
-.is-home .nav__logo img,
+/* On homepage: remove nav logo and brand from flow — flying logo takes over */
+.is-home .nav__logo {
+  display: none;
+}
 .is-home .nav__brand {
-  visibility: hidden;
+  display: none;
+}
+/* Links push to right; flying logo appears centered above */
+.is-home .nav__container {
+  justify-content: flex-end;
 }
 
 /* === HERO CENTER TEXT === */
@@ -2717,9 +2723,9 @@ counter-increment: decalogo-counter;
 @media (max-width: 1024px) {
   :root {
     --nav-height: 70px;
-    --hero-logo-start: 160px;
+    --hero-logo-start: 200px;
     --hero-logo-end:    55px;
-    --hero-logo-half:   80px;
+    --hero-logo-half:   100px;
   }
 
   /* Nav: show hamburger, shrink logo overflow */
@@ -2761,9 +2767,9 @@ counter-increment: decalogo-counter;
 /* Tablet portrait */
 @media (max-width: 768px) {
   :root {
-    --hero-logo-start: 130px;
+    --hero-logo-start: 160px;
     --hero-logo-end:    40px;
-    --hero-logo-half:   65px;
+    --hero-logo-half:   80px;
   }
 
   /* Hero */
