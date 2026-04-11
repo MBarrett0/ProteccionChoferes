@@ -24,3 +24,6 @@ desktop.ini
 
 # Claude Code internal
 .claude/
+
+# Superpowers brainstorm sessions
+.superpowers/
