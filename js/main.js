@@ -11,7 +11,8 @@
 function initStickyNav() {
   const nav = document.getElementById('site-nav');
   if (!nav) return;
-
+  // Homepage scroll animation owns .is-solid on this page
+  if (document.body.classList.contains('is-home')) return;
   window.addEventListener('scroll', () => {
     nav.classList.toggle('is-solid', window.scrollY > 40);
   }, { passive: true });
@@ -1599,9 +1600,116 @@ function initHexDividers() {
 }
 
 // ============================================================
+// HERO SCROLL ANIMATION
+// ============================================================
+function getHeroLogoMetrics() {
+  const style   = getComputedStyle(document.documentElement);
+  const start   = parseFloat(style.getPropertyValue('--hero-logo-start')) || 140;
+  const end     = parseFloat(style.getPropertyValue('--hero-logo-end'))   || 65;
+  const navEl   = document.getElementById('site-nav');
+  const navCont = navEl ? navEl.querySelector('.nav__container') : null;
+  const navPad  = navCont ? parseFloat(getComputedStyle(navCont).paddingLeft) : 16;
+  const navH    = navEl ? navEl.offsetHeight : 80;
+  return { start, end, navPad, navH };
+}
+
+function initHeroScrollAnimation() {
+  const heroEl   = document.querySelector('.hero.is-hero-home');
+  const flyLogo  = document.getElementById('hero-logo-fly');
+  const nav      = document.getElementById('site-nav');
+  if (!heroEl || !flyLogo || !nav) return;
+
+  const brandName  = heroEl.querySelector('.hero__brand-name');
+  const brandSub   = heroEl.querySelector('.hero__brand-sub');
+  const heroBtn    = heroEl.querySelector('.hero__center-text .btn');
+  const eyebrow    = heroEl.querySelector('.hero__center-text .hero__eyebrow');
+  const scrollHint = heroEl.querySelector('.hero__scroll-hint');
+
+  let metrics = getHeroLogoMetrics();
+  let ticking = false;
+
+  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  function applyLogoPosition(p) {
+    const ep = ease(p);
+    const { start, end, navPad, navH } = metrics;
+    const size = lerp(start, end, ep);
+
+    const startX = (window.innerWidth  - start) / 2;
+    const startY = (window.innerHeight * 0.42) - (start / 2);
+    const endX   = navPad;
+    const endY   = (navH - end) / 2;
+
+    flyLogo.style.left   = lerp(startX, endX, ep) + 'px';
+    flyLogo.style.top    = lerp(startY, endY, ep) + 'px';
+    flyLogo.style.width  = size + 'px';
+    flyLogo.style.height = size + 'px';
+
+    flyLogo.style.boxShadow =
+      `0 ${lerp(12, 2, ep).toFixed(1)}px ${lerp(48, 8, ep).toFixed(1)}px rgba(0,0,0,${lerp(0.5, 0.1, ep).toFixed(2)})`;
+  }
+
+  function update() {
+    const p  = clamp(window.scrollY / (heroEl.offsetHeight * 0.75), 0, 1);
+    const ep = ease(p);
+
+    applyLogoPosition(p);
+
+    nav.classList.toggle('is-solid', p >= 0.35);
+
+    if (brandName)  brandName.style.opacity  = Math.max(0, 1 - ep * 1.7).toFixed(3);
+    if (brandSub)   brandSub.style.opacity   = Math.max(0, 1 - ep * 2.3).toFixed(3);
+    if (heroBtn)    heroBtn.style.opacity    = Math.max(0, 1 - ep * 2.6).toFixed(3);
+    if (eyebrow)    eyebrow.style.opacity    = Math.max(0, 1 - ep * 2.0).toFixed(3);
+    if (scrollHint) scrollHint.style.opacity = Math.max(0, 1 - ep * 4.0).toFixed(3);
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    metrics = getHeroLogoMetrics();
+    document.documentElement.style.setProperty(
+      '--hero-logo-half', (metrics.start / 2) + 'px'
+    );
+    update();
+  }, { passive: true });
+
+  document.documentElement.style.setProperty(
+    '--hero-logo-half', (metrics.start / 2) + 'px'
+  );
+  update();
+}
+
+// ============================================================
+// HERO ENTRANCE ANIMATION
+// ============================================================
+function initHeroEntrance() {
+  const heroEl  = document.querySelector('.hero.is-hero-home');
+  const flyLogo = document.getElementById('hero-logo-fly');
+  if (!heroEl || !flyLogo) return;
+
+  // Trigger staggered CSS entrance animations
+  requestAnimationFrame(() => {
+    flyLogo.classList.add('is-animated');
+    heroEl.classList.add('is-animated');
+  });
+}
+
+// ============================================================
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroEntrance();
+  initHeroScrollAnimation();
   initStickyNav();
   initMobileMenu();
   initScrollReveal();
