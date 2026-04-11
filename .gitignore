@@ -8,6 +8,7 @@ gen_pages2.py
 .playwright-mcp/
 *.png
 !docs/*.png
+!images/*.png
 
 # Node
 node_modules/
