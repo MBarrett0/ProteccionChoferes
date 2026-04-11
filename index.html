@@ -60,6 +60,11 @@
 </head>
 <body class="is-home">
 
+  <!-- Flying logo — position:fixed, controlled by initHeroScrollAnimation -->
+  <div id="hero-logo-fly" aria-hidden="true">
+    <img src="./images/logo.png" alt="">
+  </div>
+
   <!-- ======================== NAVIGATION ======================== -->
   <nav class="site-nav" id="site-nav">
     <div class="nav__container">
@@ -141,7 +146,7 @@
   </div>
 
   <!-- ======================== HERO ======================== -->
-  <section class="hero" aria-label="Portada">
+  <section class="hero is-hero-home" aria-label="Portada">
     <img
       class="hero__bg"
       src="./images/hero-bus.jpg"
@@ -149,16 +154,25 @@
       loading="eager"
     >
     <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <p class="hero__eyebrow">1909 &ndash; 2026</p>
-      <h1 class="hero__title">117 años trabajando<br>para su tranquilidad</h1>
-      <p class="hero__subtitle">De todos y para todos</p>
+    <div class="hero__center-text">
+      <h1 class="hero__brand-name">Centro Protección Choferes</h1>
+      <p class="hero__brand-sub">de Montevideo</p>
       <div class="hero__actions">
         <a href="./institucion/asociarse.html" class="btn btn--amber">Pre-asociate</a>
-        <a href="#beneficios" class="btn btn--outline-white">Nuestros Beneficios</a>
+      </div>
+      <p class="hero__eyebrow">1909 &ndash; 2026</p>
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <span class="hero__chevron"></span>
+        <span class="hero__chevron"></span>
       </div>
     </div>
   </section>
+
+  <!-- ======================== TAGLINE ======================== -->
+  <div class="tagline-bar">
+    <p>117 años trabajando para su tranquilidad</p>
+    <p class="tagline-bar__sub">De todos y para todos</p>
+  </div>
 
   <!-- ======================== SERVICES ======================== -->
   <section class="services section" id="beneficios">
