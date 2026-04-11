@@ -2793,6 +2793,18 @@ counter-increment: decalogo-counter;
 
 /* Mobile */
 @media (max-width: 480px) {
+  .hero__brand-name {
+    font-size: clamp(1.1rem, 5.5vw, 1.6rem);
+    letter-spacing: 0.02em;
+  }
+  .hero__brand-sub {
+    font-size: clamp(0.65rem, 3.5vw, 0.85rem);
+  }
+  .hero__chevron {
+    width: 10px;
+    height: 10px;
+  }
+
   .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
   .stat-number { font-size: clamp(1.4rem, 6vw, 2rem); }
   .stat-label { font-size: 0.65rem; letter-spacing: 0.05em; }
