@@ -1639,7 +1639,8 @@ function initHeroScrollAnimation() {
 
     const startX = (window.innerWidth  - start) / 2;
     const startY = (window.innerHeight * 0.42) - (start / 2);
-    const endX   = navPad;
+    // Straight up — X stays centered, only Y changes
+    const endX   = (window.innerWidth - end) / 2;
     const endY   = (navH - end) / 2;
 
     flyLogo.style.left   = lerp(startX, endX, ep) + 'px';
