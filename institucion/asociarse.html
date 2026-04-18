@@ -170,11 +170,17 @@
           <div id="campos-cuota" style="display:none;">
             <div class="form-field">
               <label for="cs-cobro">Lugar de Cobro *</label>
-              <input type="text" id="cs-cobro" name="lugar_cobro" placeholder="Indique su lugar de cobro">
+              <select id="cs-cobro" name="lugar_cobro">
+                <option value="">-- Seleccione --</option>
+                <option value="transferencia">Transferencia</option>
+                <option value="domicilio">Domicilio (En Montevideo)</option>
+                <option value="presencial">Presencial</option>
+                <option value="descuento_sueldo">Se descuente por sueldo (Empresas con Convenio)</option>
+              </select>
             </div>
-            <div class="form-field">
-              <label for="cs-descuento">Desea que se descuente del sueldo (solo rubro de transporte, indique cu&aacute;l)</label>
-              <input type="text" id="cs-descuento" name="descuento_sueldo" placeholder="Ej: Empresa de transporte">
+            <div class="form-field" id="cs-empresa-wrap" style="display:none;">
+              <label for="cs-empresa">Empresa de transporte *</label>
+              <input type="text" id="cs-empresa" name="empresa_transporte" placeholder="Indique su empresa de transporte">
             </div>
             <div class="form-field">
               <label for="cs-libreta">Cat. Lbta. Chofer (adjunte foto trasera de la libreta) &mdash; <em>opcional</em></label>
@@ -319,10 +325,29 @@
               '<a href="../" class="btn btn--primary" style="margin-top:1.5rem;">Volver al inicio</a>' +
             '</div>';
 
+          var csCobroSelect = document.getElementById('cs-cobro');
+          var csEmpresaWrap = document.getElementById('cs-empresa-wrap');
+          var csEmpresaInput = document.getElementById('cs-empresa');
+
+          csCobroSelect.addEventListener('change', function() {
+            var isDescuento = this.value === 'descuento_sueldo';
+            csEmpresaWrap.style.display = isDescuento ? 'block' : 'none';
+            if (isDescuento) {
+              csEmpresaInput.setAttribute('required', '');
+            } else {
+              csEmpresaInput.removeAttribute('required');
+              csEmpresaInput.value = '';
+            }
+          });
+
           selector.addEventListener('change', function() {
             cuota.style.display = 'none';
             deportivo.style.display = 'none';
             btnEnviar.style.display = 'none';
+            csEmpresaWrap.style.display = 'none';
+            csEmpresaInput.removeAttribute('required');
+            csEmpresaInput.value = '';
+            csCobroSelect.value = '';
             toggleRequired(cuota, false);
             toggleRequired(deportivo, false);
 
