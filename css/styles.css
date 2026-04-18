@@ -1422,6 +1422,10 @@ body.is-home { padding-top: 0; }
   line-height: 1.3;
 }
 
+.conv-logo-card--text-logo::after {
+  content: none;
+}
+
 /* Access section */
 .conv-access {
   margin-top: 2.5rem;
@@ -3006,6 +3010,10 @@ counter-increment: decalogo-counter;
   width: auto;
   height: auto;
   object-fit: contain;
+}
+
+.convenio-card--text-logo .convenio-card__name {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
