@@ -1770,7 +1770,7 @@ body.is-home { padding-top: 0; }
 .footer__grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: start;
 }
 
