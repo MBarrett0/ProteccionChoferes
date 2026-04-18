@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=15">
+  <link rel="stylesheet" href="css/styles.css?v=16">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -147,12 +147,15 @@
 
   <!-- ======================== HERO ======================== -->
   <section class="hero is-hero-home" aria-label="Portada">
-    <img
-      class="hero__bg"
-      src="./images/hero-bus.png"
-      alt="Bus CUTCSA frente al Palacio Legislativo de Montevideo"
-      loading="eager"
-    >
+    <picture>
+      <source media="(max-width: 768px)" srcset="./images/hero-bus-mobile.png">
+      <img
+        class="hero__bg"
+        src="./images/hero-bus.png"
+        alt="Bus CUTCSA frente al Palacio Legislativo de Montevideo"
+        loading="eager"
+      >
+    </picture>
     <div class="hero__overlay"></div>
     <div class="hero__center-text">
       <h1 class="hero__brand-name">Centro Protección Choferes</h1>
