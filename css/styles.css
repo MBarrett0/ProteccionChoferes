@@ -141,13 +141,13 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   left: 0;
   width: 100%;
   height: var(--nav-height);
-  background: var(--clr-white);
+  background: var(--clr-primary-dark);
   z-index: 1000;
   transition: box-shadow var(--tr-base), background var(--tr-base);
 }
 
 .site-nav.is-solid {
-  background: var(--clr-primary);
+  background: var(--clr-primary-dark);
   box-shadow: 0 2px 16px rgba(0,0,0,0.12);
 }
 
@@ -244,7 +244,7 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
 .nav__brand-name {
   font-size: clamp(0.95rem, 1.4vw, 1.25rem);
   font-weight: 800;
-  color: var(--clr-primary);
+  color: var(--clr-white);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   transition: color var(--tr-base);
@@ -252,7 +252,7 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
 .nav__brand-sub {
   font-size: clamp(0.65rem, 0.9vw, 0.8rem);
   font-weight: 600;
-  color: var(--clr-primary);
+  color: var(--clr-white);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   transition: color var(--tr-base);
@@ -282,7 +282,7 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--clr-text-dark);
+  color: var(--clr-white);
   white-space: nowrap;
   transition: color var(--tr-fast), background var(--tr-fast);
 }
@@ -1763,7 +1763,7 @@ body.is-home { padding-top: 0; }
 .footer { overflow: hidden; }
 
 .footer__top {
-  background: var(--clr-primary);
+  background: var(--clr-primary-dark);
   padding-block: clamp(3rem, 5vw, 4rem);
 }
 
@@ -1850,6 +1850,14 @@ body.is-home { padding-top: 0; }
   overflow-wrap: anywhere;
   word-break: break-all;
 }
+
+.footer__map-link {
+  color: rgba(255,255,255,0.8);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--tr-fast);
+}
+.footer__map-link:hover { color: var(--clr-white); }
 
 .footer__bottom {
   background: var(--clr-secondary-dark);
