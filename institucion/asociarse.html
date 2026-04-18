@@ -178,9 +178,17 @@
                 <option value="descuento_sueldo">Se descuente por sueldo (Empresas con Convenio)</option>
               </select>
             </div>
-            <div class="form-field" id="cs-empresa-wrap" style="display:none;">
-              <label for="cs-empresa">Empresa de transporte *</label>
-              <input type="text" id="cs-empresa" name="empresa_transporte" placeholder="Indique su empresa de transporte">
+            <div id="cs-empresa-wrap" style="display:none;">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="cs-empresa">Empresa de transporte *</label>
+                  <input type="text" id="cs-empresa" name="empresa_transporte" placeholder="Indique su empresa de transporte">
+                </div>
+                <div class="form-field">
+                  <label for="cs-interno">N&uacute;mero interno *</label>
+                  <input type="text" id="cs-interno" name="numero_interno" placeholder="N&uacute;mero interno">
+                </div>
+              </div>
             </div>
             <div class="form-field">
               <label for="cs-libreta">Cat. Lbta. Chofer (adjunte foto trasera de la libreta) &mdash; <em>opcional</em></label>
@@ -328,15 +336,24 @@
           var csCobroSelect = document.getElementById('cs-cobro');
           var csEmpresaWrap = document.getElementById('cs-empresa-wrap');
           var csEmpresaInput = document.getElementById('cs-empresa');
+          var csInternoInput = document.getElementById('cs-interno');
+
+          function clearEmpresaFields() {
+            csEmpresaWrap.style.display = 'none';
+            csEmpresaInput.removeAttribute('required');
+            csInternoInput.removeAttribute('required');
+            csEmpresaInput.value = '';
+            csInternoInput.value = '';
+          }
 
           csCobroSelect.addEventListener('change', function() {
             var isDescuento = this.value === 'descuento_sueldo';
             csEmpresaWrap.style.display = isDescuento ? 'block' : 'none';
             if (isDescuento) {
               csEmpresaInput.setAttribute('required', '');
+              csInternoInput.setAttribute('required', '');
             } else {
-              csEmpresaInput.removeAttribute('required');
-              csEmpresaInput.value = '';
+              clearEmpresaFields();
             }
           });
 
@@ -344,9 +361,7 @@
             cuota.style.display = 'none';
             deportivo.style.display = 'none';
             btnEnviar.style.display = 'none';
-            csEmpresaWrap.style.display = 'none';
-            csEmpresaInput.removeAttribute('required');
-            csEmpresaInput.value = '';
+            clearEmpresaFields();
             csCobroSelect.value = '';
             toggleRequired(cuota, false);
             toggleRequired(deportivo, false);
