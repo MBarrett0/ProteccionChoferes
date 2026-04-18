@@ -1046,10 +1046,17 @@ function initConveniosPage() {
         modalPlaceholder.textContent = name;
 
         // Reset image state
-        modalImg.style.display = '';
-        modalPlaceholder.style.display = 'none';
-        modalImg.src = imgSrc;
-        modalImg.alt = name;
+        if (imgSrc) {
+          modalImg.style.display = '';
+          modalPlaceholder.style.display = 'none';
+          modalImg.src = imgSrc;
+          modalImg.alt = name;
+        } else {
+          modalImg.removeAttribute('src');
+          modalImg.alt = '';
+          modalImg.style.display = 'none';
+          modalPlaceholder.style.display = 'flex';
+        }
 
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');

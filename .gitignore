@@ -9,6 +9,7 @@ gen_pages2.py
 *.png
 !docs/*.png
 !images/*.png
+!images/**/*.png
 
 # Node
 node_modules/

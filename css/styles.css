@@ -1404,6 +1404,10 @@ body.is-home { padding-top: 0; }
   border-radius: calc(var(--radius-md) - 1px);
 }
 
+.conv-logo-card__placeholder--visible {
+  display: flex;
+}
+
 .conv-logo-card__benefit {
   display: none;
 }
