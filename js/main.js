@@ -506,7 +506,7 @@ function initHorarios() {
   var SECTIONS = {
     piscina: { cats: ['piscina'], label: 'Piscina' },
     sala:    { cats: ['gimnasio'], label: 'Sala' },
-    piso:    { cats: ['infantil','cancha'], label: 'Piso' }
+    piso:    { cats: ['infantil','cancha','piso'], label: 'Piso' }
   };
 
   var DUR = {
@@ -541,6 +541,7 @@ function initHorarios() {
     {s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:0,t:'18:40'},{s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:2,t:'18:40'},{s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:4,t:'18:40'},
     // Natación +13
     {s:'natacion-adultos',n:'Natación +13',c:'piscina',d:0,t:'08:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:1,t:'08:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:2,t:'08:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:3,t:'07:45'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:4,t:'08:00'},
+    {s:'natacion-adultos',n:'Natación +13',c:'piscina',d:0,t:'08:50',e:'09:30'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:2,t:'08:50',e:'09:30'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:4,t:'08:50',e:'09:30'},
     {s:'natacion-adultos',n:'Natación +13',c:'piscina',d:0,t:'11:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:2,t:'11:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:3,t:'11:10'},
     {s:'natacion-adultos',n:'Natación +13',c:'piscina',d:0,t:'16:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:1,t:'16:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:2,t:'16:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:3,t:'16:00'},
     {s:'natacion-adultos',n:'Natación +13',c:'piscina',d:0,t:'17:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:1,t:'17:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:2,t:'17:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:3,t:'17:00'},{s:'natacion-adultos',n:'Natación +13',c:'piscina',d:4,t:'17:00'},
@@ -553,23 +554,23 @@ function initHorarios() {
     {s:'nado-libre',n:'Nado Libre',c:'piscina',d:0,t:'16:00',e:'21:00'},{s:'nado-libre',n:'Nado Libre',c:'piscina',d:1,t:'16:00',e:'18:40'},{s:'nado-libre',n:'Nado Libre',c:'piscina',d:2,t:'16:00',e:'21:00'},{s:'nado-libre',n:'Nado Libre',c:'piscina',d:3,t:'16:00',e:'18:40'},{s:'nado-libre',n:'Nado Libre',c:'piscina',d:4,t:'16:00',e:'18:40'},
     {s:'nado-libre',n:'Nado Libre',c:'piscina',d:1,t:'19:25',e:'21:00'},{s:'nado-libre',n:'Nado Libre',c:'piscina',d:3,t:'19:25',e:'21:00'},{s:'nado-libre',n:'Nado Libre',c:'piscina',d:4,t:'19:25',e:'21:00'},
     // Pilates (30 min)
-    {s:'pilates',n:'Pilates',c:'gimnasio',d:0,t:'08:00'},{s:'pilates',n:'Pilates',c:'gimnasio',d:2,t:'08:00'},{s:'pilates',n:'Pilates',c:'gimnasio',d:4,t:'08:00'},
-    {s:'pilates',n:'Pilates',c:'gimnasio',d:0,t:'17:00'},{s:'pilates',n:'Pilates',c:'gimnasio',d:2,t:'17:00'},{s:'pilates',n:'Pilates',c:'gimnasio',d:4,t:'17:00'},
+    {s:'pilates',n:'Pilates',c:'piso',d:0,t:'08:00'},{s:'pilates',n:'Pilates',c:'piso',d:2,t:'08:00'},{s:'pilates',n:'Pilates',c:'piso',d:4,t:'08:00'},
+    {s:'pilates',n:'Pilates',c:'piso',d:0,t:'17:00'},{s:'pilates',n:'Pilates',c:'piso',d:2,t:'17:00'},{s:'pilates',n:'Pilates',c:'piso',d:4,t:'17:00'},
     // Gimnasia Correctiva (45 min)
-    {s:'gimnasia-correctiva',n:'Gimn. Correctiva',c:'gimnasio',d:0,t:'16:00'},{s:'gimnasia-correctiva',n:'Gimn. Correctiva',c:'gimnasio',d:2,t:'16:00'},{s:'gimnasia-correctiva',n:'Gimn. Correctiva',c:'gimnasio',d:4,t:'16:00'},
+    {s:'gimnasia-correctiva',n:'Gimn. Correctiva',c:'piso',d:0,t:'16:00'},{s:'gimnasia-correctiva',n:'Gimn. Correctiva',c:'piso',d:2,t:'16:00'},{s:'gimnasia-correctiva',n:'Gimn. Correctiva',c:'piso',d:4,t:'16:00'},
     // Gimnasia Localizada
-    {s:'gimnasia-localizada',n:'Gimn. Localizada',c:'gimnasio',d:0,t:'17:00'},{s:'gimnasia-localizada',n:'Gimn. Localizada',c:'gimnasio',d:2,t:'17:00'},{s:'gimnasia-localizada',n:'Gimn. Localizada',c:'gimnasio',d:4,t:'17:00'},
+    {s:'gimnasia-localizada',n:'Gimn. Localizada',c:'piso',d:0,t:'17:00'},{s:'gimnasia-localizada',n:'Gimn. Localizada',c:'piso',d:2,t:'17:00'},{s:'gimnasia-localizada',n:'Gimn. Localizada',c:'piso',d:4,t:'17:00'},
     // Módulo de Juegos
     {s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:0,t:'18:00'},{s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:2,t:'18:00'},{s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:4,t:'18:00'},
     // Indoor Cycling
-    {s:'indoor-cycling',n:'Indoor Cycling',c:'gimnasio',d:0,t:'18:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'gimnasio',d:1,t:'19:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'gimnasio',d:2,t:'18:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'gimnasio',d:3,t:'19:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'gimnasio',d:4,t:'18:00'},
+    {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'19:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'19:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:00'},
     // Entrenamiento Funcional
-    {s:'entrenamiento-funcional',n:'Ent. Funcional',c:'gimnasio',d:1,t:'20:00'},{s:'entrenamiento-funcional',n:'Ent. Funcional',c:'gimnasio',d:3,t:'20:00'},
+    {s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:1,t:'20:00'},{s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:3,t:'20:00'},
     // Voleibol
     {s:'voleibol',n:'Voleibol',c:'cancha',d:0,t:'20:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:2,t:'20:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:4,t:'20:00'},
     // Sala de Entrenamiento
-    {s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:0,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:1,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:2,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:3,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:4,t:'08:00',e:'12:00'},
-    {s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:0,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:1,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:2,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:3,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Entrenamiento',c:'gimnasio',d:4,t:'16:00',e:'21:00'}
+    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'12:00'},
+    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'16:00',e:'21:00'}
   ];
 
   // Profe en sala schedule per day: [start, end] ranges
@@ -620,7 +621,7 @@ function initHorarios() {
     'gimnasia-localizada': 'Gimnasia Localizada',
     'indoor-cycling': 'Indoor Cycling',
     'entrenamiento-funcional': 'Entrenamiento Funcional',
-    'sala-entrenamiento': 'Sala de Entrenamiento',
+    'sala-entrenamiento': 'Sala Musculación',
     'juegos-infantil': 'Módulo de Juegos (3-12)',
     'voleibol': 'Voleibol Social y Deportivo'
   };
