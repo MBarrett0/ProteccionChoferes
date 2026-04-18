@@ -875,9 +875,6 @@ body.is-home { padding-top: 0; }
   transition: color var(--tr-fast);
 }
 
-.service-card--teal  .service-card__link { color: var(--clr-teal); }
-.service-card--green .service-card__link { color: var(--clr-primary-dark); }
-
 .service-card__link:hover { color: var(--clr-primary-dark); }
 
 /* === CANVAS HEX DIVIDERS === */
