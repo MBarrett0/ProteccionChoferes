@@ -26,12 +26,30 @@ function initMobileMenu() {
   const mobileMenu = document.getElementById('nav-mobile');
   if (!hamburger || !mobileMenu) return;
 
+  function openMenu() {
+    hamburger.classList.add('is-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.classList.remove('is-open');
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }
+
   // Toggle main mobile menu
   hamburger.addEventListener('click', () => {
-    const isOpen = hamburger.classList.toggle('is-open');
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    mobileMenu.classList.toggle('is-open', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    hamburger.classList.contains('is-open') ? closeMenu() : openMenu();
+  });
+
+  // Click on the dark overlay background (not on a link/button inside it) closes menu
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMenu();
   });
 
   // Accordion: links with data-toggle attribute
@@ -79,36 +97,21 @@ function initMobileMenu() {
 
   // Close on mobile sub-link click (navigate)
   mobileMenu.querySelectorAll('.nav__mobile-sublink').forEach(a => {
-    a.addEventListener('click', () => {
-      hamburger.classList.remove('is-open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenu.classList.remove('is-open');
-      document.body.style.overflow = '';
-    });
+    a.addEventListener('click', closeMenu);
   });
 
   // Close on Escape
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && hamburger.classList.contains('is-open')) {
-      hamburger.classList.remove('is-open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenu.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
+    if (e.key === 'Escape' && hamburger.classList.contains('is-open')) closeMenu();
   });
 
-  // Close menu if clicked outside
+  // Close menu if clicked outside (e.g. via keyboard focus escape)
   document.addEventListener('click', (e) => {
     if (
       hamburger.classList.contains('is-open') &&
       !mobileMenu.contains(e.target) &&
       !hamburger.contains(e.target)
-    ) {
-      hamburger.classList.remove('is-open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenu.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
+    ) closeMenu();
   });
 }
 
@@ -1630,17 +1633,19 @@ function initHeroScrollAnimation() {
   let ticking = false;
 
   function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+  // Logo uses ease-out: starts fast (clears text immediately), then slows to nav
+  function easeOutLogo(t) { return 1 - Math.pow(1 - t, 3); }
   function lerp(a, b, t) { return a + (b - a) * t; }
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 
   function applyLogoPosition(p) {
-    const ep = ease(p);
+    const ep = easeOutLogo(p);
     const { start, end, navPad, navContLeft, navH } = metrics;
     const size = lerp(start, end, ep);
 
     const startX = (window.innerWidth  - start) / 2;
     const startY = (window.innerHeight * 0.42) - (start / 2);
-    // Logo moves diagonally to nav logo slot (top-left)
+    // Logo moves diagonally to nav logo slot (top-left) on all breakpoints
     const endX   = navContLeft + navPad;
     const endY   = (navH - end) / 2;
 
@@ -1657,7 +1662,31 @@ function initHeroScrollAnimation() {
     const p  = clamp(window.scrollY / (heroEl.offsetHeight * 0.75), 0, 1);
     const ep = ease(p);
 
-    applyLogoPosition(p);
+    if (window.innerWidth > 1024) {
+      // Desktop: logo stays centered; text scrolls up through it, clipping from bottom
+      applyLogoPosition(0);
+
+      const logoH      = metrics.start;                              // logo diameter
+      const logoBottomVP = window.innerHeight * 0.42 + logoH / 2;  // fixed bottom in viewport
+      const textTopVP  = brandName ? brandName.getBoundingClientRect().top : logoBottomVP;
+
+      // How many px of the logo are covered from below by the incoming text
+      const clipBottom = clamp(logoBottomVP - textTopVP, 0, logoH);
+      const progress   = clipBottom / logoH; // 0 = fully visible, 1 = fully gone
+
+      // mask-image clips bottom-to-top while preserving the circular border-radius
+      // (clip-path would expose the white rectangle corners — mask-image doesn't)
+      const visiblePct = ((1 - progress) * 100).toFixed(1);
+      const mask = `linear-gradient(to bottom, black 0%, black ${visiblePct}%, transparent ${visiblePct}%)`;
+      flyLogo.style.maskImage = mask;
+      flyLogo.style.webkitMaskImage = mask;
+      flyLogo.style.opacity = (1 - progress).toFixed(3);
+    } else {
+      // Mobile/tablet: fly logo animates to nav slot
+      flyLogo.style.maskImage = '';
+      flyLogo.style.webkitMaskImage = '';
+      applyLogoPosition(p);
+    }
 
     nav.classList.toggle('is-solid', p >= 0.35);
 
@@ -1704,6 +1733,17 @@ function initHeroEntrance() {
     flyLogo.classList.add('is-animated');
     heroEl.classList.add('is-animated');
   });
+
+  // Desktop: once entrance animation ends, remove it so the scroll handler
+  // can freely control opacity via inline style (CSS animations override inline styles)
+  if (window.innerWidth > 1024) {
+    flyLogo.addEventListener('animationend', (e) => {
+      if (e.animationName === 'heroLogoIn') {
+        flyLogo.classList.remove('is-animated');
+        flyLogo.style.opacity = '1';
+      }
+    }, { once: true });
+  }
 }
 
 // ============================================================

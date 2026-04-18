@@ -57,6 +57,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  max-width: 100%;
   font-size: 16px;
 }
 
@@ -66,6 +67,8 @@ body {
   background: var(--clr-white);
   line-height: 1.7;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
   overflow-wrap: break-word;
   word-break: break-word;
 }
@@ -235,7 +238,8 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   display: flex;
   flex-direction: column;
   line-height: 1.2;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
 }
 .nav__brand-name {
   font-size: clamp(0.95rem, 1.4vw, 1.25rem);
@@ -400,7 +404,12 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
 
 .site-nav.is-solid .nav__hamburger span { background: var(--clr-white); }
 
-.nav__hamburger.is-open { position: relative; z-index: 1002; }
+.nav__hamburger.is-open {
+  position: fixed;
+  top: calc((var(--nav-height) - 40px) / 2);
+  right: clamp(1rem, 4vw, 3rem);
+  z-index: 1002;
+}
 .nav__hamburger.is-open span { background: var(--clr-white); }
 .nav__hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav__hamburger.is-open span:nth-child(2) { opacity: 0; }
@@ -429,6 +438,7 @@ p  { color: var(--clr-text); font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
   opacity: 1;
   visibility: visible;
 }
+
 
 .nav__mobile-link {
   display: flex;
@@ -621,20 +631,24 @@ body.is-home { padding-top: 0; }
   display: block;
 }
 
-/* On homepage: remove nav logo and brand from flow — flying logo takes over */
-.is-home .nav__logo {
-  display: none;
+/* On homepage: nav brand hidden until nav becomes solid (fly logo handles initial branding) */
+.is-home .site-nav .nav__brand {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--tr-base);
 }
-.is-home .nav__brand {
-  display: none;
+.is-home .site-nav.is-solid .nav__brand {
+  opacity: 1;
+  pointer-events: auto;
 }
-/* Flying logo occupies the left slot; push links to the right */
-.is-home .nav__container {
-  justify-content: flex-end;
+
+/* Desktop homepage: nav logo starts invisible, fades in when nav becomes solid */
+.is-home .site-nav .nav__logo {
+  opacity: 0;
+  transition: opacity var(--tr-base);
 }
-/* Remove auto-margin so items don't drift into the logo's landing zone */
-.is-home .nav__menu {
-  margin-left: 0;
+.is-home .site-nav.is-solid .nav__logo {
+  opacity: 1;
 }
 
 /* === HERO CENTER TEXT === */
@@ -2732,12 +2746,35 @@ counter-increment: decalogo-counter;
     --hero-logo-half:   100px;
   }
 
-  /* Nav: show hamburger, shrink logo overflow */
+  /* Nav: show hamburger, fit logo within nav height */
   .nav__menu { display: none; }
   .nav__cta { display: none; }
-  .nav__hamburger { display: flex; }
-  .nav__logo img { height: 86px; transform: translateY(8px); }
-  .site-nav.is-solid .nav__logo img { height: 54px; transform: translateY(0); }
+  .nav__hamburger { display: flex; margin-left: auto; }
+  .nav__logo img { height: 48px; transform: none; }
+  .site-nav.is-solid .nav__logo img { height: 48px; transform: none; }
+  /* Brand text centered absolutely so logo (left) and hamburger (right) don't affect it */
+  .nav__container { position: relative; }
+  .nav__brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .nav__brand-name { font-size: 0.82rem; }
+  .nav__brand-sub  { font-size: 0.62rem; }
+
+  /* Homepage mobile: fly logo takes over nav slot */
+  .is-home .nav__logo {
+    display: none;
+  }
+  .is-home .nav__container {
+    justify-content: space-between;
+  }
+  .is-home .nav__menu {
+    margin-left: 0;
+  }
 
   /* Hero: full screen on tablet */
   .hero { height: 100vh; }
