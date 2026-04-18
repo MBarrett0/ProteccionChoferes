@@ -1956,7 +1956,7 @@ body.is-home { padding-top: 0; }
   padding-block: clamp(5rem, 10vw, 8rem);
 }
 .page-hero--bus::before {
-  background-image: url('../images/hero-bus.jpg');
+  background-image: url('../images/hero-bus.png');
   background-size: cover;
   background-position: center 65%;
   opacity: 0.30;
