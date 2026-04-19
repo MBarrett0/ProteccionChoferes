@@ -329,7 +329,7 @@ function initConveniosMarquee() {
   const DETAILS = {
     'BSE': {
       fullName: 'BSE — Banco de Seguros del Estado',
-      detail: '<strong>¿Para quién?</strong> Socio, cónyuge e hijos.<br><br><strong>¿Qué se obtiene?</strong> Descuento del 17% al contratar o renovar el seguro de automóviles, manteniendo otras bonificaciones ya otorgadas por no siniestro (incluso de otras aseguradoras). A partir de Octubre de 2009, también la tarifa 1.<br><br><strong>¿Cómo?</strong> Pedir una constancia en el centro y entregarla a su corredor de confianza antes de la renovación/contratación del seguro. Obtenerla en forma personal con recibo social al día y cédula de identidad en nuestra oficina jurídica.<br><br><strong>Formas de pago:</strong> Débito en tarjeta de crédito y/o cuenta bancaria y en red de cobranza.<br><br><strong>Vehículos incluidos:</strong> Todo tipo, excepto: taxis, remises, vehículos de alquiler, ambulancias, coches de auxilio, ley de lisiados, vehículos con descuentos por flota o por integrar otro tipo de afinidad con el BSE, y asegurados con tarifa 8.'
+      detail: '<strong>¿Para quién?</strong> Socio, cónyuge e hijos.<br><br><strong>¿Qué se obtiene?</strong> Descuento del 17% al contratar o renovar el seguro de automóviles, manteniendo otras bonificaciones ya otorgadas por no siniestro (incluso de otras aseguradoras). A partir de octubre de 2009, también la tarifa 1.<br><br><strong>¿Cómo?</strong> Pedir una constancia en el centro y entregarla a su corredor de confianza antes de la renovación/contratación del seguro. Obtenerla en forma personal con recibo social al día y cédula de identidad en nuestra oficina jurídica.<br><br><strong>Formas de pago:</strong> Débito en tarjeta de crédito y/o cuenta bancaria y en red de cobranza.<br><br><strong>Vehículos incluidos:</strong> Todo tipo, excepto: taxis, remises, vehículos de alquiler, ambulancias, coches de auxilio, ley de lisiados, vehículos con descuentos por flota o por integrar otro tipo de afinidad con el BSE, y asegurados con tarifa 8.'
     },
     'Porto Seguros': {
       fullName: 'Porto Seguros',
@@ -341,7 +341,7 @@ function initConveniosMarquee() {
     },
     'Española Móvil': {
       fullName: 'Española Móvil',
-      detail: 'Dentro de todos nuestros locales, los asociados están cubiertos por la atención médica de la Española Móvil a través de un convenio firmado con dicha empresa.'
+      detail: 'En todos nuestros locales, los asociados están cubiertos por la atención médica de la Española Móvil a través de un convenio firmado con dicha empresa.'
     },
     'Clínica Brackets': {
       fullName: 'Clínica Brackets del Uruguay',
@@ -1175,6 +1175,7 @@ function initInstAccordion() {
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
+      document.addEventListener('touchmove', preventScroll, { passive: false });
     }
 
     function closeLightbox() {
@@ -1182,7 +1183,10 @@ function initInstAccordion() {
       lightbox.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
+      document.removeEventListener('touchmove', preventScroll);
     }
+
+    function preventScroll(e) { e.preventDefault(); }
 
     // Click on main gallery image to open
     document.querySelectorAll('.inst-card__gallery-main img').forEach(function(img) {
