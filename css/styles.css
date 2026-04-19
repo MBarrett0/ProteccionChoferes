@@ -3543,6 +3543,13 @@ counter-increment: decalogo-counter;
     height: 15px;
   }
 
+  .inst-card__gallery-thumbs {
+    grid-auto-flow: column;
+    grid-template-columns: unset;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .inst-card__gallery-thumbs img {
     width: 48px;
     height: 36px;
