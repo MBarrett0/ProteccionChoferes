@@ -3316,7 +3316,8 @@ counter-increment: decalogo-counter;
 }
 
 .inst-card__gallery-thumbs {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 64px);
   gap: 0.5rem;
 }
 
