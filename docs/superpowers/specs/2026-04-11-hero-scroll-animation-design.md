@@ -21,7 +21,7 @@ Sequence triggered once on `DOMContentLoaded`, skipped if `prefers-reduced-motio
 | Logo (shield) | `scale(0.6) + opacity 0` → `scale(1) + opacity 1` | 0ms |
 | "Centro Protección Choferes" | `opacity 0 + translateY(10px)` → normal | 280ms |
 | "de Montevideo" | `opacity 0 + translateY(8px)` → normal | 450ms |
-| Pre-asociate button | `opacity 0 + translateY(8px)` → normal | 580ms |
+| Pre Asociarse button | `opacity 0 + translateY(8px)` → normal | 580ms |
 | "1909 – 2026" eyebrow | `opacity 0` → normal | 680ms |
 | Scroll chevron | `opacity 0` → normal (then loops bounce) | 900ms |
 
@@ -47,7 +47,7 @@ All entrance transitions: `0.55s ease-out`.
     <h1 class="hero__brand-name">Centro Protección Choferes</h1>
     <p class="hero__brand-sub">de Montevideo</p>
     <div class="hero__actions">
-      <a href="./institucion/asociarse.html" class="btn btn--amber">Pre-asociate</a>
+      <a href="/institucion/asociarse/" class="btn btn--amber">Pre Asociarse</a>
     </div>
     <div class="hero__scroll-hint" aria-hidden="true">
       <span class="hero__chevron"></span>
@@ -115,7 +115,7 @@ On mobile, the nav brand text (`.nav__logo-text`) remains hidden even when scrol
 
 ## Chevron Scroll Indicator
 
-Two staggered chevron elements below the Pre-asociate button:
+Two staggered chevron elements below the Pre Asociarse button:
 
 ```css
 .hero__scroll-hint {

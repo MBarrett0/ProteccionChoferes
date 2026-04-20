@@ -41,7 +41,7 @@ Find and replace the entire `.hero__content` div (lines 152–161):
       <h1 class="hero__title">117 años trabajando<br>para su tranquilidad</h1>
       <p class="hero__subtitle">De todos y para todos</p>
       <div class="hero__actions">
-        <a href="./institucion/asociarse.html" class="btn btn--amber">Pre-asociate</a>
+        <a href="/institucion/asociarse/" class="btn btn--amber">Pre Asociarse</a>
         <a href="#beneficios" class="btn btn--outline-white">Nuestros Beneficios</a>
       </div>
     </div>
@@ -52,7 +52,7 @@ Replace with:
       <h1 class="hero__brand-name">Centro Protección Choferes</h1>
       <p class="hero__brand-sub">de Montevideo</p>
       <div class="hero__actions">
-        <a href="./institucion/asociarse.html" class="btn btn--amber">Pre-asociate</a>
+        <a href="/institucion/asociarse/" class="btn btn--amber">Pre Asociarse</a>
       </div>
       <p class="hero__eyebrow">1909 &ndash; 2026</p>
       <div class="hero__scroll-hint" aria-hidden="true">
@@ -611,7 +611,7 @@ Search `css/styles.css` for `.hero__title`, `.hero__content`, `.hero__subtitle`.
 
 - [ ] **Step 2: Verify other pages unaffected**
 
-Open `http://localhost:3456/beneficios/complejo-deportivo.html`. Expected:
+Open `http://localhost:3456/beneficios/complejo-deportivo/`. Expected:
 - Normal `.page-hero` banner at top
 - No flying logo
 - Nav solid (normal `initStickyNav` behavior at 40px scroll threshold)

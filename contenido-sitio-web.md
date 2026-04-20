@@ -76,7 +76,7 @@
 
 - **Nombre:** Centro Protección Choferes de Montevideo - Soriano 1227
 - **Redes:** Instagram, Facebook
-- **Enlace:** "Como llegar" → /informacion
+- **Enlace:** "Cómo llegar" → /informacion
 - **Crédito:** Departamento de Informática.
 - **Símbolo:** ©®™
 
@@ -117,9 +117,9 @@ La Institución fue fundada el **20 de octubre de 1909** con el nombre de "Centr
 
 **Primera Comisión Directiva:**
 - Presidente: Augusto Arostegui
-- Vice Presidente: Alfredo Martin
+- Vicepresidente: Alfredo Martin
 - Secretario: Reinaldo Larrechea
-- Pro-Secretario: Elías Fernández
+- Prosecretario: Elías Fernández
 - Tesorero: José Alonso
 - Vocales: Cayetano Hernández, Silvestre Bentos
 
@@ -140,9 +140,9 @@ La Institución inició con la idea central de proveer protección mutualista a 
 | Cargo | Nombre |
 |-------|--------|
 | Presidente | Jorge DEL RÍO |
-| Vice Presidente | Juan SALGADO |
+| Vicepresidente | Juan SALGADO |
 | Secretario | Alejandro VEIRAS |
-| Pro-Secretario | (dato en página) |
+| Prosecretario | (dato en página) |
 | Tesorero | (dato en página) |
 | Pro-Tesorero | (dato en página) |
 | Vocales | (datos en página) |
@@ -811,7 +811,7 @@ Formulario de contacto general (en iframe).
 
 **Autoridades 2024-2026:**
 - Presidente: Jorge Del Río
-- Vice Presidente: Juan Salgado
+- Vicepresidente: Juan Salgado
 - Secretario: Alejandro Veiras
 
 **Departamento Jurídico de emergencias:** 099 605 400
