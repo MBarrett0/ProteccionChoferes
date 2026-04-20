@@ -3419,28 +3419,35 @@ counter-increment: decalogo-counter;
   margin: 0;
 }
 
-/* Pre-reserva form */
-.prereserva-form {
+/* WhatsApp consulta widget */
+.wa-form {
   background: var(--clr-white);
   border: 1px solid var(--clr-border);
   border-radius: var(--radius-md);
   padding: 2rem;
+  max-width: 520px;
 }
 
-.prereserva-form .form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1rem;
+.wa-form__instalacion {
+  font-size: 0.95rem;
+  color: var(--clr-text);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--clr-border);
 }
 
-.prereserva-form .form-field {
+.wa-form__instalacion strong {
+  color: var(--clr-primary-dark);
+}
+
+.wa-form__field {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
 }
 
-.prereserva-form label {
+.wa-form__field label {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--clr-text-dark);
@@ -3448,60 +3455,68 @@ counter-increment: decalogo-counter;
   letter-spacing: 0.04em;
 }
 
-.prereserva-form input,
-.prereserva-form select,
-.prereserva-form textarea {
+.wa-form__field input[type="date"] {
   font-family: var(--font-main);
   font-size: 0.95rem;
   padding: 0.7rem 0.9rem;
-  border: 1px solid var(--clr-border);
+  border: 1.5px solid var(--clr-border);
   border-radius: var(--radius-sm);
-  color: var(--clr-text-dark);
   background: var(--clr-white);
-  transition: border-color var(--tr-fast);
+  color: var(--clr-text-dark);
   width: 100%;
+  transition: border-color var(--tr-fast);
 }
 
-.prereserva-form input:focus,
-.prereserva-form select:focus,
-.prereserva-form textarea:focus {
+.wa-form__field input[type="date"]:focus {
   outline: none;
   border-color: var(--clr-primary);
 }
 
-.prereserva-form textarea {
-  resize: vertical;
-  min-height: 80px;
+.wa-form__radios {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-.prereserva-form .form-field:last-of-type {
-  margin-bottom: 0.5rem;
+.wa-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.6rem 1.1rem;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--clr-text-dark);
+  transition: border-color var(--tr-fast), background var(--tr-fast);
+  user-select: none;
 }
 
-/* Pre-reserva success overlay */
-.prereserva-success {
-  display: none;
-  text-align: center;
-  padding: 2rem;
+.wa-radio input[type="radio"] {
+  accent-color: var(--clr-primary);
 }
 
-.prereserva-success.is-visible {
-  display: block;
-}
-
-.prereserva-success svg {
-  color: var(--clr-primary);
-  margin-bottom: 1rem;
-}
-
-.prereserva-success h3 {
+.wa-radio:has(input:checked) {
+  border-color: var(--clr-primary);
+  background: rgba(0, 71, 255, 0.05);
   color: var(--clr-primary-dark);
-  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
-.prereserva-success p {
-  max-width: 500px;
-  margin: 0 auto 0.5rem;
+.btn--wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  margin-top: 0.5rem;
+}
+
+.btn--wa:hover {
+  background: #1ebe5a;
+  transform: translateY(-2px);
 }
 
 /* Responsive: Instalaciones accordion */
@@ -3518,12 +3533,12 @@ counter-increment: decalogo-counter;
     padding: 0.85rem 1rem;
   }
 
-  .prereserva-form .form-row {
-    grid-template-columns: 1fr;
+  .wa-form {
+    padding: 1.25rem;
   }
 
-  .prereserva-form {
-    padding: 1.25rem;
+  .wa-form__radios {
+    flex-direction: column;
   }
 
   .prereserva-notice {
@@ -4044,6 +4059,7 @@ counter-increment: decalogo-counter;
 /* Category colors — left border accent */
 .horarios-grid__entry--piscina   { background: #e8f0fd; border-left-color: #0047FF; color: #001F6B; }
 .horarios-grid__entry--gimnasio  { background: #e8f5e0; border-left-color: #16a34a; color: #14532d; }
+.horarios-grid__entry--piso      { background: #fefce8; border-left-color: #e6c619; color: #713f12; }
 .horarios-grid__entry--infantil  { background: #fefce8; border-left-color: #e6c619; color: #713f12; }
 .horarios-grid__entry--cancha    { background: #fefce8; border-left-color: #e6c619; color: #713f12; }
 
