@@ -1281,7 +1281,7 @@ function initPreReservaForm() {
       + ' hora: ' + horarioEl.value
       + ' y ' + socioEl.value;
 
-    window.open('https://wa.me/5989851497?text=' + encodeURIComponent(msg), '_blank');
+    window.open('https://wa.me/59898514097?text=' + encodeURIComponent(msg), '_blank');
   });
 }
 
