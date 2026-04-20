@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css?v=19">
+  <link rel="stylesheet" href="/css/styles.css?v=20">
 </head>
 <body>
 
@@ -530,87 +530,41 @@
         </div>
       </section>
 
-      <!-- PRE-RESERVA FORM -->
+      <!-- CONSULTA POR WHATSAPP -->
       <section class="reveal" id="prereserva" style="display:none">
-        <h2>Solicitud de Pre-Reserva</h2>
+        <h2>Consultar disponibilidad</h2>
         <div class="prereserva-notice">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div>
-            <strong>Importante: esto es una solicitud de pre-reserva, no una confirmación.</strong>
-            <p>Tu solicitud será revisada por la administración del Parque Social. La reserva queda confirmada únicamente luego de la aprobación por parte del personal y la realización del pago correspondiente. Nos comunicaremos contigo para coordinar los próximos pasos.</p>
+            <strong>Te conectamos directo por WhatsApp</strong>
+            <p>Completá los datos y te abrimos WhatsApp con el mensaje listo para enviar al Parque Social.</p>
           </div>
         </div>
-        <form class="prereserva-form" id="prereserva-form" action="https://formsubmit.co/parque@proteccionchoferes.org.uy" method="POST">
-          <input type="hidden" name="_subject" value="Nueva solicitud de Pre-Reserva - Parque Social">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://proteccionchoferes.org.uy/beneficios/parque-social?prereserva=ok">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" style="display:none">
-          <div class="form-row">
-            <div class="form-field">
-              <label for="pr-nombre">Nombre completo *</label>
-              <input type="text" id="pr-nombre" name="nombre" required placeholder="Tu nombre y apellido">
-            </div>
-            <div class="form-field">
-              <label for="pr-socio">N.° de socio <small>(si corresponde)</small></label>
-              <input type="text" id="pr-socio" name="socio" placeholder="Número de socio (opcional)">
+        <div class="wa-form">
+          <p class="wa-form__instalacion">Instalación seleccionada: <strong id="wa-instalacion-label">—</strong></p>
+          <div class="wa-form__field">
+            <label for="wa-fecha">Fecha deseada *</label>
+            <input type="date" id="wa-fecha">
+          </div>
+          <div class="wa-form__field">
+            <label>Horario *</label>
+            <div class="wa-form__radios">
+              <label class="wa-radio"><input type="radio" name="wa-horario" value="8:00 a 17:00"><span>8:00 a 17:00</span></label>
+              <label class="wa-radio"><input type="radio" name="wa-horario" value="18:30 a 02:00"><span>18:30 a 02:00</span></label>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="pr-email">Email *</label>
-              <input type="email" id="pr-email" name="email" required placeholder="tu@email.com">
-            </div>
-            <div class="form-field">
-              <label for="pr-telefono">Teléfono *</label>
-              <input type="tel" id="pr-telefono" name="telefono" required placeholder="09X XXX XXX">
+          <div class="wa-form__field">
+            <label>Condición *</label>
+            <div class="wa-form__radios">
+              <label class="wa-radio"><input type="radio" name="wa-socio" value="Soy socio"><span>Soy socio</span></label>
+              <label class="wa-radio"><input type="radio" name="wa-socio" value="No soy socio"><span>No soy socio</span></label>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="pr-instalacion">Instalación *</label>
-              <select id="pr-instalacion" name="instalacion" required>
-                <option value="">Seleccioná una instalación</option>
-                <option value="Barbacoa 1">Barbacoa 1 (Cerrada · 60 pers.)</option>
-                <option value="Barbacoas 2, 3 y 4">Barbacoas 2, 3 y 4 (Cerradas · 40 pers. c/u)</option>
-                <option value="Barbacoa 13">Barbacoa 13 (Cerrada · 40 pers.)</option>
-                <option value="Barbacoa 14">Barbacoa 14 (Cerrada · 80 pers.)</option>
-                <option value="Barbacoas 5 y 6">Barbacoas 5 y 6 (Abiertas · 40 pers. c/u)</option>
-                <option value="Barbacoas 7 y 8">Barbacoas 7 y 8 (Abiertas · 20 pers. c/u)</option>
-                <option value="Barbacoas 9, 10, 11 y 12">Barbacoas 9, 10, 11 y 12 (Abiertas · 100 pers. c/u)</option>
-                <option value="Salón Diamante">Salón Diamante (Cerrado · 250 pers.)</option>
-                <option value="Cancha de Fútbol 5">Cancha de Fútbol 5</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="pr-fecha">Fecha deseada *</label>
-              <input type="date" id="pr-fecha" name="fecha" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="pr-hora">Hora deseada *</label>
-              <input type="time" id="pr-hora" name="hora" required>
-            </div>
-            <div class="form-field">
-              <label for="pr-personas">Cantidad de personas *</label>
-              <input type="number" id="pr-personas" name="personas" required min="1" max="300" placeholder="Ej: 40">
-            </div>
-            <div class="form-field">
-              <label for="pr-evento">Tipo de evento</label>
-              <input type="text" id="pr-evento" name="evento" placeholder="Ej: Cumpleaños, reunión familiar">
-            </div>
-          </div>
-          <div class="form-field">
-            <label for="pr-comentarios">Comentarios adicionales</label>
-            <textarea id="pr-comentarios" name="comentarios" rows="3" placeholder="Horario preferido, necesidades especiales, etc."></textarea>
-          </div>
-          <div class="prereserva-notice prereserva-notice--small">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <p>Al enviar este formulario, tu solicitud llegará al equipo del Parque Social. <strong>La reserva NO queda confirmada</strong> hasta recibir la aprobación y realizar el pago.</p>
-          </div>
-          <button type="submit" class="btn btn--amber btn--full">Enviar solicitud de pre-reserva</button>
-        </form>
+          <button type="button" class="btn btn--wa btn--full" id="wa-send-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Enviar por WhatsApp
+          </button>
+        </div>
       </section>
 
       <section class="reveal">
@@ -683,7 +637,7 @@
     <div class="lightbox__counter" id="lightbox-counter"></div>
   </div>
   <button class="scroll-top" id="scroll-top" aria-label="Volver arriba">&#8593;</button>
-  <script src="/js/main.js?v=14"></script>
+  <script src="/js/main.js?v=15"></script>
 
 </body>
 </html>

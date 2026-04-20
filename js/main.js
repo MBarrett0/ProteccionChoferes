@@ -1231,23 +1231,17 @@ function initInstAccordion() {
     });
   }
 
-  // Pre-reservar buttons: scroll to form and set select value
+  // Consultar buttons: populate WhatsApp widget and scroll to it
   document.querySelectorAll('.inst-card__reserva-btn').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      var instalacion = btn.getAttribute('data-instalacion');
-      var select = document.getElementById('pr-instalacion');
-      if (select && instalacion) {
-        for (var i = 0; i < select.options.length; i++) {
-          if (select.options[i].value === instalacion) {
-            select.selectedIndex = i;
-            break;
-          }
-        }
-      }
+      var instalacion = btn.getAttribute('data-instalacion') || '';
+      var label = document.getElementById('wa-instalacion-label');
+      if (label) label.textContent = instalacion || '—';
       var target = document.getElementById('prereserva');
       if (target) {
         target.style.display = '';
+        target.setAttribute('data-instalacion', instalacion);
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
@@ -1255,40 +1249,39 @@ function initInstAccordion() {
 }
 
 // ============================================================
-// PRE-RESERVA FORM
+// WHATSAPP CONSULTA (Parque Social)
 // ============================================================
 function initPreReservaForm() {
-  var form = document.getElementById('prereserva-form');
-  if (!form) return;
-
-  // Set min date to today
-  var fechaInput = document.getElementById('pr-fecha');
-  if (fechaInput) {
-    var today = new Date().toISOString().split('T')[0];
-    fechaInput.setAttribute('min', today);
-  }
-
-  // Show success message if redirected back after submission
   var section = document.getElementById('prereserva');
-  if (window.location.search.indexOf('prereserva=ok') !== -1) {
-    if (section) section.style.display = '';
-    form.style.display = 'none';
-    var success = document.createElement('div');
-    success.className = 'prereserva-success is-visible';
-    success.innerHTML = '<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
-      + '<h3>Solicitud enviada</h3>'
-      + '<p>Tu solicitud de pre-reserva fue recibida correctamente. El equipo del Parque Social la revisará y se comunicará contigo para confirmar la disponibilidad y coordinar el pago.</p>'
-      + '<p><strong>Recordá que la reserva no está confirmada hasta recibir la aprobación y realizar el pago.</strong></p>';
-    form.parentNode.insertBefore(success, form);
-    // Scroll to success message
-    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!section) return;
+
+  var fechaInput = document.getElementById('wa-fecha');
+  if (fechaInput) {
+    fechaInput.setAttribute('min', new Date().toISOString().split('T')[0]);
   }
 
-  // Show "Enviando..." on submit
-  form.addEventListener('submit', function() {
-    var btn = form.querySelector('[type="submit"]');
-    btn.textContent = 'Enviando solicitud...';
-    btn.disabled = true;
+  var sendBtn = document.getElementById('wa-send-btn');
+  if (!sendBtn) return;
+
+  sendBtn.addEventListener('click', function() {
+    var instalacion = section.getAttribute('data-instalacion') || '—';
+    var fecha = fechaInput ? fechaInput.value : '';
+    var horarioEl = document.querySelector('input[name="wa-horario"]:checked');
+    var socioEl = document.querySelector('input[name="wa-socio"]:checked');
+
+    if (!fecha) { alert('Por favor ingresá una fecha.'); return; }
+    if (!horarioEl) { alert('Por favor seleccioná un horario.'); return; }
+    if (!socioEl) { alert('Por favor indicá si sos socio.'); return; }
+
+    var parts = fecha.split('-');
+    var fechaFmt = parts[2] + '/' + parts[1] + '/' + parts[0];
+
+    var msg = 'Hola, quiero reservar ' + instalacion
+      + ' para el: ' + fechaFmt
+      + ' hora: ' + horarioEl.value
+      + ' y ' + socioEl.value;
+
+    window.open('https://wa.me/5989851497?text=' + encodeURIComponent(msg), '_blank');
   });
 }
 
