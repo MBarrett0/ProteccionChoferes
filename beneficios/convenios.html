@@ -173,6 +173,11 @@
               <span>Financiero</span>
               <input type="radio" name="conv-cat" value="financiero">
             </label>
+            <label class="conv-filter__chip" data-cat="afiliados">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>Afiliados y Familia</span>
+              <input type="radio" name="conv-cat" value="afiliados">
+            </label>
             <label class="conv-filter__chip" data-cat="institucional">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/></svg>
               <span>Institucional</span>
@@ -187,6 +192,29 @@
 
       <!-- CATEGORY SECTIONS -->
       <div id="conv-sections">
+
+        <!-- AFILIADOS Y FAMILIA -->
+        <section class="conv-cat-section reveal" data-section="afiliados">
+          <h4 class="conv-cat-section__title">Beneficios para Funcionarios Afiliados y Familiares</h4>
+          <p style="font-size:0.9rem;color:var(--clr-text);margin-bottom:1rem;margin-top:-0.5rem;">Cónyuge, concubinos, padres e hijos, nietos, nueras y yernos</p>
+          <div class="conv-cat-section__row-wrap">
+            <button class="conv-cat-section__arrow conv-cat-section__arrow--prev" aria-label="Anterior" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="conv-cat-section__row">
+              <div class="conv-logo-card" data-name="Asociación Española — Beneficios Anuales para Afiliados" data-category="Afiliados y Familia" data-detail="&lt;strong&gt;Para funcionarios, afiliados y sus familiares:&lt;/strong&gt; cónyuge, concubinos, padres e hijos, nietos, nueras y yernos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;BENEFICIOS ANUALES&lt;/strong&gt;&lt;br&gt;&lt;br&gt;• Órdenes de medicina general &lt;strong&gt;GRATIS&lt;/strong&gt;&lt;br&gt;• 18 órdenes anuales de especialista &lt;strong&gt;GRATIS&lt;/strong&gt; (excluye policlínica de Anticoagulación)&lt;br&gt;• Emergencia odontológica &lt;strong&gt;GRATIS&lt;/strong&gt;&lt;br&gt;• 2 urgencias a domicilio &lt;strong&gt;GRATIS&lt;/strong&gt;&lt;br&gt;• 2 órdenes de emergencia centralizada o urgencia en sede &lt;strong&gt;GRATIS&lt;/strong&gt;&lt;br&gt;• RX &lt;strong&gt;GRATIS&lt;/strong&gt;&lt;br&gt;• Mamografías &lt;strong&gt;GRATIS&lt;/strong&gt;&lt;br&gt;• Carné de salud laboral &lt;strong&gt;GRATIS&lt;/strong&gt;&lt;br&gt;• Resonancia nuclear &lt;strong&gt;GRATIS&lt;/strong&gt;&lt;br&gt;• 12 tickets de medicamentos anuales bonificados&lt;br&gt;• 6 análisis clínicos de laboratorio anuales bonificados (excluye a domicilio, laboratorio de biología molecular y citometría de flujo)&lt;br&gt;• 6 análisis de orina anuales bonificados&lt;br&gt;&lt;br&gt;&lt;strong&gt;SERVICIOS OPCIONALES BONIFICADOS&lt;/strong&gt;&lt;br&gt;• Habitación privada&lt;br&gt;• Española Móvil&lt;br&gt;• Servicio fúnebre&lt;br&gt;• Familia acompañantes" data-img="/images/convenios/asociacion-espanola.png">
+                <div class="conv-logo-card__img">
+                  <img src="/images/convenios/asociacion-espanola.png" alt="Asociación Española" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.conv-logo-card__placeholder').style.display='flex'">
+                  <div class="conv-logo-card__placeholder">Asociación Española</div>
+                </div>
+                <span class="conv-logo-card__benefit">12+ beneficios anuales</span>
+              </div>
+            </div>
+            <button class="conv-cat-section__arrow conv-cat-section__arrow--next" aria-label="Siguiente" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </section>
 
         <!-- SEGUROS -->
         <section class="conv-cat-section reveal" data-section="seguros">
