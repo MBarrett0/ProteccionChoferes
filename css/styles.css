@@ -1592,23 +1592,30 @@ body.is-home { padding-top: 0; }
     max-width: 120px;
   }
 
-  .conv-modal__body {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    flex: 1;
+  .conv-modal {
+    align-items: flex-start;
+    padding: 1rem;
   }
 
   .conv-modal__content {
     padding: 1.5rem;
     padding-top: 3rem;
-    max-height: 90vh;
-    max-height: 90dvh;
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    width: 95%;
+  }
+
+  .conv-modal__body {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -1629,12 +1636,6 @@ body.is-home { padding-top: 0; }
   .conv-modal__logo {
     width: 110px;
     height: 90px;
-  }
-
-  .conv-modal__content {
-    max-height: 88vh;
-    max-height: 88dvh;
-    width: 95%;
   }
 }
 
