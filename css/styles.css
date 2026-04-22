@@ -1592,20 +1592,33 @@ body.is-home { padding-top: 0; }
     max-width: 120px;
   }
 
-  .conv-modal {
-    align-items: flex-start;
-    padding: 1rem;
-  }
-
   .conv-modal__content {
-    padding: 1.5rem;
-    padding-top: 3rem;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    max-width: none;
     max-height: calc(100vh - 2rem);
     max-height: calc(100dvh - 2rem);
+    padding: 1.5rem;
+    padding-top: 3.5rem;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    width: 95%;
+  }
+
+  .conv-modal.is-open .conv-modal__content {
+    transform: none;
+  }
+
+  .conv-modal__close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+    background: var(--clr-off-white);
   }
 
   .conv-modal__body {
