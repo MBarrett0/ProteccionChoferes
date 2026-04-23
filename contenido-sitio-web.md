@@ -744,7 +744,7 @@ Colección de videos educativos sobre seguridad vial (YouTube embeds):
 |--------------|----------------|
 | **General** | Tel: 2908 1207 / WhatsApp: 098 514 097 |
 | **Información General** | info@proteccionchoferes.org.uy |
-| **Despacho Administrativo** | despacho@proteccionchoferes.org.uy |
+| **Despacho Administrativo** | info@proteccionchoferes.org.uy |
 | **Departamento Jurídico** | juridica@proteccionchoferes.org.uy |
 | **Parque Social** | parque@proteccionchoferes.org.uy |
 | **Biblioteca Social** | biblioteca@proteccionchoferes.org.uy |
