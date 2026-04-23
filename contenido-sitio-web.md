@@ -13,7 +13,7 @@
 - Sede Social: Soriano 1227 - Tel. 2908 1207
 - WhatsApp: 098 514097
 - Complejo Deportivo: Soriano 1217
-- Parque Social: Cnel. Raíz 1002 (vehicular) / Av. De las Instrucciones 997 - Tel. 2359 5074
+- Parque Social: Cnel. Raíz 1002 (vehicular) / Av. De las Instrucciones 997 - Tel. 2359 5074 / 099 383 284 (Whatsapp)
 - Email: info@proteccionchoferes.org.uy
 
 **Redes sociales:**
@@ -237,7 +237,7 @@ El departamento jurídico brinda asistencia legal especializada a los socios, es
 **Título:** PARQUE SOCIAL
 
 **Ubicación:** Cnel. Raíz 1002 (vehicular) / Av. De las Instrucciones 997
-**Teléfono:** 2359 5074
+**Teléfono:** 2359 5074 / 099 383 284 (Whatsapp)
 
 **Características:**
 - 3,5 hectáreas de área verde
@@ -797,7 +797,7 @@ Formulario de contacto general (en iframe).
 **Sedes:**
 - Sede Social: Soriano 1227, Montevideo – Tel. 2908 1207
 - Complejo Deportivo: Soriano 1217
-- Parque Social: Cnel. Raíz 1002 / Av. De las Instrucciones 997 – Tel. 2359 5074
+- Parque Social: Cnel. Raíz 1002 / Av. De las Instrucciones 997 – Tel. 2359 5074 / 099 383 284 (Whatsapp)
 
 **Contacto principal:**
 - Tel: 2908 1207
