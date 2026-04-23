@@ -105,7 +105,7 @@ Página principalmente galería fotográfica (iframe). Contiene fotos de la inst
 
 **Título:** QUIÉNES SOMOS
 
-El Centro Protección Choferes de Montevideo es una Institución mutualista sin fines de lucro, fundada en 1909. Agrupa a conductores de vehículos motorizados y afines, ofreciendo beneficios sociales, culturales, deportivos y de seguridad vial a sus asociados.
+El Centro Protección Choferes de Montevideo es una Asociacion Civil sin fines de lucro, fundada en 1909. Agrupa a conductores de vehículos motorizados y afines, ofreciendo beneficios sociales, culturales, deportivos y de seguridad vial a sus asociados.
 
 ---
 
@@ -113,7 +113,7 @@ El Centro Protección Choferes de Montevideo es una Institución mutualista sin 
 
 **Título:** SÍNTESIS HISTÓRICA
 
-La Institución fue fundada el **20 de octubre de 1909** con el nombre de "Centro Protección Choferes de Montevideo".
+La Institución fue fundada el **3 de diciembre de 1909** con el nombre de "Centro Protección Choferes de Montevideo".
 
 **Primera Comisión Directiva:**
 - Presidente: Augusto Arostegui
@@ -123,7 +123,7 @@ La Institución fue fundada el **20 de octubre de 1909** con el nombre de "Centr
 - Tesorero: José Alonso
 - Vocales: Cayetano Hernández, Silvestre Bentos
 
-La Institución inició con la idea central de proveer protección mutualista a los conductores, que en esa época enfrentaban condiciones de trabajo muy difíciles. Con los años fue ampliando sus servicios y beneficios.
+La Institución inició con la idea central de proveer protección civil a los conductores, que en esa época enfrentaban condiciones de trabajo muy difíciles. Con los años fue ampliando sus servicios y beneficios.
 
 **Sede Social:** Soriano 1227, Montevideo (sede histórica, mantiene la misma dirección).
 
@@ -788,9 +788,9 @@ Formulario de contacto general (en iframe).
 
 **Nombre completo:** Centro Protección Choferes de Montevideo
 
-**Fundación:** 20 de octubre de 1909
+**Fundación:** 3 de diciembre de 1909
 
-**Tipo:** Institución mutualista sin fines de lucro
+**Tipo:** Asociacion Civil sin fines de lucro
 
 **Slogan:** "De todos y para todos" | "116 años trabajando día tras día para su tranquilidad"
 
