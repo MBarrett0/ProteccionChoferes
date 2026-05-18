@@ -398,30 +398,17 @@
             var tipo = selector.value === 'cuota_social' ? 'Cuota Social' : 'Complejo Deportivo';
             subjectField.value = 'Pre Asociaci\u00f3n \u2013 ' + nombre + ' \u2013 CI ' + cedula + ' \u2013 ' + tipo;
 
-            var submitUrl = new URL(form.action);
-            if (submitUrl.hostname === 'formsubmit.co' && submitUrl.pathname.indexOf('/ajax/') !== 0) {
-              submitUrl.pathname = '/ajax' + submitUrl.pathname;
-            }
-
-            fetch(submitUrl.toString(), {
+            fetch(form.action, {
               method: 'POST',
-              body: new FormData(form),
-              headers: { 'Accept': 'application/json' }
-            })
-            .then(function(response) {
-              return response.json().catch(function() { return {}; }).then(function(data) {
-                if (!response.ok || data.success === false || data.success === 'false') {
-                  throw new Error(data.message || 'FormSubmit error');
-                }
-              });
+              redirect: 'manual',
+              body: new FormData(form)
             })
             .then(function() {
               hiddenInputs.forEach(function(el) { el.disabled = false; });
               formSection.innerHTML = successHTML;
               playSuccessSound();
             })
-            .catch(function(error) {
-              console.error('FormSubmit error:', error);
+            .catch(function() {
               hiddenInputs.forEach(function(el) { el.disabled = false; });
               btnEnviar.textContent = 'Enviar Solicitud';
               btnEnviar.disabled = false;
