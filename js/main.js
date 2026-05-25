@@ -510,7 +510,7 @@ function initHorarios() {
   };
 
   var DUR = {
-    'hidrogimnasia': 45,
+    'hidrogimnasia': 40,
     'natacion-infantil': 45,
     'natacion-adultos': 45,
     'pilates': 30,
@@ -530,13 +530,12 @@ function initHorarios() {
 
   var DATA = [
     // Hidrogimnasia
-    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'08:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:1,t:'08:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'08:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:3,t:'07:45'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'08:00'},
-    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'08:50'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'8:50'},
+    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'08:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'08:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'08:00'},
+    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'08:50'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'08:50'},
     {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'16:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'16:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'16:00'},
-    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'17:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:1,t:'17:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'17:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:3,t:'17:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'17:00'},
-    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'18:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:1,t:'18:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'18:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:3,t:'18:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'18:00'},
-    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:1,t:'19:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:3,t:'19:00'},
-    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'20:20'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:1,t:'20:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'20:20'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:3,t:'20:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'20:20'},
+    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'17:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'17:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'17:00'},
+    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'18:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'18:00'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'18:00'},
+    {s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:0,t:'20:20'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:2,t:'20:20'},{s:'hidrogimnasia',n:'Hidrogimnasia',c:'piscina',d:4,t:'20:20'},
     // Natación Infantil 3-12
     {s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:0,t:'11:15'},{s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:2,t:'11:15'},{s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:4,t:'11:15'},
     {s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:0,t:'18:40'},{s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:2,t:'18:40'},{s:'natacion-infantil',n:'Natación Infantil',c:'piscina',d:4,t:'18:40'},
