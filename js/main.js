@@ -457,9 +457,6 @@ function initContactForm() {
   if (!form) return;
 
   form.addEventListener('submit', async (e) => {
-    // Note: Captcha validation is handled in initCaptchas() which
-    // will preventDefault if invalid. If we reach here, captcha is valid.
-    
     e.preventDefault();
     const btn      = form.querySelector('[type="submit"]');
     const original = btn.textContent;
