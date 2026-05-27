@@ -490,57 +490,6 @@ function initContactForm() {
   });
 }
 
-/**
- * Simple client-side Math Captcha to prevent basic bot submissions.
- */
-function initCaptchas() {
-  const forms = document.querySelectorAll('form');
-  if (!forms.length) return;
-
-  forms.forEach((form, index) => {
-    // Generate simple math question
-    const num1 = Math.floor(Math.random() * 9) + 1;
-    const num2 = Math.floor(Math.random() * 9) + 1;
-    const result = num1 + num2;
-
-    const captchaDiv = document.createElement('div');
-    captchaDiv.className = 'form-field captcha-field';
-
-    captchaDiv.innerHTML = `
-      <label for="captcha-${index}">Seguridad: &iquest;Cu&aacute;nto es ${num1} + ${num2}?</label>
-      <input type="text" id="captcha-${index}" name="captcha_val" placeholder="Resultado" required>
-    `;
-
-    // Find submit button to insert before it
-    const submitBtn = form.querySelector('[type="submit"]');
-    if (submitBtn) {
-      form.insertBefore(captchaDiv, submitBtn);
-    }
-
-    // Validation
-    form.addEventListener('submit', function(e) {
-      const input = captchaDiv.querySelector('input');
-      if (parseInt(input.value) !== result) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        alert('Por favor, resuelva correctamente la suma de verificaci&oacute;n.');
-        input.focus();
-        
-        // Reset submit button state if it was changed by other listeners
-        const btn = form.querySelector('[type="submit"]');
-        if (btn && btn.disabled) {
-          btn.disabled = false;
-          // Try to recover original text if possible
-          if (btn.textContent === 'Enviando...') {
-            btn.textContent = btn.getAttribute('data-original-text') || 'Enviar';
-          }
-        }
-        return false;
-      }
-    }, true); // Use capture to run before other handlers
-  });
-}
-
 // ============================================================
 // 11. HORARIOS — SECTION PICKER + WEEKLY GRID
 // ============================================================
@@ -1819,7 +1768,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initInstallationsCarousel();
   initContactForm();
-  initCaptchas();
   initTimeline();
   initConveniosMarquee();
   initHexDividers();
