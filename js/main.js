@@ -574,7 +574,7 @@ function initHorarios() {
     // Entrenamiento Funcional
     {s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:1,t:'20:00'},{s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:3,t:'20:00'},
     // Voleibol
-    {s:'voleibol',n:'Voleibol',c:'cancha',d:0,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:2,t:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:4,t:'21:00'},
+    {s:'voleibol',n:'Voleibol',c:'cancha',d:0,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:2,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:4,t:'20:00',e:'21:00'},
     // Sala de Entrenamiento
     {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'12:00'},
     {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'16:00',e:'21:00'}
