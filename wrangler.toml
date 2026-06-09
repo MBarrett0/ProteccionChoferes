@@ -1,0 +1,8 @@
+name = "cpch-forms"
+main = "workers/cpch-forms.mjs"
+compatibility_date = "2026-06-09"
+keep_vars = true
+preview_urls = false
+
+[observability.logs]
+enabled = true

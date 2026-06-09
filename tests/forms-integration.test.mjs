@@ -126,3 +126,11 @@ test('Parque Social public WhatsApp page is not wired to the Worker', async () =
   assert.doesNotMatch(html, new RegExp(WORKER_URL));
   assert.match(html, /id="wa-send-btn"/);
 });
+
+test('Wrangler configuration preserves dashboard-managed Worker bindings', async () => {
+  const config = await source('wrangler.toml');
+
+  assert.match(config, /^name = "cpch-forms"$/m);
+  assert.match(config, /^main = "workers\/cpch-forms\.mjs"$/m);
+  assert.match(config, /^keep_vars = true$/m);
+});

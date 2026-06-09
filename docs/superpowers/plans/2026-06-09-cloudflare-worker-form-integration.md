@@ -65,4 +65,4 @@
 - [x] Run `node --check workers/cpch-forms.mjs`.
 - [x] Run `git diff --check`.
 - [x] Confirm Parque Social files have no diff.
-- [ ] Authenticate Wrangler, deploy `cpch-forms`, verify the live endpoint, and then push the site changes.
+- [x] Authenticate Wrangler, deploy `cpch-forms`, verify the live endpoint, and then push the site changes.
