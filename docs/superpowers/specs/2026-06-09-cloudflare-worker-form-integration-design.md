@@ -34,20 +34,9 @@ Both forms will continue submitting `multipart/form-data` with `fetch`.
 
 The homepage form already uses field names accepted by the Worker's contact email builder. Its submission will append `_form_type=contact` to the outgoing `FormData`.
 
-The association form has a larger, established field contract that does not match the Worker's current membership builder. Its outgoing `FormData` will therefore:
+The association form has a larger, established field contract that does not match the Worker's current membership builder. The Worker source will be versioned in this repository and its `membershipEmail()` builder will consume the form's existing field names directly.
 
-1. Preserve every enabled original field and file attachment.
-2. Append `_form_type=membership`.
-3. Append compatibility fields expected by the Worker:
-   - `nombres`: current `nombre_completo`
-   - `apellidos`: empty, because the public form has one combined name field
-   - `ci`: current `cedula`
-   - `categoria`: current `asociarse_a`
-   - `mensaje`: a readable summary containing all enabled association fields
-
-This compatibility data exists only in the outgoing request. No visible input, label, name attribute, or user interaction changes.
-
-The summary excludes FormSubmit metadata fields and file contents. Files remain attached separately under their existing public field names.
+The outgoing `FormData` will preserve every enabled original field and file attachment and append `_form_type=membership`. No visible input, label, name attribute, or user interaction changes.
 
 ## User Experience
 
@@ -74,7 +63,7 @@ Automated contract tests will verify:
 - Parque Social files remain unchanged by this work.
 - Homepage submission sends `_form_type=contact`.
 - Association submission sends `_form_type=membership`.
-- Association compatibility fields are generated without renaming public form fields.
+- The Worker's association email builder renders the existing public field names.
 - Both handlers reject non-success HTTP responses.
 - Both association route copies remain synchronized.
 

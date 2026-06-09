@@ -465,11 +465,12 @@ function initContactForm() {
     btn.disabled    = true;
 
     try {
-      await fetch(form.action, {
+      const response = await fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       });
+      if (!response.ok) throw new Error('Form submission failed');
       btn.textContent      = 'Mensaje enviado';
       btn.style.background = '#1E3A5F';
       btn.style.color      = '#fff';
