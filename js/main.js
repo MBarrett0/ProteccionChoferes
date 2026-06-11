@@ -571,7 +571,8 @@ function initHorarios() {
     // Módulo de Juegos
     {s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:0,t:'18:00',e:'18:30'},{s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:2,t:'18:00',e:'18:30'},{s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:4,t:'18:00',e:'18:30'},
     // Indoor Cycling
-    {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'19:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'19:00'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:00'},
+    {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:00',e:'18:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'08:00',e:'08:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:00',e:'18:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'08:00',e:'08:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:00',e:'18:40'},
+    {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'19:00',e:'19:40'}{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'19:00',e:'19:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:45',e:'19:25'},
     // Entrenamiento Funcional
     {s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:1,t:'20:00'},{s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:3,t:'20:00'},
     // Voleibol
