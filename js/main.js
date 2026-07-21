@@ -572,11 +572,7 @@ function initHorarios() {
     {s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:0,t:'18:00',e:'18:30'},{s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:2,t:'18:00',e:'18:30'},{s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:4,t:'18:00',e:'18:30'},
     // Indoor Cycling
     {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:00',e:'18:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'08:00',e:'08:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:00',e:'18:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'08:00',e:'08:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:00',e:'18:40'},
-    {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'19:00',e:'19:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'19:00',e:'19:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:45',e:'19:25'},
-    // Karate / Kobudo
-    {s:'karate',n:'Karate (5-11 años)',c:'infantil',d:1,t:'17:30',e:'18:15'},{s:'karate',n:'Karate (5-11 años)',c:'infantil',d:3,t:'17:30',e:'18:15'},
-    {s:'kobudo',n:'Kobudo (+11 años)',c:'piso',d:1,t:'18:15',e:'18:45'},{s:'kobudo',n:'Kobudo (+11 años)',c:'piso',d:3,t:'18:15',e:'18:45'},
-    {s:'karate',n:'Karate Juv. y Adultos',c:'piso',d:1,t:'18:45',e:'20:00'},{s:'karate',n:'Karate Juv. y Adultos',c:'piso',d:3,t:'18:45',e:'20:00'},
+    {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'19:00',e:'19:40'}{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'19:00',e:'19:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:45',e:'19:25'},
     // Entrenamiento Funcional
     {s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:1,t:'20:00'},{s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:3,t:'20:00'},
     // Voleibol
@@ -586,7 +582,7 @@ function initHorarios() {
   ];
 
   // Profe en sala schedule per day: [start, end] ranges
- /* var PROFE = {
+  /* var PROFE = {
     0: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
     1: [['08:00','12:00'],['16:00','21:00']],
     2: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
@@ -597,7 +593,7 @@ function initHorarios() {
   function toMin(t) { var p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
   function fromMin(m) { var h = Math.floor(m / 60), mm = m % 60; return (h < 10 ? '0' : '') + h + ':' + (mm < 10 ? '0' : '') + mm; }
 
-  function getNoProfeGaps(day, start, end) {
+/*   function getNoProfeGaps(day, start, end) {
     var sMin = toMin(start), eMin = toMin(end);
     var ranges = PROFE[day] || [];
     var gaps = [], cursor = sMin;
@@ -610,9 +606,9 @@ function initHorarios() {
     }
     if (cursor < eMin) gaps.push([fromMin(cursor), fromMin(eMin)]);
     return gaps;
-  }
+  } */
 
-  function noProfeHtml(e, endTime) {
+  /* function noProfeHtml(e, endTime) {
     if (e.s !== 'sala-entrenamiento') return '';
     var gaps = getNoProfeGaps(e.d, e.t, endTime);
     var h = '';
@@ -620,7 +616,7 @@ function initHorarios() {
       h += '<span class="horarios-grid__no-profe">' + gaps[i][0] + ' - ' + gaps[i][1] + ' S/prof</span>';
     }
     return h;
-  }
+  } */
 
   // Activity display names for the filter
   var ACTIVITY_NAMES = {
@@ -659,7 +655,7 @@ function initHorarios() {
     var h = '<div class="' + cls + '" data-activity="' + e.s + '"' + onclick + '>';
     h += '<span class="horarios-grid__time">' + timeStr + '</span>';
     h += '<span class="horarios-grid__name">' + e.n + '</span>';
-    h += noProfeHtml(e, endTime);
+    //  h += noProfeHtml(e, endTime);
     if (hasWa) {
       var msg = encodeURIComponent('Hola, me comunico para consultar disponibilidad para "' + e.n + '" a las ' + e.t);
       var waUrl = 'https://wa.me/59898514097?text=' + msg;
