@@ -578,22 +578,22 @@ function initHorarios() {
     // Voleibol
     {s:'voleibol',n:'Voleibol',c:'cancha',d:0,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:2,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:4,t:'20:00',e:'21:00'},
     // Sala de Entrenamiento
-    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'20:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'20:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'20:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'20:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'20:00'}
+    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'21:00'}
   ];
 
   // Profe en sala schedule per day: [start, end] ranges
-  /* var PROFE = {
-    0: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
-    1: [['08:00','12:00'],['16:00','21:00']],
-    2: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
-    3: [['08:00','12:00'],['16:00','21:00']],
-    4: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']]
-  }; */
+  var PROFE = {
+    0: [['08:00','21:00']],
+    1: [['08:00','21:00']],
+    2: [['08:00','21:00']],
+    3: [['08:00','21:00']],
+    4: [['08:00','21:00']]
+  };
 
   function toMin(t) { var p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
   function fromMin(m) { var h = Math.floor(m / 60), mm = m % 60; return (h < 10 ? '0' : '') + h + ':' + (mm < 10 ? '0' : '') + mm; }
 
-/*   function getNoProfeGaps(day, start, end) {
+  function getNoProfeGaps(day, start, end) {
     var sMin = toMin(start), eMin = toMin(end);
     var ranges = PROFE[day] || [];
     var gaps = [], cursor = sMin;
@@ -606,9 +606,9 @@ function initHorarios() {
     }
     if (cursor < eMin) gaps.push([fromMin(cursor), fromMin(eMin)]);
     return gaps;
-  } */
+  }
 
-  /* function noProfeHtml(e, endTime) {
+  function noProfeHtml(e, endTime) {
     if (e.s !== 'sala-entrenamiento') return '';
     var gaps = getNoProfeGaps(e.d, e.t, endTime);
     var h = '';
@@ -616,7 +616,7 @@ function initHorarios() {
       h += '<span class="horarios-grid__no-profe">' + gaps[i][0] + ' - ' + gaps[i][1] + ' S/prof</span>';
     }
     return h;
-  } */
+  }
 
   // Activity display names for the filter
   var ACTIVITY_NAMES = {
@@ -655,7 +655,7 @@ function initHorarios() {
     var h = '<div class="' + cls + '" data-activity="' + e.s + '"' + onclick + '>';
     h += '<span class="horarios-grid__time">' + timeStr + '</span>';
     h += '<span class="horarios-grid__name">' + e.n + '</span>';
-    //  h += noProfeHtml(e, endTime);
+    h += noProfeHtml(e, endTime);
     if (hasWa) {
       var msg = encodeURIComponent('Hola, me comunico para consultar disponibilidad para "' + e.n + '" a las ' + e.t);
       var waUrl = 'https://wa.me/59898514097?text=' + msg;
