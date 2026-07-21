@@ -582,18 +582,17 @@ function initHorarios() {
     // Voleibol
     {s:'voleibol',n:'Voleibol',c:'cancha',d:0,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:2,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:4,t:'20:00',e:'21:00'},
     // Sala de Entrenamiento
-    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'12:00'},
-    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'16:00',e:'21:00'}
+    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'20:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'20:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'20:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'20:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'20:00'}
   ];
 
   // Profe en sala schedule per day: [start, end] ranges
-  var PROFE = {
+ /* var PROFE = {
     0: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
     1: [['08:00','12:00'],['16:00','21:00']],
     2: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
     3: [['08:00','12:00'],['16:00','21:00']],
     4: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']]
-  };
+  }; */
 
   function toMin(t) { var p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
   function fromMin(m) { var h = Math.floor(m / 60), mm = m % 60; return (h < 10 ? '0' : '') + h + ':' + (mm < 10 ? '0' : '') + mm; }
