@@ -572,24 +572,23 @@ function initHorarios() {
     {s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:0,t:'18:00',e:'18:30'},{s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:2,t:'18:00',e:'18:30'},{s:'juegos-infantil',n:'Juegos Infantil',c:'infantil',d:4,t:'18:00',e:'18:30'},
     // Indoor Cycling
     {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:00',e:'18:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'08:00',e:'08:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:00',e:'18:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'08:00',e:'08:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:00',e:'18:40'},
-    {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'19:00',e:'19:40'}{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'19:00',e:'19:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:45',e:'19:25'},
+    {s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:0,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:1,t:'19:00',e:'19:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:2,t:'18:45',e:'19:25'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:3,t:'19:00',e:'19:40'},{s:'indoor-cycling',n:'Indoor Cycling',c:'piso',d:4,t:'18:45',e:'19:25'},
     // Entrenamiento Funcional
     {s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:1,t:'20:00'},{s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:3,t:'20:00'},
     // Voleibol
     {s:'voleibol',n:'Voleibol',c:'cancha',d:0,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:2,t:'20:00',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:4,t:'20:00',e:'21:00'},
     // Sala de Entrenamiento
-    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'12:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'12:00'},
-    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'16:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'16:00',e:'21:00'}
+    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'21:00'},
   ];
 
   // Profe en sala schedule per day: [start, end] ranges
-  var PROFE = {
-    0: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
-    1: [['08:00','12:00'],['16:00','21:00']],
-    2: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']],
-    3: [['08:00','12:00'],['16:00','21:00']],
-    4: [['08:30','12:00'],['16:00','17:00'],['18:45','21:00']]
-  };
+ var PROFE = {
+  0: [['08:00','21:00']],
+  1: [['08:00','21:00']],
+  2: [['08:00','21:00']],
+  3: [['08:00','21:00']],
+  4: [['08:00','21:00']]
+};
 
   function toMin(t) { var p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
   function fromMin(m) { var h = Math.floor(m / 60), mm = m % 60; return (h < 10 ? '0' : '') + h + ':' + (mm < 10 ? '0' : '') + mm; }
