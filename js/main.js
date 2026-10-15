@@ -579,16 +579,16 @@ function initHorarios() {
     // Voleibol
     {s:'voleibol',n:'Voleibol',c:'cancha',d:0,t:'19:30',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:2,t:'19:30',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:4,t:'19:30',e:'21:00'},
     // Sala de Entrenamiento
-    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'08:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'08:00',e:'21:00'},
+    {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'07:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'07:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'07:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'07:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'07:00',e:'21:00'},
   ];
 
   // Profe en sala schedule per day: [start, end] ranges
  var PROFE = {
-  0: [['08:00','21:00']],
-  1: [['08:00','21:00']],
-  2: [['08:00','21:00']],
-  3: [['08:00','21:00']],
-  4: [['08:00','21:00']]
+  0: [['07:00','21:00']],
+  1: [['07:00','21:00']],
+  2: [['07:00','21:00']],
+  3: [['07:00','21:00']],
+  4: [['07:00','21:00']]
 };
 
   function toMin(t) { var p = t.split(':'); return (+p[0]) * 60 + (+p[1]); }
