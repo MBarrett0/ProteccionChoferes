@@ -165,18 +165,21 @@
               <option value="">-- Seleccione --</option>
               <option value="cuota_social">Cuota Social</option>
               <option value="complejo_deportivo">Complejo Deportivo</option>
+              <option value="social_deportivo_b">Social + Deportivo B</option>
+              <option value="social_deportivo_b_free_pass">Social + Deportivo B Free Pass</option>
+              <option value="deportivo_b_free_pass">Deportivo B Free Pass</option>
             </select>
           </div>
 
           <!-- === CAMPOS CUOTA SOCIAL === -->
           <div id="campos-cuota" style="display:none;">
             <div class="form-note form-note--cuota" role="note">
-              <p>La cuota social vale <strong>$1000</strong> y brinda defensa y asesoramiento jurídico, solo en casos posteriores a asociarse. También incluye descuentos en el Parque Social, convenios y, respecto al Complejo Deportivo, acceso a sala de entrenamiento, voleibol y spinning.</p>
+              <p>La cuota social vale <strong>$1000</strong> y brinda defensa y asesoramiento jurídico, solo en casos posteriores a asociarse. También incluye descuentos en el Parque Social y convenios.</p>
               <p>En caso de querer reservar antes de cumplir 3 meses como socio, se deben abonar dichos meses por adelantado. De lo contrario, abonando la primera cuota puede reservar sin problema.</p>
             </div>
             <div class="form-field">
               <label for="cs-cobro">Lugar de Cobro *</label>
-              <select id="cs-cobro" name="lugar_cobro">
+              <select id="cs-cobro" name="lugar_cobro" data-req>
                 <option value="">-- Seleccione --</option>
                 <option value="transferencia">Transferencia</option>
                 <option value="domicilio">Domicilio (En Montevideo)</option>
@@ -202,11 +205,45 @@
             </div>
           </div>
 
-          <!-- === CAMPOS COMPLEJO DEPORTIVO === -->
+          <!-- === CAMPOS SOCIAL + DEPORTIVO B (y Free Pass) === -->
+          <div id="campos-social-dep" style="display:none;">
+            <div class="form-note" role="note" data-plan="social_deportivo_b">
+              <p>Esta cuota incluye los beneficios sociales y brinda <strong>3 asistencias semanales</strong> a actividades de piso adem&aacute;s de las duchas.</p>
+            </div>
+            <div class="form-note" role="note" data-plan="social_deportivo_b_free_pass">
+              <p>Esta cuota incluye los beneficios sociales y brinda las actividades de piso de <strong>lunes a viernes</strong>.</p>
+            </div>
+            <div class="form-field">
+              <label for="sd-carne">Adjuntar Carn&eacute; de Salud *</label>
+              <input type="file" id="sd-carne" name="carne_salud" accept="image/*,.pdf" data-req>
+            </div>
+            <div class="form-field">
+              <label for="sd-sexo">Sexo *</label>
+              <select id="sd-sexo" name="sexo" data-req>
+                <option value="">-- Seleccione --</option>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="sd-emergencia">En caso de emergencia llamar a *</label>
+              <input type="text" id="sd-emergencia" name="emergencia_contacto" placeholder="Nombre y tel&eacute;fono de contacto" data-req>
+            </div>
+            <div class="form-field">
+              <label for="sd-libreta">Adjuntar Libreta de Conducir &mdash; <em>opcional</em></label>
+              <input type="file" id="sd-libreta" name="libreta_conducir" accept="image/*,.pdf">
+            </div>
+          </div>
+
+          <!-- === CAMPOS COMPLEJO DEPORTIVO (y Deportivo B Free Pass) === -->
           <div id="campos-deportivo" style="display:none;">
+            <div class="form-note" role="note" data-plan="deportivo_b_free_pass">
+              <p>Todas las actividades de piso de <strong>lunes a viernes</strong>.</p>
+            </div>
             <div class="form-field">
               <label for="cd-sexo">Sexo *</label>
-              <select id="cd-sexo" name="sexo">
+              <select id="cd-sexo" name="sexo" data-req>
                 <option value="">-- Seleccione --</option>
                 <option value="masculino">Masculino</option>
                 <option value="femenino">Femenino</option>
@@ -232,7 +269,7 @@
             </div>
             <div class="form-field">
               <label for="cd-mutualista">Asociacion Civil / Emergencia M&oacute;vil *</label>
-              <input type="text" id="cd-mutualista" name="mutualista" placeholder="Ej: CASMU, Semm, etc.">
+              <input type="text" id="cd-mutualista" name="mutualista" placeholder="Ej: CASMU, Semm, etc." data-req>
             </div>
             <div class="form-field">
               <label for="cd-antecedentes">Antecedentes M&eacute;dicos</label>
@@ -244,7 +281,7 @@
             </div>
             <div class="form-field">
               <label for="cd-pago">M&eacute;todo de Pago *</label>
-              <select id="cd-pago" name="metodo_pago">
+              <select id="cd-pago" name="metodo_pago" data-req>
                 <option value="">-- Seleccione --</option>
                 <option value="transferencia">Transferencia bancaria o dep&oacute;sito</option>
                 <option value="presencial">Presencial</option>
@@ -264,12 +301,23 @@
           var selector = document.getElementById('asociarse-a');
           var cuota = document.getElementById('campos-cuota');
           var deportivo = document.getElementById('campos-deportivo');
+          var socialDep = document.getElementById('campos-social-dep');
+          var sections = [cuota, socialDep, deportivo];
+
+          // Cada opción del selector: sección de campos que muestra y nombre para el asunto
+          var PLANS = {
+            cuota_social:                 { section: cuota,     label: 'Cuota Social' },
+            complejo_deportivo:           { section: deportivo, label: 'Complejo Deportivo' },
+            social_deportivo_b:           { section: socialDep, label: 'Social + Deportivo B' },
+            social_deportivo_b_free_pass: { section: socialDep, label: 'Social + Deportivo B Free Pass' },
+            deportivo_b_free_pass:        { section: deportivo, label: 'Deportivo B Free Pass' }
+          };
           var btnEnviar = document.getElementById('btn-enviar');
           var subjectField = document.getElementById('form-subject');
           var formSection = document.getElementById('form-section');
 
           function toggleRequired(container, state) {
-            container.querySelectorAll('[id^="cs-cobro"], [id^="cd-sexo"], [id^="cd-mutualista"], [id^="cd-pago"]').forEach(function(el) {
+            container.querySelectorAll('[data-req]').forEach(function(el) {
               if (state) el.setAttribute('required', '');
               else el.removeAttribute('required');
             });
@@ -364,24 +412,23 @@
           });
 
           selector.addEventListener('change', function() {
-            cuota.style.display = 'none';
-            deportivo.style.display = 'none';
+            var plan = PLANS[this.value];
+            sections.forEach(function(sec) {
+              sec.style.display = 'none';
+              toggleRequired(sec, false);
+            });
             btnEnviar.style.display = 'none';
             clearEmpresaFields();
             csCobroSelect.value = '';
-            toggleRequired(cuota, false);
-            toggleRequired(deportivo, false);
 
-            if (this.value === 'cuota_social') {
-              cuota.style.display = 'block';
+            if (plan) {
+              plan.section.style.display = 'block';
+              plan.section.querySelectorAll('[data-plan]').forEach(function(note) {
+                note.style.display = note.getAttribute('data-plan') === selector.value ? '' : 'none';
+              });
               btnEnviar.style.display = '';
-              toggleRequired(cuota, true);
-              subjectField.value = 'Nueva Solicitud - Cuota Social';
-            } else if (this.value === 'complejo_deportivo') {
-              deportivo.style.display = 'block';
-              btnEnviar.style.display = '';
-              toggleRequired(deportivo, true);
-              subjectField.value = 'Nueva Solicitud - Complejo Deportivo';
+              toggleRequired(plan.section, true);
+              subjectField.value = 'Nueva Solicitud - ' + plan.label;
             }
           });
 
@@ -390,13 +437,19 @@
             btnEnviar.textContent = 'Enviando\u2026';
             btnEnviar.disabled = true;
 
-            var hiddenSection = selector.value === 'cuota_social' ? deportivo : cuota;
-            var hiddenInputs = hiddenSection.querySelectorAll('input, select, textarea');
-            hiddenInputs.forEach(function(el) { el.disabled = true; });
+            var plan = PLANS[selector.value];
+            var hiddenInputs = [];
+            sections.forEach(function(sec) {
+              if (sec === plan.section) return;
+              sec.querySelectorAll('input, select, textarea').forEach(function(el) {
+                el.disabled = true;
+                hiddenInputs.push(el);
+              });
+            });
 
             var nombre = (document.getElementById('nombre-completo').value || '').trim();
             var cedula = (document.getElementById('cedula').value || '').trim();
-            var tipo = selector.value === 'cuota_social' ? 'Cuota Social' : 'Complejo Deportivo';
+            var tipo = plan.label;
             subjectField.value = 'Pre Asociaci\u00f3n \u2013 ' + nombre + ' \u2013 CI ' + cedula + ' \u2013 ' + tipo;
 
             fetch(form.action, {

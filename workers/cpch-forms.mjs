@@ -136,6 +136,9 @@ export function membershipEmail(fields) {
   const membershipTypes = {
     cuota_social: 'Cuota Social',
     complejo_deportivo: 'Complejo Deportivo',
+    social_deportivo_b: 'Social + Deportivo B',
+    social_deportivo_b_free_pass: 'Social + Deportivo B Free Pass',
+    deportivo_b_free_pass: 'Deportivo B Free Pass',
   };
   const collectionMethods = {
     transferencia: 'Transferencia',
