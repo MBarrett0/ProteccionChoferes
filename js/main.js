@@ -578,6 +578,13 @@ function initHorarios() {
     {s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:1,t:'20:00',e:'20:45'},{s:'entrenamiento-funcional',n:'Ent. Funcional',c:'piso',d:3,t:'20:00',e:'20:45'},
     // Voleibol
     {s:'voleibol',n:'Voleibol',c:'cancha',d:0,t:'19:30',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:2,t:'19:30',e:'21:00'},{s:'voleibol',n:'Voleibol',c:'cancha',d:4,t:'19:30',e:'21:00'},
+    // Karate
+    {s:'karate',n:'Karate (5 a 11)',c:'piso',d:1,t:'17:30',e:'18:15'},{s:'karate',n:'Karate (5 a 11)',c:'piso',d:3,t:'17:30',e:'18:15'},
+    {s:'karate',n:'Karate',c:'piso',d:1,t:'18:45',e:'20:00'},{s:'karate',n:'Karate',c:'piso',d:3,t:'18:45',e:'20:00'},
+    // Kobudo
+    {s:'kobudo',n:'Kobudo (+11)',c:'piso',d:1,t:'18:15',e:'18:45'},{s:'kobudo',n:'Kobudo (+11)',c:'piso',d:3,t:'18:15',e:'18:45'},
+    // Basketball
+    {s:'basketball',n:'Basketball',c:'cancha',d:1,t:'20:00',e:'21:00'},{s:'basketball',n:'Basketball',c:'cancha',d:3,t:'20:00',e:'21:00'},
     // Sala de Entrenamiento
     {s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:0,t:'07:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:1,t:'07:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:2,t:'07:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:3,t:'07:00',e:'21:00'},{s:'sala-entrenamiento',n:'Sala Musculacion',c:'gimnasio',d:4,t:'07:00',e:'21:00'},
   ];
@@ -632,7 +639,10 @@ function initHorarios() {
     'entrenamiento-funcional': 'Entrenamiento Funcional',
     'sala-entrenamiento': 'Sala Musculación',
     'juegos-infantil': 'Módulo de Juegos (3-12)',
-    'voleibol': 'Voleibol Social y Deportivo'
+    'voleibol': 'Voleibol Social y Deportivo',
+    'karate': 'Karate',
+    'kobudo': 'Kobudo (+11 años)',
+    'basketball': 'Basketball'
   };
 
   var NO_WA = ['sala-entrenamiento', 'nado-libre'];
