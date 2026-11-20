@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Asociarse | Centro Protección Choferes de Montevideo</title>
+  <script>
+    // Editá el número y el mensaje acá
+    var NUMERO = '59898514097';
+    var MENSAJE = '¡Hola! Me gustaría obtener informacion para asociarme';
+
+    var url = 'https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(MENSAJE);
+    window.location.replace(url);
+  </script>
+</head>
+<body>
+  <p>Redirigiendo a WhatsApp… Si no se abre, <a id="wa" href="https://wa.me/59898514097">tocá acá</a>.</p>
+  <script>document.getElementById('wa').href = url;</script>
+</body>
+</html>
